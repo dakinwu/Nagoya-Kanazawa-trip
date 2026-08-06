@@ -1,0 +1,843 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="2026 年 2 月小松進、金澤、白川鄉、名古屋 8 天 7 夜互動式行程" />
+  <title>名古屋・金澤・白川鄉｜8天7夜互動行程</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --surface-2: #eef3f8;
+      --text: #182230;
+      --muted: #667085;
+      --line: #dbe4ee;
+      --accent: #1f6f8b;
+      --accent-2: #b4475a;
+      --gold: #a77518;
+      --ok: #207a53;
+      --warn: #a15c10;
+      --danger: #a83245;
+      --shadow: 0 14px 40px rgba(31, 50, 73, .10);
+      --radius: 20px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0e1621;
+      --surface: #151f2c;
+      --surface-2: #1c2938;
+      --text: #edf3f8;
+      --muted: #a9b7c6;
+      --line: #2b3a4b;
+      --accent: #63b7d3;
+      --accent-2: #ef8da0;
+      --gold: #e8bc68;
+      --ok: #69c39b;
+      --warn: #efb266;
+      --danger: #f08596;
+      --shadow: 0 14px 40px rgba(0, 0, 0, .24);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(91, 163, 188, .14), transparent 35%),
+        radial-gradient(circle at 90% 10%, rgba(180, 71, 90, .10), transparent 30%),
+        var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      line-height: 1.65;
+    }
+
+    button, input { font: inherit; }
+    a { color: var(--accent); }
+    button { cursor: pointer; }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 38px 20px 90px;
+      color: white;
+      background:
+        linear-gradient(135deg, rgba(17, 73, 96, .97), rgba(45, 102, 127, .92) 45%, rgba(123, 58, 79, .94));
+    }
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -8% -80px -8%;
+      height: 210px;
+      background: rgba(255,255,255,.15);
+      clip-path: polygon(0 70%, 10% 45%, 18% 62%, 30% 25%, 43% 64%, 55% 31%, 67% 58%, 78% 22%, 91% 54%, 100% 35%, 100% 100%, 0 100%);
+    }
+    .hero::after {
+      bottom: -112px;
+      background: rgba(255,255,255,.10);
+      transform: scaleX(-1);
+    }
+    .hero-inner { max-width: 1160px; margin: 0 auto; position: relative; z-index: 1; }
+    .eyebrow { letter-spacing: .16em; font-size: .78rem; opacity: .82; font-weight: 800; }
+    h1 { margin: 10px 0 12px; font-size: clamp(2rem, 5vw, 4.5rem); line-height: 1.12; }
+    .subtitle { max-width: 760px; margin: 0; font-size: 1.05rem; opacity: .93; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 24px; }
+    .hero-tag {
+      border: 1px solid rgba(255,255,255,.28);
+      background: rgba(255,255,255,.13);
+      backdrop-filter: blur(8px);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: .88rem;
+    }
+
+    .shell { max-width: 1160px; margin: -52px auto 70px; padding: 0 18px; position: relative; z-index: 2; }
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .alert {
+      padding: 18px 20px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      border-left: 5px solid var(--warn);
+      margin-bottom: 16px;
+    }
+    .alert strong { display: block; margin-bottom: 2px; }
+    .alert-icon { font-size: 1.3rem; }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      padding: 14px;
+      margin-bottom: 16px;
+    }
+    .stat { padding: 16px; border-radius: 15px; background: var(--surface-2); }
+    .stat b { display: block; font-size: 1.45rem; line-height: 1.2; }
+    .stat span { color: var(--muted); font-size: .84rem; }
+
+    .toolbar {
+      position: sticky;
+      top: 8px;
+      z-index: 20;
+      padding: 12px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      align-items: center;
+      backdrop-filter: blur(16px);
+      background: color-mix(in srgb, var(--surface) 88%, transparent);
+    }
+    .btn, .tab-btn, .filter-btn {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 11px;
+      padding: 9px 12px;
+      font-weight: 700;
+    }
+    .btn:hover, .tab-btn:hover, .filter-btn:hover { border-color: var(--accent); }
+    .btn.primary, .tab-btn.active, .filter-btn.active { color: white; background: var(--accent); border-color: var(--accent); }
+    .search {
+      min-width: 230px;
+      flex: 1;
+      border: 1px solid var(--line);
+      background: var(--surface-2);
+      color: var(--text);
+      border-radius: 11px;
+      padding: 9px 12px;
+      outline: none;
+    }
+    .search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent); }
+
+    .progress-wrap { padding: 16px 18px; margin-bottom: 16px; }
+    .progress-row { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; font-size: .9rem; }
+    .progress { height: 10px; overflow: hidden; border-radius: 999px; background: var(--surface-2); }
+    .progress > div { height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: width .25s ease; }
+
+    .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    .route-map {
+      padding: 18px;
+      margin-bottom: 16px;
+      overflow-x: auto;
+    }
+    .route-line { min-width: 760px; display: grid; grid-template-columns: repeat(8, 1fr); align-items: center; }
+    .route-stop { text-align: center; position: relative; font-size: .82rem; font-weight: 800; }
+    .route-stop::before {
+      content: "";
+      display: block;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      margin: 0 auto 8px;
+      background: var(--surface);
+      border: 4px solid var(--accent);
+      position: relative;
+      z-index: 2;
+    }
+    .route-stop:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 7px;
+      width: 100%;
+      height: 3px;
+      background: var(--line);
+      z-index: 1;
+    }
+
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+
+    details.day-card {
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+    details.day-card > summary {
+      list-style: none;
+      padding: 18px;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 14px;
+      align-items: center;
+      user-select: none;
+    }
+    details.day-card > summary::-webkit-details-marker { display: none; }
+    .day-index {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, var(--accent), color-mix(in srgb, var(--accent) 70%, var(--accent-2)));
+      color: white;
+      font-weight: 900;
+      font-size: 1.05rem;
+    }
+    .day-heading h2 { margin: 0; font-size: 1.17rem; }
+    .day-heading p { margin: 3px 0 0; color: var(--muted); font-size: .9rem; }
+    .day-meta { text-align: right; color: var(--muted); font-size: .82rem; }
+    .day-content { border-top: 1px solid var(--line); padding: 6px 18px 20px; }
+
+    .timeline { position: relative; margin-left: 8px; }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 78px;
+      top: 14px;
+      bottom: 14px;
+      width: 2px;
+      background: var(--line);
+    }
+    .event {
+      display: grid;
+      grid-template-columns: 68px 20px 1fr;
+      gap: 10px;
+      position: relative;
+      padding: 11px 0;
+    }
+    .event-time { font-weight: 900; font-size: .84rem; color: var(--accent); text-align: right; }
+    .dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      margin-top: 5px;
+      background: var(--surface);
+      border: 3px solid var(--accent-2);
+      position: relative;
+      z-index: 2;
+    }
+    .event-card {
+      border: 1px solid var(--line);
+      background: var(--surface-2);
+      border-radius: 14px;
+      padding: 12px 13px;
+    }
+    .event-title-row { display: flex; gap: 10px; align-items: flex-start; }
+    .event-title-row input { margin-top: 5px; accent-color: var(--accent); transform: scale(1.08); }
+    .event-title { font-weight: 850; }
+    .event p { margin: 5px 0 0; color: var(--muted); font-size: .9rem; }
+    .event.checked .event-card { opacity: .64; }
+    .event.checked .event-title { text-decoration: line-through; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .tag {
+      font-size: .73rem;
+      padding: 3px 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--muted);
+    }
+    .tag.must { color: var(--danger); border-color: color-mix(in srgb, var(--danger) 45%, var(--line)); }
+    .tag.flex { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 45%, var(--line)); }
+    .tag.anime { color: #7351b8; border-color: #9d87d2; }
+    .tag.food { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 45%, var(--line)); }
+    .event-actions { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+    .mini-link {
+      text-decoration: none;
+      font-size: .78rem;
+      font-weight: 800;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: var(--surface);
+      padding: 5px 8px;
+    }
+
+    .note {
+      border-left: 4px solid var(--accent);
+      background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+      padding: 12px 14px;
+      border-radius: 10px;
+      margin-top: 10px;
+      font-size: .9rem;
+    }
+    .note.warn { border-left-color: var(--warn); background: color-mix(in srgb, var(--warn) 9%, var(--surface)); }
+    .note.danger { border-left-color: var(--danger); background: color-mix(in srgb, var(--danger) 8%, var(--surface)); }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .section-card { padding: 18px; }
+    .section-card h2, .section-card h3 { margin-top: 0; }
+    .checklist { display: grid; gap: 9px; }
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 10px 11px;
+      background: var(--surface-2);
+    }
+    .check-item input { margin-top: 5px; accent-color: var(--accent); }
+    .check-item small { display: block; color: var(--muted); margin-top: 2px; }
+
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 720px; }
+    th, td { padding: 11px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: var(--muted); font-size: .82rem; }
+
+    .source-list { display: grid; gap: 10px; }
+    .source-item { border: 1px solid var(--line); padding: 12px 13px; border-radius: 12px; background: var(--surface-2); }
+    .source-item b { display: block; }
+    .source-item small { color: var(--muted); }
+
+    .hidden { display: none !important; }
+    footer { text-align: center; color: var(--muted); padding: 26px 16px 50px; font-size: .84rem; }
+
+    @media (max-width: 760px) {
+      .summary { grid-template-columns: repeat(2, 1fr); }
+      .grid-2 { grid-template-columns: 1fr; }
+      .toolbar { top: 0; border-radius: 0 0 16px 16px; margin-left: -18px; margin-right: -18px; }
+      .search { min-width: 100%; order: -1; }
+      details.day-card > summary { grid-template-columns: auto 1fr; }
+      .day-meta { display: none; }
+      .timeline::before { left: 58px; }
+      .event { grid-template-columns: 48px 18px 1fr; gap: 8px; }
+      .event-time { font-size: .75rem; }
+      .shell { margin-top: -58px; }
+    }
+
+    @media print {
+      .hero { padding-bottom: 32px; }
+      .shell { margin-top: 0; }
+      .toolbar, .tabs, .filters, .event-actions, .progress-wrap { display: none !important; }
+      .tab-panel { display: block !important; }
+      details.day-card { break-inside: avoid; box-shadow: none; }
+      details.day-card:not([open]) .day-content { display: block; }
+      .panel { box-shadow: none; }
+      body { background: white; color: black; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">WINTER JAPAN · INTERACTIVE ITINERARY</div>
+      <h1>名古屋・金澤・白川鄉<br>8天7夜優化版</h1>
+      <p class="subtitle">保留動漫購物、寶可夢中心與經典歷史景點，並依「小松機場進、中部機場出」重新安排冬季交通、排隊策略與市區動線。</p>
+      <div class="hero-tags">
+        <span class="hero-tag">2026/02/09–02/16</span>
+        <span class="hero-tag">小松機場進・中部機場出</span>
+        <span class="hero-tag">金澤 3 晚＋名古屋 4 晚</span>
+        <span class="hero-tag">動漫／寶可夢／雪景／名古屋美食</span>
+        <span class="hero-tag">單一 HTML・離線可用</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="panel alert" aria-label="日期提醒">
+      <div class="alert-icon">⚠</div>
+      <div>
+        <strong>日期狀態：歷史行程版本</strong>
+        這份頁面沿用你提供的 2026/02/09–02/16，並把 Day 1 改為 10:35 抵達小松機場；該日期目前已經過。航班、機場巴士與 JR 時間只保留為規劃參考，實際仍以機票、航空公司及運輸單位當日公告為準。
+      </div>
+    </section>
+
+    <section class="panel summary" aria-label="行程摘要">
+      <div class="stat"><b>8 天</b><span>行程長度</span></div>
+      <div class="stat"><b>7 晚</b><span>金澤 3＋名古屋 4</span></div>
+      <div class="stat"><b>小松進</b><span>Day 1 直達金澤</span></div>
+      <div class="stat"><b>2 個</b><span>冬季高風險交通日</span></div>
+    </section>
+
+    <section class="panel toolbar" aria-label="行程工具列">
+      <input id="searchInput" class="search" type="search" placeholder="搜尋景點、餐廳、動漫店或提醒…" />
+      <button class="btn primary" id="expandAll">展開全部</button>
+      <button class="btn" id="collapseAll">摺疊全部</button>
+      <button class="btn" id="copyPlan">複製純文字</button>
+      <button class="btn" id="printPlan">列印</button>
+      <button class="btn" id="themeToggle" aria-label="切換深色模式">深色</button>
+      <button class="btn" id="resetChecks">重設勾選</button>
+    </section>
+
+    <section class="panel progress-wrap" aria-label="完成進度">
+      <div class="progress-row"><span>行程勾選進度</span><strong id="progressText">0 / 0</strong></div>
+      <div class="progress"><div id="progressBar"></div></div>
+    </section>
+
+    <nav class="tabs" aria-label="內容分頁">
+      <button class="tab-btn active" data-tab="itinerary">每日行程</button>
+      <button class="tab-btn" data-tab="booking">訂位清單</button>
+      <button class="tab-btn" data-tab="packing">冬季行李</button>
+      <button class="tab-btn" data-tab="corrections">關鍵修正</button>
+      <button class="tab-btn" data-tab="sources">官方來源</button>
+    </nav>
+
+    <section id="itinerary" class="tab-panel active">
+      <section class="panel route-map" aria-label="移動路線">
+        <div class="route-line">
+          <div class="route-stop">小松機場</div>
+          <div class="route-stop">金澤</div>
+          <div class="route-stop">白川鄉</div>
+          <div class="route-stop">金澤</div>
+          <div class="route-stop">敦賀</div>
+          <div class="route-stop">名古屋</div>
+          <div class="route-stop">犬山</div>
+          <div class="route-stop">中部機場</div>
+        </div>
+      </section>
+
+      <div class="filters" aria-label="行程篩選">
+        <button class="filter-btn active" data-filter="all">全部</button>
+        <button class="filter-btn" data-filter="kanazawa">金澤</button>
+        <button class="filter-btn" data-filter="shirakawa">白川鄉</button>
+        <button class="filter-btn" data-filter="nagoya">名古屋</button>
+        <button class="filter-btn" data-filter="inuyama">犬山</button>
+        <button class="filter-btn" data-filter="anime">動漫購物</button>
+        <button class="filter-btn" data-filter="food">美食</button>
+      </div>
+
+      <div id="daysContainer">
+        <details class="day-card panel" open data-day-tags="kanazawa anime food transport">
+          <summary>
+            <div class="day-index">D1</div>
+            <div class="day-heading"><h2>抵達小松，直達金澤＋寶可夢中心</h2><p>2/9（一）｜10:35 抵達；不再繞名古屋與敦賀</p></div>
+            <div class="day-meta">住宿：金澤站周邊</div>
+          </summary>
+          <div class="day-content">
+            <div class="timeline">
+              <article class="event" data-tags="transport">
+                <div class="event-time">10:35</div><div class="dot"></div>
+                <div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d1-1"><div><div class="event-title">抵達小松機場</div><p>本頁依你提供的票面時間設定為 10:35；小松機場當時的冬季航班公告曾列台北線 10:25 抵達，因此最終仍以電子機票與航空公司通知為準。國際線入境、領行李與盥洗抓 45–75 分鐘。</p></div></div><div class="tags"><span class="tag must">必要</span><span class="tag flex">入境緩衝</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Komatsu+Airport">地圖</a></div></div>
+              </article>
+              <article class="event" data-tags="transport kanazawa">
+                <div class="event-time">11:30*</div><div class="dot"></div>
+                <div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d1-2"><div><div class="event-title">小松機場 → 金澤站西口</div><p>搭完成入境後最早可搭的北陸鐵道機場巴士，直達金澤，不需先去小松站。官方標示車程約 40–55 分鐘；星號代表實際發車須按當期航班與時刻表確認。</p></div></div><div class="tags"><span class="tag must">直達巴士</span><span class="tag flex">班次待核</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Komatsu+Airport&destination=Kanazawa+Station">路線</a></div></div>
+              </article>
+              <article class="event" data-tags="kanazawa">
+                <div class="event-time">12:30*</div><div class="dot"></div>
+                <div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d1-3"><div><div class="event-title">抵達金澤站、寄放行李</div><p>優先訂金澤站步行 5–8 分鐘內的飯店。若尚未到入住時間，先寄放行李，不要拖著行李逛 FORUS。</p></div></div><div class="tags"><span class="tag must">先放行李</span></div></div>
+              </article>
+              <article class="event" data-tags="kanazawa food">
+                <div class="event-time">13:00</div><div class="dot"></div>
+                <div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d1-4"><div><div class="event-title">金澤站午餐：黑百合關東煮</div><p>把原本晚餐前移成抵達餐，減少晚間候位壓力；若人潮過多，改站內其他壽司、咖哩或麵食，不為單店久等。</p></div></div><div class="tags"><span class="tag food">金澤關東煮</span><span class="tag flex">可替代</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Kuroyuri+Kanazawa+Station">地圖</a></div></div>
+              </article>
+              <article class="event" data-tags="kanazawa anime">
+                <div class="event-time">14:15</div><div class="dot"></div>
+                <div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d1-5"><div><div class="event-title">Pokémon Center KANAZAWA＋金澤 FORUS</div><p>寶可夢中心位於金澤 FORUS 5F，距金澤站近，適合安排在飛行日。先完成最想逛的金澤限定商品，再視體力逛同館商店；庫存與整理券以當日公告為準。</p></div></div><div class="tags"><span class="tag anime">寶可夢</span><span class="tag must">由 Day 3 前移</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pokemon+Center+Kanazawa">地圖</a></div></div>
+              </article>
+              <article class="event" data-tags="kanazawa">
+                <div class="event-time">16:30</div><div class="dot"></div>
+                <div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d1-6"><div><div class="event-title">入住、整理戰利品與休息</div><p>第一天提早到金澤，但不建議再塞戶外大景點。先補充體力，保留晚上是否出門的選擇權。</p></div></div><div class="tags"><span class="tag flex">恢復體力</span></div></div>
+              </article>
+              <article class="event" data-tags="kanazawa food">
+                <div class="event-time">18:00</div><div class="dot"></div>
+                <div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d1-7"><div><div class="event-title">金澤站周邊晚餐</div><p>選北陸居酒屋、迴轉壽司或車站商場餐廳。午餐已吃黑百合，晚餐可換海鮮或地方料理，避免同類型重複。</p></div></div><div class="tags"><span class="tag food">北陸料理</span></div></div>
+              </article>
+              <article class="event" data-tags="kanazawa anime">
+                <div class="event-time">20:00</div><div class="dot"></div>
+                <div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d1-8"><div><div class="event-title">ROUND1 金澤店（體力足夠才去）</div><p>店址不在金澤站前，需另搭車。若航班延誤、下雪或已疲勞，直接取消；Day 1 的核心只到寶可夢中心與晚餐。</p></div></div><div class="tags"><span class="tag flex">可取消</span><span class="tag anime">遊戲機台</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Round1+Stadium+Kanazawa">地圖</a></div></div>
+              </article>
+            </div>
+            <div class="note">優化邏輯：小松機場在石川縣，直接搭機場巴士進金澤即可。簡單例子：若 11:40 完成入境，搭下一班直達巴士約中午抵達金澤；不再需要先到名古屋、再經敦賀折返北陸。</div>
+          </div>
+        </details>
+
+        <details class="day-card panel" open data-day-tags="kanazawa anime food">
+          <summary>
+            <div class="day-index">D2</div>
+            <div class="day-heading"><h2>金澤經典街區＋安利美特</h2><p>2/10（二）｜由北往南，避免折返</p></div>
+            <div class="day-meta">市場 → 茶屋街 → 城園 → 豎町</div>
+          </summary>
+          <div class="day-content"><div class="timeline">
+            <article class="event" data-tags="kanazawa food"><div class="event-time">08:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d2-1"><div><div class="event-title">近江町市場早午餐</div><p>Morimori 壽司或 Ikiiki 亭二選一；避免兩家都排。若排隊超過 30 分鐘，直接改市場內其他海鮮丼。</p></div></div><div class="tags"><span class="tag food">海鮮</span><span class="tag flex">設排隊上限</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Omicho+Market+Kanazawa">地圖</a></div></div></article>
+            <article class="event" data-tags="kanazawa"><div class="event-time">10:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d2-2"><div><div class="event-title">東茶屋街</div><p>箔一金箔霜淇淋與志摩茶屋擇一深度停留；雪天步速較慢，保留 20 分鐘機動時間。</p></div></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Higashi+Chaya+District+Kanazawa">地圖</a></div></div></article>
+            <article class="event" data-tags="kanazawa"><div class="event-time">13:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d2-3"><div><div class="event-title">兼六園＋金澤城</div><p>先兼六園雪吊，再由石川門進金澤城。日落前完成主要戶外拍攝。</p></div></div><div class="tags"><span class="tag must">核心景點</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Kenrokuen+Garden">兼六園</a><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Kanazawa+Castle">金澤城</a></div></div></article>
+            <article class="event" data-tags="kanazawa anime"><div class="event-time">15:45</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d2-4"><div><div class="event-title">香林坊／豎町：Animate 金澤＋羅盤針</div><p>Animate 金澤位於 BELSEL 3F，官方常態營業時間為 11:00–20:00。先買限定與新品，再逛二手店。</p></div></div><div class="tags"><span class="tag anime">動漫主線</span><span class="tag must">20:00 前</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Animate+Kanazawa">地圖</a></div></div></article>
+            <article class="event" data-tags="kanazawa food"><div class="event-time">18:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d2-5"><div><div class="event-title">香林坊晚餐：能登牛燒肉</div><p>隔日為日本國定假日，熱門店應事前訂位。訂不到就改金澤站周邊，避免現場逐店碰運氣。</p></div></div><div class="tags"><span class="tag food">建議訂位</span></div></div></article>
+          </div></div>
+        </details>
+
+        <details class="day-card panel" open data-day-tags="shirakawa kanazawa anime food transport">
+          <summary>
+            <div class="day-index">D3</div>
+            <div class="day-heading"><h2>白川鄉合掌村＋寶可夢中心金澤</h2><p>2/11（三・建國紀念日）｜雪天延誤預案</p></div>
+            <div class="day-meta">預約制巴士日</div>
+          </summary>
+          <div class="day-content"><div class="timeline">
+            <article class="event" data-tags="transport shirakawa"><div class="event-time">08:10</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d3-1"><div><div class="event-title">提早到金澤站東口巴士站</div><p>預約制高速巴士至少提前 20–30 分鐘報到，確認站牌與行李艙。</p></div></div><div class="tags"><span class="tag must">預約憑證</span></div></div></article>
+            <article class="event" data-tags="transport shirakawa"><div class="event-time">08:40*</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d3-2"><div><div class="event-title">金澤 → 白川鄉</div><p>原案時間保留作參考。濃飛巴士官方明確提醒，積雪、塞車或道路封閉可能造成超過 2 小時延誤。</p></div></div><div class="tags"><span class="tag must">預約制</span><span class="tag flex">冬季延誤</span></div></div></article>
+            <article class="event" data-tags="shirakawa"><div class="event-time">10:05</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d3-3"><div><div class="event-title">白川鄉順走：展望台 → 和田家 → 主街</div><p>抵達先看展望台接駁車是否運行；若排隊過長或停駛，立刻改逛聚落，不把全程卡在展望台。</p></div></div><div class="tags"><span class="tag must">防滑鞋</span><span class="tag flex">視天候調整</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Shirakawa-go+Ogimachi">地圖</a></div></div></article>
+            <article class="event" data-tags="shirakawa food"><div class="event-time">12:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d3-4"><div><div class="event-title">路邊小吃＋回站緩衝</div><p>飛驒牛串、可樂餅、布丁採分食；13:25 前開始往巴士總站移動，保留至少 20 分鐘。</p></div></div><div class="tags"><span class="tag food">不排正式餐廳</span></div></div></article>
+            <article class="event" data-tags="transport kanazawa"><div class="event-time">13:55*</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d3-5"><div><div class="event-title">白川鄉 → 金澤</div><p>把 15:20 視為理想抵達，不把 15:30 後安排成不可取消的活動。</p></div></div></div></article>
+            <article class="event" data-tags="kanazawa anime food"><div class="event-time">16:00*</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d3-6"><div><div class="event-title">回金澤後自由活動／寶可夢備援</div><p>主要的 Pokémon Center KANAZAWA 已前移到 Day 1。若 Day 1 因航班延誤或整理券未完成，且巴士準時回金澤，今天才補逛；否則直接回飯店休息、整理照片或吃晚餐。</p></div></div><div class="tags"><span class="tag flex">完全彈性</span><span class="tag anime">備援才逛</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pokemon+Center+Kanazawa">地圖</a></div></div></article>
+          </div><div class="note danger">Day 3 不再有必趕行程。白川鄉巴士若因積雪延誤，回金澤後直接吃飯休息；限定商品、限定皮卡丘與一番賞仍受庫存、活動與整理券制度影響。</div></div>
+        </details>
+
+        <details class="day-card panel" open data-day-tags="kanazawa nagoya food transport">
+          <summary>
+            <div class="day-index">D4</div>
+            <div class="day-heading"><h2>金澤武家屋敷 → 名古屋榮</h2><p>2/12（四）｜修正錯誤的新幹線時長</p></div>
+            <div class="day-meta">住宿：名古屋市區</div>
+          </summary>
+          <div class="day-content"><div class="timeline">
+            <article class="event" data-tags="kanazawa"><div class="event-time">09:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d4-1"><div><div class="event-title">退房、寄放行李</div><p>若 Day 1 航班延誤、Day 3 也未補到寶可夢中心，可在 10:00 開門後作最後備援；但需壓縮長町停留時間。</p></div></div></div></article>
+            <article class="event" data-tags="kanazawa food"><div class="event-time">10:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d4-2"><div><div class="event-title">長町武家屋敷＋古民家午餐</div><p>雪季土牆「藁薦」是重點；12:30 前結束，回站取行李。</p></div></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Nagamachi+Samurai+District">地圖</a></div></div></article>
+            <article class="event" data-tags="transport"><div class="event-time">13:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d4-3"><div><div class="event-title">金澤站集合、確認轉乘組合</div><p>原案寫「14:18–14:43 金澤到敦賀」只給 25 分鐘，不合理。北陸新幹線一般需約 41–58 分鐘；應依售票系統選擇有足夠轉乘時間的組合。</p></div></div><div class="tags"><span class="tag must">原案需修正</span></div></div></article>
+            <article class="event" data-tags="transport nagoya"><div class="event-time">14:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d4-4"><div><div class="event-title">金澤 → 敦賀 → 名古屋</div><p>建議整段抓約 2.5–3 小時；敦賀站轉乘不要安排小於 10 分鐘的自訂組合。</p></div></div><div class="tags"><span class="tag flex">班次待核</span></div></div></article>
+            <article class="event" data-tags="nagoya"><div class="event-time">17:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d4-5"><div><div class="event-title">入住名古屋＋Oasis 21 夜景</div><p>冬季天黑早，抵達後直接去榮，先完成戶外拍攝。</p></div></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Oasis+21+Nagoya">地圖</a></div></div></article>
+            <article class="event" data-tags="nagoya food"><div class="event-time">18:45</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d4-6"><div><div class="event-title">あつた蓬萊軒 松坂屋店</div><p>一般席不可預約，採現場受理；官方也提醒混雜時可能提前停止受理。建議 18:30–18:45 到店登記，不要拖到 19:30 才開始排。</p></div></div><div class="tags"><span class="tag food">鰻魚飯三吃</span><span class="tag must">先登記</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Atsuta+Horaiken+Matsuzakaya">地圖</a></div></div></article>
+            <article class="event" data-tags="nagoya"><div class="event-time">21:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d4-7"><div><div class="event-title">榮地下街／唐吉訶德</div><p>只排補給品與消耗品；大型動漫戰利品留到 Day 5–7 集中購買。</p></div></div></div></article>
+          </div></div>
+        </details>
+
+        <details class="day-card panel" open data-day-tags="inuyama nagoya anime food">
+          <summary>
+            <div class="day-index">D5</div>
+            <div class="day-heading"><h2>犬山城先攻＋大須動漫街</h2><p>2/13（五）｜把天守移到上午，降低排隊與關門風險</p></div>
+            <div class="day-meta">犬山 → 大須</div>
+          </summary>
+          <div class="day-content"><div class="timeline">
+            <article class="event" data-tags="transport inuyama"><div class="event-time">09:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d5-1"><div><div class="event-title">名鐵名古屋 → 犬山</div><p>目標 10:00 前抵達城下町。犬山城官方 9:00 開城、16:30 停止入園。</p></div></div></div></article>
+            <article class="event" data-tags="inuyama"><div class="event-time">10:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d5-2"><div><div class="event-title">先登國寶犬山城</div><p>上午直接攻頂，避開午後人潮；木造樓梯陡峭，穿防滑但不要過厚重的鞋。</p></div></div><div class="tags"><span class="tag must">先城後逛街</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Inuyama+Castle">地圖</a></div></div></article>
+            <article class="event" data-tags="inuyama"><div class="event-time">11:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d5-3"><div><div class="event-title">三光稻荷神社</div><p>拍紅鳥居與銭洗池，再順坡往城下町。</p></div></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Sanko+Inari+Shrine">地圖</a></div></div></article>
+            <article class="event" data-tags="inuyama food"><div class="event-time">12:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d5-4"><div><div class="event-title">犬山城下町邊走邊吃</div><p>飛驒牛握壽司、醬油糰子與甜點最多選 2–3 樣，避免回名古屋後吃不下晚餐。</p></div></div><div class="tags"><span class="tag food">小份分食</span></div></div></article>
+            <article class="event" data-tags="transport nagoya"><div class="event-time">14:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d5-5"><div><div class="event-title">返回名古屋，轉大須</div><p>預留 30 分鐘進飯店放戰利品或短休。</p></div></div></div></article>
+            <article class="event" data-tags="nagoya anime"><div class="event-time">16:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d5-6"><div><div class="event-title">大須動漫採買</div><p>建議順序：大須觀音 → 駿河屋名古屋大須本館／動畫・Hobby館 → Mandarake 名古屋。原案的「BANDAI NAMCO Cross Store 在大須」不正確；官方現址在 mozo Wonder City，不納入本日。</p></div></div><div class="tags"><span class="tag anime">二手挖寶</span><span class="tag must">位置已修正</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Osu+Shopping+Street">大須</a><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Surugaya+Nagoya+Osu">駿河屋</a><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Mandarake+Nagoya">Mandarake</a></div></div></article>
+            <article class="event" data-tags="nagoya food"><div class="event-time">19:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d5-7"><div><div class="event-title">矢場とん 大須本店</div><p>採大須收尾，不再跨區移動。</p></div></div><div class="tags"><span class="tag food">味噌豬排</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Yabaton+Osu">地圖</a></div></div></article>
+          </div></div>
+        </details>
+
+        <details class="day-card panel" open data-day-tags="nagoya anime food">
+          <summary>
+            <div class="day-index">D6</div>
+            <div class="day-heading"><h2>熱田神宮＋白鳥庭園＋PARCO 動漫線</h2><p>2/14（六）｜南區景點後直上矢場町</p></div>
+            <div class="day-meta">新增寶可夢中心名古屋</div>
+          </summary>
+          <div class="day-content"><div class="timeline">
+            <article class="event" data-tags="nagoya"><div class="event-time">09:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d6-1"><div><div class="event-title">熱田神宮</div><p>由「熱田神宮西」站進入，重點看本宮、信長塀與大楠。神社境內不以「看得到神劍」為賣點，草薙神劍屬祭祀核心而非一般展示品。</p></div></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Atsuta+Jingu">地圖</a></div></div></article>
+            <article class="event" data-tags="nagoya food"><div class="event-time">11:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d6-2"><div><div class="event-title">宮きしめん</div><p>在神宮周邊吃寬扁麵，午餐控制在 45–60 分鐘。</p></div></div><div class="tags"><span class="tag food">名古屋麵食</span></div></div></article>
+            <article class="event" data-tags="nagoya"><div class="event-time">12:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d6-3"><div><div class="event-title">白鳥庭園</div><p>官方開園 9:00–17:00、16:30 停止入園；週六正常開園。安排 90 分鐘足夠散步與抹茶休息。</p></div></div><div class="tags"><span class="tag must">16:30 前</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Shirotori+Garden">地圖</a></div></div></article>
+            <article class="event" data-tags="nagoya anime"><div class="event-time">15:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d6-4"><div><div class="event-title">Pokémon Center NAGOYA</div><p>現址在名古屋 PARCO 東館 2F，矢場町站直結，官方常態營業時間 10:00–20:00。</p></div></div><div class="tags"><span class="tag anime">寶可夢</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pokemon+Center+Nagoya+PARCO">地圖</a></div></div></article>
+            <article class="event" data-tags="nagoya anime"><div class="event-time">16:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d6-5"><div><div class="event-title">Animate 名古屋 PARCO</div><p>同一棟東館 4F，與寶可夢中心垂直移動，幾乎零繞路；官方常態營業時間 10:00–20:00。</p></div></div><div class="tags"><span class="tag anime">安利美特</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Animate+Nagoya+PARCO">地圖</a></div></div></article>
+            <article class="event" data-tags="nagoya food"><div class="event-time">18:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d6-6"><div><div class="event-title">世界の山ちゃん</div><p>2/14 週六兼情人節，熱門分店可能客滿；先訂位或設定 20 分鐘候位上限。</p></div></div><div class="tags"><span class="tag food">手羽先</span><span class="tag flex">建議訂位</span></div></div></article>
+          </div><div class="note">優化邏輯：則武之森移到 Day 7，今天改排同棟的 Pokémon Center 與 Animate。簡單例子：白鳥庭園搭地鐵到矢場町後，兩間店只需上下樓；原案再拉到龜島，會增加約一段跨區交通。</div></div>
+        </details>
+
+        <details class="day-card panel" open data-day-tags="nagoya anime food">
+          <summary>
+            <div class="day-index">D7</div>
+            <div class="day-heading"><h2>名古屋城＋則武之森＋名站最後採買</h2><p>2/15（日）｜歷史、書牆與車站區串成一線</p></div>
+            <div class="day-meta">城北 → 則武 → 名站</div>
+          </summary>
+          <div class="day-content"><div class="timeline">
+            <article class="event" data-tags="nagoya food"><div class="event-time">08:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d7-1"><div><div class="event-title">Komeda 咖啡早餐</div><p>早半小時開始，讓名古屋城開門後不久就能進場。</p></div></div><div class="tags"><span class="tag food">Morning Service</span></div></div></article>
+            <article class="event" data-tags="nagoya"><div class="event-time">09:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d7-2"><div><div class="event-title">名古屋城：本丸御殿為主</div><p>名古屋城官方目前註明天守閣等建築不可進入；行程改寫為「外觀＋本丸御殿＋二之丸庭園」，不要寫成登天守。</p></div></div><div class="tags"><span class="tag must">天守不可入內</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Nagoya+Castle">地圖</a></div></div></article>
+            <article class="event" data-tags="nagoya food"><div class="event-time">12:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d7-3"><div><div class="event-title">山本屋總本家 金鯱橫丁店</div><p>就在名古屋城正門區，用味噌煮込みうどん收尾，避免為午餐特地回榮或名站。</p></div></div><div class="tags"><span class="tag food">味噌烏龍麵</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Yamamotoya+Sohonke+Kinshachi+Yokocho">地圖</a></div></div></article>
+            <article class="event" data-tags="nagoya"><div class="event-time">13:45</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d7-4"><div><div class="event-title">則武之森＋TSUTAYA BOOKSTORE 則武新町</div><p>拍戶外紅磚與兩層樓鏡面書牆。TSUTAYA 官方常態營業時間 10:00–21:00，從龜島站步行約 6 分鐘。</p></div></div><div class="tags"><span class="tag must">巨型書牆</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=TSUTAYA+BOOKSTORE+Noritake+Shinmachi">地圖</a></div></div></article>
+            <article class="event" data-tags="nagoya anime"><div class="event-time">16:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d7-5"><div><div class="event-title">名古屋站區最後採買＋Animate 名古屋本店</div><p>Animate 名古屋位於太閤通口步行約 5 分鐘，官方常態營業至 20:00；之後回高島屋、JR Gate Tower 或名鐵百貨補貨。</p></div></div><div class="tags"><span class="tag anime">最後補貨</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Animate+Nagoya+Tsubakicho">地圖</a></div></div></article>
+            <article class="event" data-tags="nagoya food"><div class="event-time">19:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d7-6"><div><div class="event-title">鳥開總本家親子丼</div><p>選名站分店收尾，吃完直接回飯店整理行李。</p></div></div><div class="tags"><span class="tag food">名古屋交趾雞</span></div></div></article>
+          </div></div>
+        </details>
+
+        <details class="day-card panel" open data-day-tags="nagoya food transport">
+          <summary>
+            <div class="day-index">D8</div>
+            <div class="day-heading"><h2>中部機場伴手禮＋返台</h2><p>2/16（一）｜把安檢與登機口緩衝放回行程</p></div>
+            <div class="day-meta">13:15 起飛</div>
+          </summary>
+          <div class="day-content"><div class="timeline">
+            <article class="event" data-tags="nagoya"><div class="event-time">09:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d8-1"><div><div class="event-title">退房、確認行李重量</div><p>動漫商品與蝦餅體積大，先在飯店分配托運／手提，避免機場重整。</p></div></div></div></article>
+            <article class="event" data-tags="transport"><div class="event-time">09:50*</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d8-2"><div><div class="event-title">名鐵名古屋 → 中部國際機場</div><p>原案 μ-SKY 班次僅作參考；目標 10:30 前抵達航廈。</p></div></div><div class="tags"><span class="tag must">預留 2.5 小時以上</span></div></div></article>
+            <article class="event" data-tags="food nagoya"><div class="event-time">10:45</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d8-3"><div><div class="event-title">托運完成後逛 4F Sky Town</div><p>蝦餅之里、風來坊與其他伴手禮設定 60 分鐘上限；先確認國際線安檢入口與登機口距離。</p></div></div><div class="tags"><span class="tag food">伴手禮</span></div></div></article>
+            <article class="event" data-tags="transport"><div class="event-time">12:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d8-4"><div><div class="event-title">通過安檢與出境，前往登機口</div><p>不把所有購物壓到最後 30 分鐘；12:20 前到登機區較穩健。</p></div></div><div class="tags"><span class="tag must">停止購物</span></div></div></article>
+            <article class="event" data-tags="transport"><div class="event-time">13:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d8-5"><div><div class="event-title">班機起飛</div><p>結束行程。</p></div></div></div></article>
+          </div></div>
+        </details>
+      </div>
+    </section>
+
+    <section id="booking" class="tab-panel">
+      <div class="grid-2">
+        <section class="panel section-card">
+          <h2>出發前必處理</h2>
+          <div class="checklist">
+            <label class="check-item"><input class="persist-check" data-key="book-airport-bus" type="checkbox"><span><b>小松機場 → 金澤機場巴士</b><small>確認航班抵達日的時刻、乘車處與付款方式；不預設固定分鐘數。</small></span></label>
+            <label class="check-item"><input class="persist-check" data-key="book-bus" type="checkbox"><span><b>金澤 ↔ 白川鄉高速巴士</b><small>冬季熱門且部分班次預約制；確認去回程、乘車站與取消規則。</small></span></label>
+            <label class="check-item"><input class="persist-check" data-key="book-jr" type="checkbox"><span><b>金澤 → 名古屋 JR 指定席</b><small>只需處理 Day 4 單程；選擇系統提供的正式轉乘組合，不要自行拼出過短的敦賀轉乘。</small></span></label>
+            <label class="check-item"><input class="persist-check" data-key="book-hotel-k" type="checkbox"><span><b>金澤站周邊飯店 3 晚</b><small>優先步行 5–8 分鐘內、可寄放行李。</small></span></label>
+            <label class="check-item"><input class="persist-check" data-key="book-hotel-n" type="checkbox"><span><b>名古屋飯店 4 晚</b><small>名古屋站或榮二選一；若動漫採買量大，名站更利於 Day 7–8。</small></span></label>
+          </div>
+        </section>
+        <section class="panel section-card">
+          <h2>建議處理訂位</h2>
+          <div class="checklist">
+            <label class="check-item"><input class="persist-check" data-key="book-beef" type="checkbox"><span><b>2/10 能登牛晚餐</b><small>隔日為國定假日，前一晚聚餐需求較高。</small></span></label>
+            <label class="check-item"><input class="persist-check" data-key="book-yamachan" type="checkbox"><span><b>2/14 世界の山ちゃん</b><small>週六兼情人節；先訂位或準備同區替代分店。</small></span></label>
+            <label class="check-item"><input class="persist-check" data-key="book-round1" type="checkbox"><span><b>ROUND1 接駁／交通確認</b><small>不是站前店；出發前查接駁、末班車與回程計程車。</small></span></label>
+            <label class="check-item"><input class="persist-check" data-key="book-poke" type="checkbox"><span><b>寶可夢中心整理券公告</b><small>週末或新品發售日可能採整理券／抽選，出發前看官方公告。</small></span></label>
+          </div>
+        </section>
+      </div>
+      <section class="panel section-card" style="margin-top:14px">
+        <h2>不可預約／排隊策略</h2>
+        <div class="table-wrap"><table>
+          <thead><tr><th>地點</th><th>策略</th><th>放棄條件</th></tr></thead>
+          <tbody>
+            <tr><td>あつた蓬萊軒 松坂屋店</td><td>18:30–18:45 先現場登記；一般席不可預約。</td><td>受付已停止或等候超過 90 分鐘，改松坂屋內其他名古屋料理。</td></tr>
+            <tr><td>近江町市場熱門壽司</td><td>只選一家排，先取號再看市場。</td><td>預估超過 30 分鐘，改海鮮丼或立食壽司。</td></tr>
+            <tr><td>白川鄉展望台接駁</td><td>抵達先看運行與隊伍。</td><td>等候超過 30 分鐘或停駛，直接逛聚落。</td></tr>
+            <tr><td>寶可夢中心</td><td>先看官方整理券／新品公告。</td><td>不追單一缺貨商品；金澤與名古屋互為替代。</td></tr>
+          </tbody>
+        </table></div>
+      </section>
+    </section>
+
+    <section id="packing" class="tab-panel">
+      <div class="grid-2">
+        <section class="panel section-card"><h2>雪地必要裝備</h2><div class="checklist">
+          <label class="check-item"><input class="persist-check" data-key="pack-shoes" type="checkbox"><span><b>防水防滑鞋</b><small>鞋底需有深紋；白川鄉與金澤石板路可能結冰。</small></span></label>
+          <label class="check-item"><input class="persist-check" data-key="pack-socks" type="checkbox"><span><b>替換襪 2–3 雙</b><small>鞋內進雪或潮濕時可立即更換。</small></span></label>
+          <label class="check-item"><input class="persist-check" data-key="pack-gloves" type="checkbox"><span><b>可觸控防水手套</b><small>拍照、查地圖與排隊時都需要。</small></span></label>
+          <label class="check-item"><input class="persist-check" data-key="pack-shell" type="checkbox"><span><b>防水外層＋保暖中層</b><small>採洋蔥式穿法，室內百貨不至於過熱。</small></span></label>
+          <label class="check-item"><input class="persist-check" data-key="pack-heat" type="checkbox"><span><b>暖暖包</b><small>白川鄉戶外停留近 4 小時，手腳保暖優先。</small></span></label>
+        </div></section>
+        <section class="panel section-card"><h2>動漫採買裝備</h2><div class="checklist">
+          <label class="check-item"><input class="persist-check" data-key="pack-bag" type="checkbox"><span><b>可折疊購物袋</b><small>部分商場紙袋收費，模型盒也需要額外容量。</small></span></label>
+          <label class="check-item"><input class="persist-check" data-key="pack-bubble" type="checkbox"><span><b>氣泡布／衣物緩衝</b><small>保護模型、立牌與盒裝商品。</small></span></label>
+          <label class="check-item"><input class="persist-check" data-key="pack-scale" type="checkbox"><span><b>行李秤</b><small>Day 7 晚上先完成重量分配。</small></span></label>
+          <label class="check-item"><input class="persist-check" data-key="pack-list" type="checkbox"><span><b>購物優先清單</b><small>分成「必買／價格好才買／看到再說」，避免同商品重複購買。</small></span></label>
+          <label class="check-item"><input class="persist-check" data-key="pack-passport" type="checkbox"><span><b>護照隨身</b><small>免稅店結帳需要；購買後注意封袋規則。</small></span></label>
+        </div></section>
+      </div>
+    </section>
+
+    <section id="corrections" class="tab-panel">
+      <section class="panel section-card">
+        <h2>這次優化的核心修正</h2>
+        <div class="table-wrap"><table>
+          <thead><tr><th>原案問題</th><th>更新方式</th><th>實際影響</th></tr></thead>
+          <tbody>
+            <tr><td>Day 1 誤設從中部機場入境</td><td>改為 10:35 抵達小松機場，搭直達巴士進金澤</td><td>取消名古屋與敦賀轉乘，約中午抵達金澤。</td></tr>
+            <tr><td>Day 3 回金澤後才逛寶可夢中心</td><td>主要行程前移至 Day 1；Day 3、Day 4 只作備援</td><td>不再讓白川鄉冬季延誤影響最想逛的店。</td></tr>
+            <tr><td>Day 4 金澤到敦賀僅 25 分鐘</td><td>刪除不合理時間，改抓約 41–58 分鐘</td><td>避免訂錯轉乘與漏車。</td></tr>
+            <tr><td>Day 5 犬山城排到下午</td><td>改為抵達後先登城</td><td>避開午後排隊與 16:30 停止入園風險。</td></tr>
+            <tr><td>大須包含 Cross Store</td><td>移除；官方店址在 mozo Wonder City</td><td>避免跨到名古屋西北外圍，節省至少一段交通。</td></tr>
+            <tr><td>Day 6 南區後再去則武</td><td>改去矢場町 PARCO：寶可夢＋Animate</td><td>同棟上下樓，符合你的動漫偏好。</td></tr>
+            <tr><td>Day 7 名古屋城寫成登城</td><td>改成本丸御殿、庭園與外觀</td><td>符合官方「天守閣等不可進入」現況。</td></tr>
+            <tr><td>あつた蓬萊軒 19:30 才到</td><td>提早到 18:30–18:45 登記</td><td>降低受付提前結束而吃不到的風險。</td></tr>
+          </tbody>
+        </table></div>
+      </section>
+      <section class="panel section-card" style="margin-top:14px">
+        <h2>仍需在實際出發前重新核對</h2>
+        <p>小松機場巴士、JR 與高速巴士班次、積雪封路、餐廳臨時休業、寶可夢中心整理券、限定商品庫存、展望台接駁運行，以及航班與航廈資訊。這些都屬於高變動資訊，不應只靠本頁保存的歷史內容。</p>
+      </section>
+    </section>
+
+    <section id="sources" class="tab-panel">
+      <section class="panel section-card">
+        <h2>官方與第一手來源</h2>
+        <p>查核日期：2026/08/06。連結開啟後仍應以店家或運輸單位當日公告為準。</p>
+        <div class="source-list">
+          <div class="source-item"><b>小松機場：台北線冬季航班公告</b><small>2025/10/26–2026/03/28 的台北—小松航班參考；實際以機票與航空公司為準。</small><br><a target="_blank" rel="noopener" href="https://www.komatsuairport.jp/info/20251026130000.html">開啟官方網站</a></div>
+          <div class="source-item"><b>北陸鐵道：小松機場利木津巴士</b><small>小松機場直達金澤市區，官方標示車程約 40–55 分鐘；班次與票價須於出發前重查。</small><br><a target="_blank" rel="noopener" href="https://www.hokutetsu.co.jp/airport-bus/">開啟官方網站</a></div>
+          <div class="source-item"><b>JR 東海：各站時刻表／路線查詢</b><small>確認名古屋—敦賀的白鷺與轉乘資訊。</small><br><a target="_blank" rel="noopener" href="https://railway.jr-central.co.jp/time-schedule/search/">開啟官方網站</a></div>
+          <div class="source-item"><b>濃飛巴士：高山・白川鄉・金澤線</b><small>預約、時刻與冬季延誤警示。</small><br><a target="_blank" rel="noopener" href="https://www.nouhibus.co.jp/route_bus/shirakawago/">開啟官方網站</a></div>
+          <div class="source-item"><b>Pokémon Center KANAZAWA</b><small>金澤 FORUS 5F，常態 10:00–20:00。</small><br><a target="_blank" rel="noopener" href="https://shop.pokemon.co.jp/ja/shop/pokemoncenter-kanazawa/">開啟官方網站</a></div>
+          <div class="source-item"><b>Pokémon Center NAGOYA</b><small>名古屋 PARCO 東館 2F，常態 10:00–20:00。</small><br><a target="_blank" rel="noopener" href="https://shop.pokemon.co.jp/ja/shop/pokemoncenter-nagoya/">開啟官方網站</a></div>
+          <div class="source-item"><b>Animate 金澤／名古屋／名古屋 PARCO</b><small>店址與營業時間。</small><br><a target="_blank" rel="noopener" href="https://www.animate.co.jp/shop/kanazawa/">金澤</a>　<a target="_blank" rel="noopener" href="https://www.animate.co.jp/shop/nagoya/">名古屋</a>　<a target="_blank" rel="noopener" href="https://www.animate.co.jp/shop/sakae/">PARCO</a></div>
+          <div class="source-item"><b>名古屋城</b><small>開園時間、本丸御殿最晚入場與天守不可進入。</small><br><a target="_blank" rel="noopener" href="https://www.nagoyajo.city.nagoya.jp/">開啟官方網站</a></div>
+          <div class="source-item"><b>白鳥庭園</b><small>9:00–17:00、16:30 停止入園、週一休園規則。</small><br><a target="_blank" rel="noopener" href="https://www.shirotori-garden.jp/guidance/">開啟官方網站</a></div>
+          <div class="source-item"><b>國寶犬山城</b><small>9:00–17:00、16:30 停止入園。</small><br><a target="_blank" rel="noopener" href="https://inuyamajo.jp/zh-hant/visit/openinghours-and-entrancefee/opening-hours/">開啟官方網站</a></div>
+          <div class="source-item"><b>あつた蓬萊軒／松坂屋名古屋店</b><small>一般席不可預約、現場受理與營業時間。</small><br><a target="_blank" rel="noopener" href="https://www.matsuzakaya.co.jp/nagoya/restaurant/atsutahouraiken.html">開啟店鋪資訊</a></div>
+          <div class="source-item"><b>ROUND1 Stadium 金澤</b><small>店址、交通與營業資訊。</small><br><a target="_blank" rel="noopener" href="https://www.round1.co.jp/shop/tenpo/ishikawa-kanazawa.html">開啟官方網站</a></div>
+          <div class="source-item"><b>BANDAI NAMCO Cross Store 名古屋</b><small>官方現址為 mozo Wonder City 4F，不在大須。</small><br><a target="_blank" rel="noopener" href="https://bandainamco-am.co.jp/crossstore/store/?areaNo=5">開啟官方網站</a></div>
+          <div class="source-item"><b>TSUTAYA BOOKSTORE 則武新町</b><small>10:00–21:00，龜島站步行約 6 分鐘。</small><br><a target="_blank" rel="noopener" href="https://store-tsutaya.tsite.jp/store/detail?storeId=4255">開啟官方網站</a></div>
+          <div class="source-item"><b>山本屋總本家 金鯱橫丁店</b><small>名古屋城正門區分店資訊。</small><br><a target="_blank" rel="noopener" href="https://yamamotoya.co.jp/shoplist/">開啟官方網站</a></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    本頁使用 localStorage（瀏覽器本機儲存）記住勾選狀態；不會把資料上傳。清除瀏覽器網站資料後，進度會消失。
+  </footer>
+
+  <script>
+    (() => {
+      const storagePrefix = 'nagoya-kanazawa-2026-';
+      const allChecks = () => [...document.querySelectorAll('.event-check, .persist-check')];
+      const eventChecks = () => [...document.querySelectorAll('.event-check')];
+
+      function loadChecks() {
+        allChecks().forEach(cb => {
+          cb.checked = localStorage.getItem(storagePrefix + cb.dataset.key) === '1';
+          updateCheckedStyle(cb);
+        });
+        updateProgress();
+      }
+
+      function updateCheckedStyle(cb) {
+        const event = cb.closest('.event');
+        if (event) event.classList.toggle('checked', cb.checked);
+      }
+
+      function updateProgress() {
+        const checks = eventChecks();
+        const done = checks.filter(c => c.checked).length;
+        const total = checks.length;
+        document.getElementById('progressText').textContent = `${done} / ${total}`;
+        document.getElementById('progressBar').style.width = total ? `${done / total * 100}%` : '0%';
+      }
+
+      allChecks().forEach(cb => cb.addEventListener('change', () => {
+        localStorage.setItem(storagePrefix + cb.dataset.key, cb.checked ? '1' : '0');
+        updateCheckedStyle(cb);
+        updateProgress();
+      }));
+
+      document.getElementById('expandAll').addEventListener('click', () => {
+        document.querySelectorAll('details.day-card').forEach(d => d.open = true);
+      });
+      document.getElementById('collapseAll').addEventListener('click', () => {
+        document.querySelectorAll('details.day-card').forEach(d => d.open = false);
+      });
+      document.getElementById('printPlan').addEventListener('click', () => window.print());
+      document.getElementById('resetChecks').addEventListener('click', () => {
+        if (!confirm('確定要清除所有行程、訂位與行李勾選嗎？')) return;
+        allChecks().forEach(cb => {
+          cb.checked = false;
+          localStorage.removeItem(storagePrefix + cb.dataset.key);
+          updateCheckedStyle(cb);
+        });
+        updateProgress();
+      });
+
+      const tabs = document.querySelectorAll('.tab-btn');
+      tabs.forEach(btn => btn.addEventListener('click', () => {
+        tabs.forEach(b => b.classList.toggle('active', b === btn));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === btn.dataset.tab));
+        window.scrollTo({top: document.querySelector('.tabs').offsetTop - 70, behavior: 'smooth'});
+      }));
+
+      let activeFilter = 'all';
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      filterButtons.forEach(btn => btn.addEventListener('click', () => {
+        activeFilter = btn.dataset.filter;
+        filterButtons.forEach(b => b.classList.toggle('active', b === btn));
+        applyFilters();
+      }));
+
+      const searchInput = document.getElementById('searchInput');
+      searchInput.addEventListener('input', applyFilters);
+
+      function applyFilters() {
+        const q = searchInput.value.trim().toLowerCase();
+        document.querySelectorAll('.day-card').forEach(day => {
+          const filterMatch = activeFilter === 'all' || day.dataset.dayTags.includes(activeFilter);
+          let searchMatch = !q || day.textContent.toLowerCase().includes(q);
+          day.classList.toggle('hidden', !(filterMatch && searchMatch));
+
+          day.querySelectorAll('.event').forEach(event => {
+            const eventSearchMatch = !q || event.textContent.toLowerCase().includes(q);
+            const eventFilterMatch = activeFilter === 'all' || event.dataset.tags.includes(activeFilter) || day.dataset.dayTags.includes(activeFilter);
+            event.classList.toggle('hidden', !(eventSearchMatch && eventFilterMatch));
+          });
+        });
+      }
+
+      function buildPlainText() {
+        const lines = ['名古屋・金澤・白川鄉 8天7夜優化行程（2026/02/09–02/16）', ''];
+        document.querySelectorAll('.day-card').forEach(day => {
+          const title = day.querySelector('h2').textContent.trim();
+          const desc = day.querySelector('.day-heading p').textContent.trim();
+          lines.push(`${title}｜${desc}`);
+          day.querySelectorAll('.event').forEach(event => {
+            const time = event.querySelector('.event-time').textContent.trim();
+            const eventTitle = event.querySelector('.event-title').textContent.trim();
+            const p = event.querySelector('p');
+            lines.push(`- ${time} ${eventTitle}${p ? `：${p.textContent.trim()}` : ''}`);
+          });
+          lines.push('');
+        });
+        return lines.join('\n');
+      }
+
+      document.getElementById('copyPlan').addEventListener('click', async () => {
+        const text = buildPlainText();
+        try {
+          await navigator.clipboard.writeText(text);
+          const btn = document.getElementById('copyPlan');
+          const old = btn.textContent;
+          btn.textContent = '已複製';
+          setTimeout(() => btn.textContent = old, 1400);
+        } catch {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          ta.remove();
+        }
+      });
+
+      const themeBtn = document.getElementById('themeToggle');
+      const savedTheme = localStorage.getItem(storagePrefix + 'theme');
+      if (savedTheme === 'dark') document.documentElement.dataset.theme = 'dark';
+      updateThemeLabel();
+      themeBtn.addEventListener('click', () => {
+        const dark = document.documentElement.dataset.theme === 'dark';
+        document.documentElement.dataset.theme = dark ? 'light' : 'dark';
+        localStorage.setItem(storagePrefix + 'theme', dark ? 'light' : 'dark');
+        updateThemeLabel();
+      });
+      function updateThemeLabel() {
+        themeBtn.textContent = document.documentElement.dataset.theme === 'dark' ? '淺色' : '深色';
+      }
+
+      loadChecks();
+    })();
+  </script>
+</body>
+</html>
