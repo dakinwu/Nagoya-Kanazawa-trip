@@ -1,11 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="2026 年 2 月小松進、金澤、白川鄉、名古屋 8 天 7 夜互動式行程" />
-  <title>名古屋・金澤・白川鄉｜8天7夜互動行程</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="2026 年 2 月小松進、金澤、白川鄉、名古屋 8 天 7 夜互動行程；寶可夢中心只安排一次，新增晚間溫泉與手機自適應。" name="description"/>
+<title>名古屋・金澤・白川鄉｜8天7夜互動行程・溫泉版</title>
+<style>
     :root {
       --bg: #f5f7fb;
       --surface: #ffffff;
@@ -43,6 +44,7 @@
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
+      overflow-wrap: anywhere;
       color: var(--text);
       background:
         radial-gradient(circle at 10% 0%, rgba(91, 163, 188, .14), transparent 35%),
@@ -53,6 +55,7 @@
     }
 
     button, input { font: inherit; }
+    button, input, a { touch-action: manipulation; }
     a { color: var(--accent); }
     button { cursor: pointer; }
 
@@ -282,6 +285,7 @@
     .tag.flex { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 45%, var(--line)); }
     .tag.anime { color: #7351b8; border-color: #9d87d2; }
     .tag.food { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 45%, var(--line)); }
+    .tag.onsen { color: var(--gold); border-color: color-mix(in srgb, var(--gold) 55%, var(--line)); }
     .event-actions { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
     .mini-link {
       text-decoration: none;
@@ -334,16 +338,54 @@
     footer { text-align: center; color: var(--muted); padding: 26px 16px 50px; font-size: .84rem; }
 
     @media (max-width: 760px) {
-      .summary { grid-template-columns: repeat(2, 1fr); }
+      .hero { padding: 28px 16px 78px; }
+      .subtitle { font-size: .98rem; }
+      .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .grid-2 { grid-template-columns: 1fr; }
-      .toolbar { top: 0; border-radius: 0 0 16px 16px; margin-left: -18px; margin-right: -18px; }
-      .search { min-width: 100%; order: -1; }
-      details.day-card > summary { grid-template-columns: auto 1fr; }
+      .shell { margin-top: -58px; padding: 0 12px; }
+      .toolbar {
+        top: 0;
+        border-radius: 0 0 16px 16px;
+        margin-left: -12px;
+        margin-right: -12px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .toolbar .search { min-width: 0; width: 100%; grid-column: 1 / -1; order: -1; }
+      .toolbar .btn { width: 100%; min-height: 44px; padding-inline: 8px; }
+      .tabs { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 5px; scroll-snap-type: x proximity; scrollbar-width: thin; }
+      .tab-btn { flex: 0 0 auto; min-height: 44px; scroll-snap-align: start; }
+      .filter-btn, .mini-link { min-height: 40px; display: inline-flex; align-items: center; justify-content: center; }
+      .route-map { scroll-snap-type: x mandatory; }
+      .route-stop { scroll-snap-align: center; }
+      details.day-card > summary { grid-template-columns: auto minmax(0, 1fr); }
       .day-meta { display: none; }
+      .day-content { padding-left: 12px; padding-right: 12px; }
       .timeline::before { left: 58px; }
-      .event { grid-template-columns: 48px 18px 1fr; gap: 8px; }
+      .event { grid-template-columns: 48px 18px minmax(0, 1fr); gap: 8px; }
       .event-time { font-size: .75rem; }
-      .shell { margin-top: -58px; }
+      .event-card { min-width: 0; }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 2rem; }
+      .hero-tags { gap: 6px; }
+      .hero-tag { padding: 6px 9px; font-size: .78rem; }
+      .summary { gap: 8px; padding: 10px; }
+      .stat { padding: 12px; }
+      .stat b { font-size: 1.2rem; }
+      details.day-card > summary { padding: 14px 12px; gap: 10px; }
+      .day-index { width: 48px; height: 48px; border-radius: 14px; font-size: .92rem; }
+      .day-heading h2 { font-size: 1rem; }
+      .day-heading p { font-size: .82rem; }
+      .timeline { margin-left: 0; }
+      .timeline::before { left: 49px; }
+      .event { grid-template-columns: 40px 15px minmax(0, 1fr); gap: 6px; }
+      .event-card { padding: 10px; border-radius: 12px; }
+      .event-title-row { gap: 8px; }
+      .event p { font-size: .86rem; }
+      .section-card { padding: 14px; }
+      table { min-width: 640px; }
     }
 
     @media print {
@@ -359,352 +401,361 @@
   </style>
 </head>
 <body>
-  <header class="hero">
-    <div class="hero-inner">
-      <div class="eyebrow">WINTER JAPAN · INTERACTIVE ITINERARY</div>
-      <h1>名古屋・金澤・白川鄉<br>8天7夜優化版</h1>
-      <p class="subtitle">保留動漫購物、寶可夢中心與經典歷史景點，並依「小松機場進、中部機場出」重新安排冬季交通、排隊策略與市區動線。</p>
-      <div class="hero-tags">
-        <span class="hero-tag">2026/02/09–02/16</span>
-        <span class="hero-tag">小松機場進・中部機場出</span>
-        <span class="hero-tag">金澤 3 晚＋名古屋 4 晚</span>
-        <span class="hero-tag">動漫／寶可夢／雪景／名古屋美食</span>
-        <span class="hero-tag">單一 HTML・離線可用</span>
-      </div>
-    </div>
-  </header>
-
-  <main class="shell">
-    <section class="panel alert" aria-label="日期提醒">
-      <div class="alert-icon">⚠</div>
-      <div>
-        <strong>日期狀態：歷史行程版本</strong>
+<header class="hero">
+<div class="hero-inner">
+<div class="eyebrow">WINTER JAPAN · INTERACTIVE ITINERARY</div>
+<h1>名古屋・金澤・白川鄉<br/>8天7夜優化版</h1>
+<p class="subtitle">保留動漫採買與金澤寶可夢中心，取消名古屋第二次寶可夢行程，新增一次晚間溫泉，並依「小松機場進、中部機場出」整理冬季交通與預約風險。</p>
+<div class="hero-tags">
+<span class="hero-tag">2026/02/09–02/16</span>
+<span class="hero-tag">小松機場進・中部機場出</span>
+<span class="hero-tag">金澤 3 晚＋名古屋 4 晚</span>
+<span class="hero-tag">動漫／單次寶可夢／雪景／溫泉</span>
+<span class="hero-tag">手機自適應・GitHub Pages 可用</span>
+</div>
+</div>
+</header>
+<main class="shell">
+<section aria-label="日期提醒" class="panel alert">
+<div class="alert-icon">⚠</div>
+<div>
+<strong>日期狀態：歷史行程版本</strong>
         這份頁面沿用你提供的 2026/02/09–02/16，並把 Day 1 改為 10:35 抵達小松機場；該日期目前已經過。航班、機場巴士與 JR 時間只保留為規劃參考，實際仍以機票、航空公司及運輸單位當日公告為準。
       </div>
-    </section>
+</section>
+<section aria-label="行程摘要" class="panel summary">
+<div class="stat"><b>8 天</b><span>行程長度</span></div>
+<div class="stat"><b>7 晚</b><span>金澤 3＋名古屋 4</span></div>
+<div class="stat"><b>小松進</b><span>Day 1 直達金澤</span></div>
+<div class="stat"><b>1 次</b><span>晚間溫泉收尾</span></div>
+</section>
+<section aria-label="行程工具列" class="panel toolbar">
+<input class="search" id="searchInput" placeholder="搜尋景點、餐廳、動漫店或提醒…" type="search"/>
+<button class="btn primary" id="expandAll">展開全部</button>
+<button class="btn" id="collapseAll">摺疊全部</button>
+<button class="btn" id="copyPlan">複製純文字</button>
+<button class="btn" id="printPlan">列印</button>
+<button aria-label="切換深色模式" class="btn" id="themeToggle">深色</button>
+<button class="btn" id="resetChecks">重設勾選</button>
+</section>
+<section aria-label="完成進度" class="panel progress-wrap">
+<div class="progress-row"><span>行程勾選進度</span><strong id="progressText">0 / 0</strong></div>
+<div class="progress"><div id="progressBar"></div></div>
+</section>
+<nav aria-label="內容分頁" class="tabs">
+<button class="tab-btn active" data-tab="itinerary">每日行程</button>
+<button class="tab-btn" data-tab="booking">訂位清單</button>
+<button class="tab-btn" data-tab="packing">冬季行李</button><button class="tab-btn" data-tab="onsen">溫泉選項</button>
+<button class="tab-btn" data-tab="corrections">關鍵修正</button>
+<button class="tab-btn" data-tab="sources">官方來源</button>
+</nav>
+<section class="tab-panel active" id="itinerary">
+<section aria-label="移動路線" class="panel route-map">
+<div class="route-line">
+<div class="route-stop">小松機場</div>
+<div class="route-stop">金澤</div>
+<div class="route-stop">白川鄉</div>
+<div class="route-stop">金澤</div>
+<div class="route-stop">敦賀</div>
+<div class="route-stop">名古屋</div>
+<div class="route-stop">犬山</div>
+<div class="route-stop">中部機場</div>
+</div>
+</section>
+<div aria-label="行程篩選" class="filters">
+<button class="filter-btn active" data-filter="all">全部</button>
+<button class="filter-btn" data-filter="kanazawa">金澤</button>
+<button class="filter-btn" data-filter="shirakawa">白川鄉</button>
+<button class="filter-btn" data-filter="nagoya">名古屋</button>
+<button class="filter-btn" data-filter="inuyama">犬山</button>
+<button class="filter-btn" data-filter="anime">動漫購物</button>
+<button class="filter-btn" data-filter="food">美食</button>
+<button class="filter-btn" data-filter="onsen">溫泉</button></div>
+<div id="daysContainer">
+<details class="day-card panel" data-day-tags="kanazawa anime food transport" open="">
+<summary>
+<div class="day-index">D1</div>
+<div class="day-heading"><h2>抵達小松，直達金澤＋寶可夢中心</h2><p>2/9（一）｜10:35 抵達；不再繞名古屋與敦賀</p></div>
+<div class="day-meta">住宿：金澤站周邊</div>
+</summary>
+<div class="day-content">
+<div class="timeline">
+<article class="event" data-tags="transport">
+<div class="event-time">10:35</div><div class="dot"></div>
+<div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d1-1" type="checkbox"/><div><div class="event-title">抵達小松機場</div><p>本頁依你提供的票面時間設定為 10:35；小松機場當時的冬季航班公告曾列台北線 10:25 抵達，因此最終仍以電子機票與航空公司通知為準。國際線入境、領行李與盥洗抓 45–75 分鐘。</p></div></div><div class="tags"><span class="tag must">必要</span><span class="tag flex">入境緩衝</span></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Komatsu+Airport" rel="noopener" target="_blank">地圖</a></div></div>
+</article>
+<article class="event" data-tags="transport kanazawa">
+<div class="event-time">11:30*</div><div class="dot"></div>
+<div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d1-2" type="checkbox"/><div><div class="event-title">小松機場 → 金澤站西口</div><p>搭完成入境後最早可搭的北陸鐵道機場巴士，直達金澤，不需先去小松站。官方標示車程約 40–55 分鐘；星號代表實際發車須按當期航班與時刻表確認。</p></div></div><div class="tags"><span class="tag must">直達巴士</span><span class="tag flex">班次待核</span></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=Komatsu+Airport&amp;destination=Kanazawa+Station" rel="noopener" target="_blank">路線</a></div></div>
+</article>
+<article class="event" data-tags="kanazawa">
+<div class="event-time">12:30*</div><div class="dot"></div>
+<div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d1-3" type="checkbox"/><div><div class="event-title">抵達金澤站、寄放行李</div><p>優先訂金澤站步行 5–8 分鐘內的飯店。若尚未到入住時間，先寄放行李，不要拖著行李逛 FORUS。</p></div></div><div class="tags"><span class="tag must">先放行李</span></div></div>
+</article>
+<article class="event" data-tags="kanazawa food">
+<div class="event-time">13:00</div><div class="dot"></div>
+<div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d1-4" type="checkbox"/><div><div class="event-title">金澤站午餐：黑百合關東煮</div><p>把原本晚餐前移成抵達餐，減少晚間候位壓力；若人潮過多，改站內其他壽司、咖哩或麵食，不為單店久等。</p></div></div><div class="tags"><span class="tag food">金澤關東煮</span><span class="tag flex">可替代</span></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kuroyuri+Kanazawa+Station" rel="noopener" target="_blank">地圖</a></div></div>
+</article>
+<article class="event" data-tags="kanazawa anime">
+<div class="event-time">14:15</div><div class="dot"></div>
+<div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d1-5" type="checkbox"/><div><div class="event-title">Pokémon Center KANAZAWA＋金澤 FORUS</div><p>寶可夢中心位於金澤 FORUS 5F，距金澤站近，適合安排在飛行日。先完成最想逛的金澤限定商品，再視體力逛同館商店；庫存與整理券以當日公告為準。</p></div></div><div class="tags"><span class="tag anime">寶可夢</span><span class="tag must">由 Day 3 前移</span></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Pokemon+Center+Kanazawa" rel="noopener" target="_blank">地圖</a></div></div>
+</article>
+<article class="event" data-tags="kanazawa">
+<div class="event-time">16:30</div><div class="dot"></div>
+<div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d1-6" type="checkbox"/><div><div class="event-title">入住、整理戰利品與休息</div><p>第一天提早到金澤，但不建議再塞戶外大景點。先補充體力，保留晚上是否出門的選擇權。</p></div></div><div class="tags"><span class="tag flex">恢復體力</span></div></div>
+</article>
+<article class="event" data-tags="kanazawa food">
+<div class="event-time">18:00</div><div class="dot"></div>
+<div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d1-7" type="checkbox"/><div><div class="event-title">金澤站周邊晚餐</div><p>選北陸居酒屋、迴轉壽司或車站商場餐廳。午餐已吃黑百合，晚餐可換海鮮或地方料理，避免同類型重複。</p></div></div><div class="tags"><span class="tag food">北陸料理</span></div></div>
+</article>
+<article class="event" data-tags="kanazawa anime">
+<div class="event-time">20:00</div><div class="dot"></div>
+<div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d1-8" type="checkbox"/><div><div class="event-title">ROUND1 金澤店（體力足夠才去）</div><p>店址不在金澤站前，需另搭車。若航班延誤、下雪或已疲勞，直接取消；Day 1 的核心只到寶可夢中心與晚餐。</p></div></div><div class="tags"><span class="tag flex">可取消</span><span class="tag anime">遊戲機台</span></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Round1+Stadium+Kanazawa" rel="noopener" target="_blank">地圖</a></div></div>
+</article>
+</div>
+<div class="note">優化邏輯：小松機場在石川縣，直接搭機場巴士進金澤即可。簡單例子：若 11:40 完成入境，搭下一班直達巴士約中午抵達金澤；不再需要先到名古屋、再經敦賀折返北陸。</div>
+</div>
+</details>
+<details class="day-card panel" data-day-tags="kanazawa anime food" open="">
+<summary>
+<div class="day-index">D2</div>
+<div class="day-heading"><h2>金澤經典街區＋安利美特</h2><p>2/10（二）｜由北往南，避免折返</p></div>
+<div class="day-meta">市場 → 茶屋街 → 城園 → 豎町</div>
+</summary>
+<div class="day-content"><div class="timeline">
+<article class="event" data-tags="kanazawa food"><div class="event-time">08:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d2-1" type="checkbox"/><div><div class="event-title">近江町市場早午餐</div><p>Morimori 壽司或 Ikiiki 亭二選一；避免兩家都排。若排隊超過 30 分鐘，直接改市場內其他海鮮丼。</p></div></div><div class="tags"><span class="tag food">海鮮</span><span class="tag flex">設排隊上限</span></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Omicho+Market+Kanazawa" rel="noopener" target="_blank">地圖</a></div></div></article>
+<article class="event" data-tags="kanazawa"><div class="event-time">10:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d2-2" type="checkbox"/><div><div class="event-title">東茶屋街</div><p>箔一金箔霜淇淋與志摩茶屋擇一深度停留；雪天步速較慢，保留 20 分鐘機動時間。</p></div></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Higashi+Chaya+District+Kanazawa" rel="noopener" target="_blank">地圖</a></div></div></article>
+<article class="event" data-tags="kanazawa"><div class="event-time">13:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d2-3" type="checkbox"/><div><div class="event-title">兼六園＋金澤城</div><p>先兼六園雪吊，再由石川門進金澤城。日落前完成主要戶外拍攝。</p></div></div><div class="tags"><span class="tag must">核心景點</span></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kenrokuen+Garden" rel="noopener" target="_blank">兼六園</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kanazawa+Castle" rel="noopener" target="_blank">金澤城</a></div></div></article>
+<article class="event" data-tags="kanazawa anime"><div class="event-time">15:45</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d2-4" type="checkbox"/><div><div class="event-title">香林坊／豎町：Animate 金澤＋羅盤針</div><p>Animate 金澤位於 BELSEL 3F，官方常態營業時間為 11:00–20:00。先買限定與新品，再逛二手店。</p></div></div><div class="tags"><span class="tag anime">動漫主線</span><span class="tag must">20:00 前</span></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Animate+Kanazawa" rel="noopener" target="_blank">地圖</a></div></div></article>
+<article class="event" data-tags="kanazawa food"><div class="event-time">18:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d2-5" type="checkbox"/><div><div class="event-title">香林坊晚餐：能登牛燒肉</div><p>隔日為日本國定假日，熱門店應事前訂位。訂不到就改金澤站周邊，避免現場逐店碰運氣。</p></div></div><div class="tags"><span class="tag food">建議訂位</span></div></div></article>
+</div></div>
+</details>
+<details class="day-card panel" data-day-tags="shirakawa kanazawa food transport" open="">
+<summary>
+<div class="day-index">D3</div>
+<div class="day-heading"><h2>白川鄉合掌村＋回金澤休息</h2><p>2/11（三・建國紀念日）｜雪天延誤預案</p></div>
+<div class="day-meta">去回程均先預約</div>
+</summary>
+<div class="day-content"><div class="timeline">
+<article class="event" data-tags="transport shirakawa"><div class="event-time">08:10</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d3-1" type="checkbox"/><div><div class="event-title">提早到金澤站西口 4 號乘車處</div><p>去程與回程座位都完成預約後，至少提前 20–30 分鐘到站，核對預約憑證、乘車處與行李艙；不要到東口等車。</p></div></div><div class="tags"><span class="tag must">預約憑證</span></div></div></article>
+<article class="event" data-tags="transport shirakawa"><div class="event-time">08:40*</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d3-2" type="checkbox"/><div><div class="event-title">金澤 → 白川鄉</div><p>你選定的金澤—白川鄉高速巴士班次採預約制，不能把它當成現場排隊即可上車的行程。先完成去程座位預約；冬季仍可能因積雪、塞車或道路封閉大幅延誤。</p></div></div><div class="tags"><span class="tag must">去程已預約</span><span class="tag flex">冬季延誤</span></div><div class="event-actions"><a class="mini-link" href="https://www.hokutetsu.co.jp/kanazawa-daytrips/tc/shirakawago/outline/" rel="noopener" target="_blank">官方時刻／預約說明</a><a class="mini-link" href="https://www.nouhibus.co.jp/route_bus/shirakawago/" rel="noopener" target="_blank">濃飛巴士</a></div></div></article>
+<article class="event" data-tags="shirakawa"><div class="event-time">10:05</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d3-3" type="checkbox"/><div><div class="event-title">白川鄉順走：展望台 → 和田家 → 主街</div><p>抵達先看展望台接駁車是否運行；若排隊過長或停駛，立刻改逛聚落，不把全程卡在展望台。</p></div></div><div class="tags"><span class="tag must">防滑鞋</span><span class="tag flex">視天候調整</span></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Shirakawa-go+Ogimachi" rel="noopener" target="_blank">地圖</a></div></div></article>
+<article class="event" data-tags="shirakawa food"><div class="event-time">12:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d3-4" type="checkbox"/><div><div class="event-title">路邊小吃＋回站緩衝</div><p>飛驒牛串、可樂餅、布丁採分食；13:25 前開始往巴士總站移動，保留至少 20 分鐘。</p></div></div><div class="tags"><span class="tag food">不排正式餐廳</span></div></div></article>
+<article class="event" data-tags="transport kanazawa"><div class="event-time">13:55*</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d3-5" type="checkbox"/><div><div class="event-title">白川鄉 → 金澤</div><p>回程座位同樣要事先預約。把 15:20 視為理想抵達，不把 15:30 後安排成不可取消的活動；出發前再次核對實際班次與乘車月台。</p></div></div><div class="tags"><span class="tag must">回程已預約</span></div></div></article>
+<article class="event" data-tags="kanazawa food"><div class="event-time">16:00*</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d3-6" type="checkbox"/><div><div class="event-title">回金澤後：晚餐＋回飯店休息</div><p>不再安排第二次寶可夢中心。若巴士準時，吃北陸居酒屋或回飯店泡大浴場；若延誤，直接吃簡單晚餐並休息。</p></div></div><div class="tags"><span class="tag flex">完全彈性</span><span class="tag food">北陸晚餐</span></div></div></article>
+</div><div class="note danger">寶可夢中心只保留 Day 1 金澤店一次。Day 3 的唯一硬性條件是去回程都先完成預約；白川鄉巴士若因積雪延誤，回金澤後直接吃飯休息。</div></div>
+</details>
+<details class="day-card panel" data-day-tags="kanazawa nagoya food transport" open="">
+<summary>
+<div class="day-index">D4</div>
+<div class="day-heading"><h2>金澤武家屋敷 → 名古屋榮</h2><p>2/12（四）｜修正錯誤的新幹線時長</p></div>
+<div class="day-meta">住宿：名古屋市區</div>
+</summary>
+<div class="day-content"><div class="timeline">
+<article class="event" data-tags="kanazawa"><div class="event-time">09:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d4-1" type="checkbox"/><div><div class="event-title">退房、寄放行李</div><p>退房後把行李寄放飯店，輕裝前往長町武家屋敷；中午回站取行李並準備搭車。</p></div></div></div></article>
+<article class="event" data-tags="kanazawa food"><div class="event-time">10:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d4-2" type="checkbox"/><div><div class="event-title">長町武家屋敷＋古民家午餐</div><p>雪季土牆「藁薦」是重點；12:30 前結束，回站取行李。</p></div></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Nagamachi+Samurai+District" rel="noopener" target="_blank">地圖</a></div></div></article>
+<article class="event" data-tags="transport"><div class="event-time">13:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d4-3" type="checkbox"/><div><div class="event-title">金澤站集合、確認轉乘組合</div><p>原案寫「14:18–14:43 金澤到敦賀」只給 25 分鐘，不合理。北陸新幹線一般需約 41–58 分鐘；應依售票系統選擇有足夠轉乘時間的組合。</p></div></div><div class="tags"><span class="tag must">原案需修正</span></div></div></article>
+<article class="event" data-tags="transport nagoya"><div class="event-time">14:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d4-4" type="checkbox"/><div><div class="event-title">金澤 → 敦賀 → 名古屋</div><p>建議整段抓約 2.5–3 小時；敦賀站轉乘不要安排小於 10 分鐘的自訂組合。</p></div></div><div class="tags"><span class="tag flex">班次待核</span></div></div></article>
+<article class="event" data-tags="nagoya"><div class="event-time">17:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d4-5" type="checkbox"/><div><div class="event-title">入住名古屋＋Oasis 21 夜景</div><p>冬季天黑早，抵達後直接去榮，先完成戶外拍攝。</p></div></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Oasis+21+Nagoya" rel="noopener" target="_blank">地圖</a></div></div></article>
+<article class="event" data-tags="nagoya food"><div class="event-time">18:45</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d4-6" type="checkbox"/><div><div class="event-title">あつた蓬萊軒 松坂屋店</div><p>一般席不可預約，採現場受理；官方也提醒混雜時可能提前停止受理。建議 18:30–18:45 到店登記，不要拖到 19:30 才開始排。</p></div></div><div class="tags"><span class="tag food">鰻魚飯三吃</span><span class="tag must">先登記</span></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Atsuta+Horaiken+Matsuzakaya" rel="noopener" target="_blank">地圖</a></div></div></article>
+<article class="event" data-tags="nagoya"><div class="event-time">21:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d4-7" type="checkbox"/><div><div class="event-title">榮地下街／唐吉訶德</div><p>只排補給品與消耗品；大型動漫戰利品留到 Day 5–7 集中購買。</p></div></div></div></article>
+</div></div>
+</details>
+<details class="day-card panel" data-day-tags="inuyama nagoya anime food" open="">
+<summary>
+<div class="day-index">D5</div>
+<div class="day-heading"><h2>犬山城先攻＋大須動漫街</h2><p>2/13（五）｜把天守移到上午，降低排隊與關門風險</p></div>
+<div class="day-meta">犬山 → 大須</div>
+</summary>
+<div class="day-content"><div class="timeline">
+<article class="event" data-tags="transport inuyama"><div class="event-time">09:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d5-1" type="checkbox"/><div><div class="event-title">名鐵名古屋 → 犬山</div><p>目標 10:00 前抵達城下町。犬山城官方 9:00 開城、16:30 停止入園。</p></div></div></div></article>
+<article class="event" data-tags="inuyama"><div class="event-time">10:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d5-2" type="checkbox"/><div><div class="event-title">先登國寶犬山城</div><p>上午直接攻頂，避開午後人潮；木造樓梯陡峭，穿防滑但不要過厚重的鞋。</p></div></div><div class="tags"><span class="tag must">先城後逛街</span></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Inuyama+Castle" rel="noopener" target="_blank">地圖</a></div></div></article>
+<article class="event" data-tags="inuyama"><div class="event-time">11:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d5-3" type="checkbox"/><div><div class="event-title">三光稻荷神社</div><p>拍紅鳥居與銭洗池，再順坡往城下町。</p></div></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Sanko+Inari+Shrine" rel="noopener" target="_blank">地圖</a></div></div></article>
+<article class="event" data-tags="inuyama food"><div class="event-time">12:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d5-4" type="checkbox"/><div><div class="event-title">犬山城下町邊走邊吃</div><p>飛驒牛握壽司、醬油糰子與甜點最多選 2–3 樣，避免回名古屋後吃不下晚餐。</p></div></div><div class="tags"><span class="tag food">小份分食</span></div></div></article>
+<article class="event" data-tags="transport nagoya"><div class="event-time">14:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d5-5" type="checkbox"/><div><div class="event-title">返回名古屋，轉大須</div><p>預留 30 分鐘進飯店放戰利品或短休。</p></div></div></div></article>
+<article class="event" data-tags="nagoya anime"><div class="event-time">16:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d5-6" type="checkbox"/><div><div class="event-title">大須動漫採買</div><p>建議順序：大須觀音 → 駿河屋名古屋大須本館／動畫・Hobby館 → Mandarake 名古屋。原案的「BANDAI NAMCO Cross Store 在大須」不正確；官方現址在 mozo Wonder City，不納入本日。</p></div></div><div class="tags"><span class="tag anime">二手挖寶</span><span class="tag must">位置已修正</span></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Osu+Shopping+Street" rel="noopener" target="_blank">大須</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Surugaya+Nagoya+Osu" rel="noopener" target="_blank">駿河屋</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Mandarake+Nagoya" rel="noopener" target="_blank">Mandarake</a></div></div></article>
+<article class="event" data-tags="nagoya food"><div class="event-time">19:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d5-7" type="checkbox"/><div><div class="event-title">矢場とん 大須本店</div><p>採大須收尾，不再跨區移動。</p></div></div><div class="tags"><span class="tag food">味噌豬排</span></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Yabaton+Osu" rel="noopener" target="_blank">地圖</a></div></div></article>
+</div></div>
+</details>
+<details class="day-card panel" data-day-tags="nagoya anime food onsen transport" open="">
+<summary>
+<div class="day-index">D6</div>
+<div class="day-heading"><h2>熱田神宮＋白鳥庭園＋Animate＋晚間溫泉</h2><p>2/14（六）｜南區景點後，以溫泉作晚間最後一站</p></div>
+<div class="day-meta">Canal Resort 收尾</div>
+</summary>
+<div class="day-content"><div class="timeline">
+<article class="event" data-tags="nagoya"><div class="event-time">09:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d6-1" type="checkbox"/><div><div class="event-title">熱田神宮</div><p>由「熱田神宮西」站進入，重點看本宮、信長塀與大楠。神社境內不以「看得到神劍」為賣點，草薙神劍屬祭祀核心而非一般展示品。</p></div></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Atsuta+Jingu" rel="noopener" target="_blank">地圖</a></div></div></article>
+<article class="event" data-tags="nagoya food"><div class="event-time">11:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d6-2" type="checkbox"/><div><div class="event-title">宮きしめん</div><p>在神宮周邊吃寬扁麵，午餐控制在 45–60 分鐘。</p></div></div><div class="tags"><span class="tag food">名古屋麵食</span></div></div></article>
+<article class="event" data-tags="nagoya"><div class="event-time">12:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d6-3" type="checkbox"/><div><div class="event-title">白鳥庭園</div><p>官方開園 9:00–17:00、16:30 停止入園；週六正常開園。安排 90 分鐘足夠散步與抹茶休息。</p></div></div><div class="tags"><span class="tag must">16:30 前</span></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Shirotori+Garden" rel="noopener" target="_blank">地圖</a></div></div></article>
+<article class="event" data-tags="nagoya anime"><div class="event-time">15:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d6-4" type="checkbox"/><div><div class="event-title">Animate 名古屋 PARCO</div><p>位於名古屋 PARCO 東館 4F。只逛 Animate，不再進第二間 Pokémon Center；寶可夢中心全程只保留 Day 1 金澤店。</p></div></div><div class="tags"><span class="tag anime">安利美特</span><span class="tag must">寶可夢不重複</span></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Animate+Nagoya+PARCO" rel="noopener" target="_blank">地圖</a></div></div></article>
+<article class="event" data-tags="nagoya food transport"><div class="event-time">17:30*</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d6-5" type="checkbox"/><div><div class="event-title">金山站周邊提早晚餐</div><p>搭地鐵到金山，吃世界の山ちゃん或同區替代店。若要搭 Canal Resort 免費接駁，必須先按當期時刻表回推用餐結束時間。</p></div></div><div class="tags"><span class="tag food">手羽先</span><span class="tag flex">配合接駁</span></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kanayama+Station+Nagoya" rel="noopener" target="_blank">金山站</a></div></div></article>
+<article class="event" data-tags="nagoya onsen transport"><div class="event-time">19:30*</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d6-6" type="checkbox"/><div><div class="event-title">Canal Resort 天然溫泉</div><p>從金山站搭官方免費接駁前往。設施常態營業至深夜 1:00，最終入館為閉館前 40 分鐘；入場前先確認末班回程接駁，錯過時須改搭計程車。泡湯後直接回飯店，不再塞其他行程。</p></div></div><div class="tags"><span class="tag onsen">天然溫泉</span><span class="tag flex">末班車必查</span></div><div class="event-actions"><a class="mini-link" href="https://canalresort.jp/access/" rel="noopener" target="_blank">接駁與交通</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Canal+Resort+Nagoya" rel="noopener" target="_blank">地圖</a></div></div></article>
+</div><div class="note">優化邏輯：金澤 Pokémon Center 已是主行程，名古屋不再重複。Day 6 用 Animate 保留動漫元素，再以 Canal Resort 作唯一一次晚間泡湯；簡單例子：晚餐後直接搭接駁去泡湯，回飯店就結束，不再跨區補景點。</div></div>
+</details>
+<details class="day-card panel" data-day-tags="nagoya anime food" open="">
+<summary>
+<div class="day-index">D7</div>
+<div class="day-heading"><h2>名古屋城＋則武之森＋名站最後採買</h2><p>2/15（日）｜歷史、書牆與車站區串成一線</p></div>
+<div class="day-meta">城北 → 則武 → 名站</div>
+</summary>
+<div class="day-content"><div class="timeline">
+<article class="event" data-tags="nagoya food"><div class="event-time">08:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d7-1" type="checkbox"/><div><div class="event-title">Komeda 咖啡早餐</div><p>早半小時開始，讓名古屋城開門後不久就能進場。</p></div></div><div class="tags"><span class="tag food">Morning Service</span></div></div></article>
+<article class="event" data-tags="nagoya"><div class="event-time">09:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d7-2" type="checkbox"/><div><div class="event-title">名古屋城：本丸御殿為主</div><p>名古屋城官方目前註明天守閣等建築不可進入；行程改寫為「外觀＋本丸御殿＋二之丸庭園」，不要寫成登天守。</p></div></div><div class="tags"><span class="tag must">天守不可入內</span></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Nagoya+Castle" rel="noopener" target="_blank">地圖</a></div></div></article>
+<article class="event" data-tags="nagoya food"><div class="event-time">12:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d7-3" type="checkbox"/><div><div class="event-title">山本屋總本家 金鯱橫丁店</div><p>就在名古屋城正門區，用味噌煮込みうどん收尾，避免為午餐特地回榮或名站。</p></div></div><div class="tags"><span class="tag food">味噌烏龍麵</span></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Yamamotoya+Sohonke+Kinshachi+Yokocho" rel="noopener" target="_blank">地圖</a></div></div></article>
+<article class="event" data-tags="nagoya"><div class="event-time">13:45</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d7-4" type="checkbox"/><div><div class="event-title">則武之森＋TSUTAYA BOOKSTORE 則武新町</div><p>拍戶外紅磚與兩層樓鏡面書牆。TSUTAYA 官方常態營業時間 10:00–21:00，從龜島站步行約 6 分鐘。</p></div></div><div class="tags"><span class="tag must">巨型書牆</span></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=TSUTAYA+BOOKSTORE+Noritake+Shinmachi" rel="noopener" target="_blank">地圖</a></div></div></article>
+<article class="event" data-tags="nagoya anime"><div class="event-time">16:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d7-5" type="checkbox"/><div><div class="event-title">名古屋站區最後採買＋Animate 名古屋本店</div><p>Animate 名古屋位於太閤通口步行約 5 分鐘，官方常態營業至 20:00；之後回高島屋、JR Gate Tower 或名鐵百貨補貨。</p></div></div><div class="tags"><span class="tag anime">最後補貨</span></div><div class="event-actions"><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Animate+Nagoya+Tsubakicho" rel="noopener" target="_blank">地圖</a></div></div></article>
+<article class="event" data-tags="nagoya food"><div class="event-time">19:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d7-6" type="checkbox"/><div><div class="event-title">鳥開總本家親子丼</div><p>選名站分店收尾，吃完直接回飯店整理行李。</p></div></div><div class="tags"><span class="tag food">名古屋交趾雞</span></div></div></article>
+</div></div>
+</details>
+<details class="day-card panel" data-day-tags="nagoya food transport" open="">
+<summary>
+<div class="day-index">D8</div>
+<div class="day-heading"><h2>中部機場伴手禮＋返台</h2><p>2/16（一）｜把安檢與登機口緩衝放回行程</p></div>
+<div class="day-meta">13:15 起飛</div>
+</summary>
+<div class="day-content"><div class="timeline">
+<article class="event" data-tags="nagoya"><div class="event-time">09:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d8-1" type="checkbox"/><div><div class="event-title">退房、確認行李重量</div><p>動漫商品與蝦餅體積大，先在飯店分配托運／手提，避免機場重整。</p></div></div></div></article>
+<article class="event" data-tags="transport"><div class="event-time">09:50*</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d8-2" type="checkbox"/><div><div class="event-title">名鐵名古屋 → 中部國際機場</div><p>原案 μ-SKY 班次僅作參考；目標 10:30 前抵達航廈。</p></div></div><div class="tags"><span class="tag must">預留 2.5 小時以上</span></div></div></article>
+<article class="event" data-tags="food nagoya"><div class="event-time">10:45</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d8-3" type="checkbox"/><div><div class="event-title">托運完成後逛 4F Sky Town</div><p>蝦餅之里、風來坊與其他伴手禮設定 60 分鐘上限；先確認國際線安檢入口與登機口距離。</p></div></div><div class="tags"><span class="tag food">伴手禮</span></div></div></article>
+<article class="event" data-tags="transport"><div class="event-time">12:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d8-4" type="checkbox"/><div><div class="event-title">通過安檢與出境，前往登機口</div><p>不把所有購物壓到最後 30 分鐘；12:20 前到登機區較穩健。</p></div></div><div class="tags"><span class="tag must">停止購物</span></div></div></article>
+<article class="event" data-tags="transport"><div class="event-time">13:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" data-key="d8-5" type="checkbox"/><div><div class="event-title">班機起飛</div><p>結束行程。</p></div></div></div></article>
+</div></div>
+</details>
+</div>
+</section>
+<section class="tab-panel" id="booking">
+<div class="grid-2">
+<section class="panel section-card">
+<h2>出發前必處理</h2>
+<div class="checklist">
+<label class="check-item"><input class="persist-check" data-key="book-airport-bus" type="checkbox"/><span><b>小松機場 → 金澤機場巴士</b><small>確認航班抵達日的時刻、乘車處與付款方式；不預設固定分鐘數。</small></span></label>
+<label class="check-item"><input class="persist-check" data-key="book-bus" type="checkbox"/><span><b>金澤 ↔ 白川鄉高速巴士（去回程）</b><small>你選的去程與回程班次皆須預約；保存預約號／電子票，確認金澤站西口 4 號乘車處、白川鄉回程站位與取消規則。</small></span></label>
+<label class="check-item"><input class="persist-check" data-key="book-jr" type="checkbox"/><span><b>金澤 → 名古屋 JR 指定席</b><small>只需處理 Day 4 單程；選擇系統提供的正式轉乘組合，不要自行拼出過短的敦賀轉乘。</small></span></label>
+<label class="check-item"><input class="persist-check" data-key="book-hotel-k" type="checkbox"/><span><b>金澤站周邊飯店 3 晚</b><small>優先步行 5–8 分鐘內、可寄放行李。</small></span></label>
+<label class="check-item"><input class="persist-check" data-key="book-hotel-n" type="checkbox"/><span><b>名古屋飯店 4 晚</b><small>名古屋站或榮二選一；若動漫採買量大，名站更利於 Day 7–8。</small></span></label>
+</div>
+</section>
+<section class="panel section-card">
+<h2>建議處理訂位</h2>
+<div class="checklist">
+<label class="check-item"><input class="persist-check" data-key="book-beef" type="checkbox"/><span><b>2/10 能登牛晚餐</b><small>隔日為國定假日，前一晚聚餐需求較高。</small></span></label>
+<label class="check-item"><input class="persist-check" data-key="book-yamachan" type="checkbox"/><span><b>2/14 世界の山ちゃん</b><small>週六兼情人節；先訂位或準備同區替代分店。</small></span></label><label class="check-item"><input class="persist-check" data-key="book-canal" type="checkbox"/><span><b>2/14 Canal Resort 接駁時刻</b><small>確認金山站去程與末班回程；若回程時間不合，事先接受改搭計程車或取消泡湯。</small></span></label>
+<label class="check-item"><input class="persist-check" data-key="book-round1" type="checkbox"/><span><b>ROUND1 接駁／交通確認</b><small>不是站前店；出發前查接駁、末班車與回程計程車。</small></span></label>
+<label class="check-item"><input class="persist-check" data-key="book-poke" type="checkbox"/><span><b>寶可夢中心整理券公告</b><small>週末或新品發售日可能採整理券／抽選，出發前看官方公告。</small></span></label>
+</div>
+</section>
+</div>
+<section class="panel section-card" style="margin-top:14px">
+<h2>不可預約／排隊策略</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>地點</th><th>策略</th><th>放棄條件</th></tr></thead>
+<tbody>
+<tr><td>あつた蓬萊軒 松坂屋店</td><td>18:30–18:45 先現場登記；一般席不可預約。</td><td>受付已停止或等候超過 90 分鐘，改松坂屋內其他名古屋料理。</td></tr>
+<tr><td>近江町市場熱門壽司</td><td>只選一家排，先取號再看市場。</td><td>預估超過 30 分鐘，改海鮮丼或立食壽司。</td></tr>
+<tr><td>白川鄉展望台接駁</td><td>抵達先看運行與隊伍。</td><td>等候超過 30 分鐘或停駛，直接逛聚落。</td></tr>
+<tr><td>寶可夢中心</td><td>全程只排 Day 1 金澤店一次；先看整理券／新品公告。</td><td>只有 Day 1 航班延誤時才移到 Day 2，不新增名古屋第二間店。</td></tr>
+</tbody>
+</table></div>
+</section>
+</section>
+<section class="tab-panel" id="packing">
+<div class="grid-2">
+<section class="panel section-card"><h2>雪地必要裝備</h2><div class="checklist">
+<label class="check-item"><input class="persist-check" data-key="pack-shoes" type="checkbox"/><span><b>防水防滑鞋</b><small>鞋底需有深紋；白川鄉與金澤石板路可能結冰。</small></span></label>
+<label class="check-item"><input class="persist-check" data-key="pack-socks" type="checkbox"/><span><b>替換襪 2–3 雙</b><small>鞋內進雪或潮濕時可立即更換。</small></span></label>
+<label class="check-item"><input class="persist-check" data-key="pack-gloves" type="checkbox"/><span><b>可觸控防水手套</b><small>拍照、查地圖與排隊時都需要。</small></span></label>
+<label class="check-item"><input class="persist-check" data-key="pack-shell" type="checkbox"/><span><b>防水外層＋保暖中層</b><small>採洋蔥式穿法，室內百貨不至於過熱。</small></span></label>
+<label class="check-item"><input class="persist-check" data-key="pack-heat" type="checkbox"/><span><b>暖暖包</b><small>白川鄉戶外停留近 4 小時，手腳保暖優先。</small></span></label>
+</div></section>
+<section class="panel section-card"><h2>動漫採買裝備</h2><div class="checklist">
+<label class="check-item"><input class="persist-check" data-key="pack-bag" type="checkbox"/><span><b>可折疊購物袋</b><small>部分商場紙袋收費，模型盒也需要額外容量。</small></span></label>
+<label class="check-item"><input class="persist-check" data-key="pack-bubble" type="checkbox"/><span><b>氣泡布／衣物緩衝</b><small>保護模型、立牌與盒裝商品。</small></span></label>
+<label class="check-item"><input class="persist-check" data-key="pack-scale" type="checkbox"/><span><b>行李秤</b><small>Day 7 晚上先完成重量分配。</small></span></label>
+<label class="check-item"><input class="persist-check" data-key="pack-list" type="checkbox"/><span><b>購物優先清單</b><small>分成「必買／價格好才買／看到再說」，避免同商品重複購買。</small></span></label>
+<label class="check-item"><input class="persist-check" data-key="pack-passport" type="checkbox"/><span><b>護照隨身</b><small>免稅店結帳需要；購買後注意封袋規則。</small></span></label>
+</div></section>
+</div>
+</section>
+<section class="tab-panel" id="onsen">
+<section class="panel section-card">
+<h2>本版採用方案：不換飯店，Day 6 晚間泡湯</h2>
+<p>目前最平衡的安排是保留金澤站附近連住 3 晚，Day 6 在名古屋加入一次 Canal Resort。這樣不會為了溫泉拖著行李換宿，也不會影響 Day 3 早上的白川鄉預約巴士。</p>
+<div class="note">湯涌溫泉從金澤站搭公車約 45–50 分鐘，總湯「白鷺之湯」營業至 22:00；它適合半日遊或住宿，不適合臨時塞成金澤市區行程後的深夜加點。</div>
+</section>
+<div class="grid-2" style="margin-top:14px">
+<section class="panel section-card">
+<h2>住宿首選：金澤白鳥路 Hotel Sanraku</h2>
+<p><b>適合：</b>想住市區、保留觀光效率，又希望每天能泡天然溫泉。</p>
+<p>位於金澤城、兼六園一帶，館內有白鳥路天然溫泉。缺點是離金澤站不如站前飯店方便；Day 3 早班巴士需提早搭計程車或市區交通前往車站。</p>
+<div class="event-actions"><a class="mini-link" href="https://www.kanazawa-kankoukyoukai.or.jp/everyone/hotel/detail_50054.html" rel="noopener" target="_blank">官方觀光資訊</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kanazawa+Hakuchoro+Hotel+Sanraku" rel="noopener" target="_blank">地圖</a></div>
+</section>
+<section class="panel section-card">
+<h2>傳統旅館首選：湯涌溫泉 あたらしや</h2>
+<p><b>適合：</b>把旅館本身當成一晚主行程，重視傳統和室、料理與源泉泡湯。</p>
+<p>官方介紹為創業約 250 年、每日限定 8 組，並標示源泉掛流與房內用餐。交通代價較高，不建議排在 Day 3 白川鄉前一晚，除非已安排清晨計程車。</p>
+<div class="event-actions"><a class="mini-link" href="https://www.kanazawa-kankoukyoukai.or.jp/reservation/detail_50195.html" rel="noopener" target="_blank">官方觀光資訊</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Atarashiya+Yuwaku+Onsen" rel="noopener" target="_blank">地圖</a></div>
+</section>
+<section class="panel section-card">
+<h2>歷史氛圍首選：深谷溫泉 元湯石屋</h2>
+<p><b>適合：</b>偏好老建築、傳統旅館氛圍，不要求金澤站步行可達。</p>
+<p>官方觀光資訊將其列為延續江戶時代風貌的老舖旅館。位置較偏，公共交通與行李移動要另外規劃，適合包車、自駕或把住宿本身列為主活動。</p>
+<div class="event-actions"><a class="mini-link" href="https://www.kanazawa-kankoukyoukai.or.jp/everyone/hotel/detail_50203.html" rel="noopener" target="_blank">官方觀光資訊</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Motoyu+Ishiya+Kanazawa" rel="noopener" target="_blank">地圖</a></div>
+</section>
+<section class="panel section-card">
+<h2>日歸湯備選：湯涌總湯 白鷺之湯</h2>
+<p><b>適合：</b>願意把半天專門留給湯涌溫泉，不想支付溫泉旅館住宿費。</p>
+<p>官方資料標示 7:00–22:00、每月第 3 個星期四休息。冬季公車班次與回程時間必須先核對；不建議從香林坊晚餐後才臨時出發。</p>
+<div class="event-actions"><a class="mini-link" href="https://www.kanazawa-kankoukyoukai.or.jp/spot/detail_50100.html" rel="noopener" target="_blank">官方資訊</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Shirasagi+no+Yu+Yuwaku" rel="noopener" target="_blank">地圖</a></div>
+</section>
+</div>
+</section><section class="tab-panel" id="corrections">
+<section class="panel section-card">
+<h2>這次優化的核心修正</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>原案問題</th><th>更新方式</th><th>實際影響</th></tr></thead>
+<tbody>
+<tr><td>Day 1 誤設從中部機場入境</td><td>改為 10:35 抵達小松機場，搭直達巴士進金澤</td><td>取消名古屋與敦賀轉乘，約中午抵達金澤。</td></tr>
+<tr><td>金澤與名古屋各排一次寶可夢中心</td><td>全程只保留 Day 1 的 Pokémon Center KANAZAWA</td><td>避免重複購物，Day 6 改以晚間溫泉收尾。</td></tr><tr><td>濃飛巴士只寫「部分班次預約制」</td><td>本行程選定的去回程班次都明確標為須預約</td><td>訂位清單拆成去程與回程，並修正為金澤站西口乘車。</td></tr>
+<tr><td>Day 4 金澤到敦賀僅 25 分鐘</td><td>刪除不合理時間，改抓約 41–58 分鐘</td><td>避免訂錯轉乘與漏車。</td></tr>
+<tr><td>Day 5 犬山城排到下午</td><td>改為抵達後先登城</td><td>避開午後排隊與 16:30 停止入園風險。</td></tr>
+<tr><td>大須包含 Cross Store</td><td>移除；官方店址在 mozo Wonder City</td><td>避免跨到名古屋西北外圍，節省至少一段交通。</td></tr>
+<tr><td>Day 6 再排名古屋寶可夢中心</td><td>改為 Animate 名古屋 PARCO＋金山晚餐＋Canal Resort</td><td>保留動漫元素，同時加入一次真正有區隔的溫泉體驗。</td></tr>
+<tr><td>Day 7 名古屋城寫成登城</td><td>改成本丸御殿、庭園與外觀</td><td>符合官方「天守閣等不可進入」現況。</td></tr>
+<tr><td>あつた蓬萊軒 19:30 才到</td><td>提早到 18:30–18:45 登記</td><td>降低受付提前結束而吃不到的風險。</td></tr>
+</tbody>
+</table></div>
+</section>
+<section class="panel section-card" style="margin-top:14px">
+<h2>仍需在實際出發前重新核對</h2>
+<p>小松機場巴士、JR 與高速巴士班次、積雪封路、餐廳臨時休業、寶可夢中心整理券、限定商品庫存、展望台接駁運行，以及航班與航廈資訊。這些都屬於高變動資訊，不應只靠本頁保存的歷史內容。</p>
+</section>
+</section>
+<section class="tab-panel" id="sources">
+<section class="panel section-card">
+<h2>官方與第一手來源</h2>
+<p>查核日期：2026/08/06。連結開啟後仍應以店家或運輸單位當日公告為準。</p>
+<div class="source-list">
+<div class="source-item"><b>小松機場：台北線冬季航班公告</b><small>2025/10/26–2026/03/28 的台北—小松航班參考；實際以機票與航空公司為準。</small><br/><a href="https://www.komatsuairport.jp/info/20251026130000.html" rel="noopener" target="_blank">開啟官方網站</a></div>
+<div class="source-item"><b>北陸鐵道：小松機場利木津巴士</b><small>小松機場直達金澤市區，官方標示車程約 40–55 分鐘；班次與票價須於出發前重查。</small><br/><a href="https://www.hokutetsu.co.jp/airport-bus/" rel="noopener" target="_blank">開啟官方網站</a></div>
+<div class="source-item"><b>JR 東海：各站時刻表／路線查詢</b><small>確認名古屋—敦賀的白鷺與轉乘資訊。</small><br/><a href="https://railway.jr-central.co.jp/time-schedule/search/" rel="noopener" target="_blank">開啟官方網站</a></div>
+<div class="source-item"><b>濃飛巴士：高山・白川鄉・金澤線</b><small>預約、時刻與冬季延誤警示。</small><br/><a href="https://www.nouhibus.co.jp/route_bus/shirakawago/" rel="noopener" target="_blank">開啟官方網站</a></div>
+<div class="source-item"><b>Pokémon Center KANAZAWA</b><small>金澤 FORUS 5F，常態 10:00–20:00。</small><br/><a href="https://shop.pokemon.co.jp/ja/shop/pokemoncenter-kanazawa/" rel="noopener" target="_blank">開啟官方網站</a></div>
 
-    <section class="panel summary" aria-label="行程摘要">
-      <div class="stat"><b>8 天</b><span>行程長度</span></div>
-      <div class="stat"><b>7 晚</b><span>金澤 3＋名古屋 4</span></div>
-      <div class="stat"><b>小松進</b><span>Day 1 直達金澤</span></div>
-      <div class="stat"><b>2 個</b><span>冬季高風險交通日</span></div>
-    </section>
-
-    <section class="panel toolbar" aria-label="行程工具列">
-      <input id="searchInput" class="search" type="search" placeholder="搜尋景點、餐廳、動漫店或提醒…" />
-      <button class="btn primary" id="expandAll">展開全部</button>
-      <button class="btn" id="collapseAll">摺疊全部</button>
-      <button class="btn" id="copyPlan">複製純文字</button>
-      <button class="btn" id="printPlan">列印</button>
-      <button class="btn" id="themeToggle" aria-label="切換深色模式">深色</button>
-      <button class="btn" id="resetChecks">重設勾選</button>
-    </section>
-
-    <section class="panel progress-wrap" aria-label="完成進度">
-      <div class="progress-row"><span>行程勾選進度</span><strong id="progressText">0 / 0</strong></div>
-      <div class="progress"><div id="progressBar"></div></div>
-    </section>
-
-    <nav class="tabs" aria-label="內容分頁">
-      <button class="tab-btn active" data-tab="itinerary">每日行程</button>
-      <button class="tab-btn" data-tab="booking">訂位清單</button>
-      <button class="tab-btn" data-tab="packing">冬季行李</button>
-      <button class="tab-btn" data-tab="corrections">關鍵修正</button>
-      <button class="tab-btn" data-tab="sources">官方來源</button>
-    </nav>
-
-    <section id="itinerary" class="tab-panel active">
-      <section class="panel route-map" aria-label="移動路線">
-        <div class="route-line">
-          <div class="route-stop">小松機場</div>
-          <div class="route-stop">金澤</div>
-          <div class="route-stop">白川鄉</div>
-          <div class="route-stop">金澤</div>
-          <div class="route-stop">敦賀</div>
-          <div class="route-stop">名古屋</div>
-          <div class="route-stop">犬山</div>
-          <div class="route-stop">中部機場</div>
-        </div>
-      </section>
-
-      <div class="filters" aria-label="行程篩選">
-        <button class="filter-btn active" data-filter="all">全部</button>
-        <button class="filter-btn" data-filter="kanazawa">金澤</button>
-        <button class="filter-btn" data-filter="shirakawa">白川鄉</button>
-        <button class="filter-btn" data-filter="nagoya">名古屋</button>
-        <button class="filter-btn" data-filter="inuyama">犬山</button>
-        <button class="filter-btn" data-filter="anime">動漫購物</button>
-        <button class="filter-btn" data-filter="food">美食</button>
-      </div>
-
-      <div id="daysContainer">
-        <details class="day-card panel" open data-day-tags="kanazawa anime food transport">
-          <summary>
-            <div class="day-index">D1</div>
-            <div class="day-heading"><h2>抵達小松，直達金澤＋寶可夢中心</h2><p>2/9（一）｜10:35 抵達；不再繞名古屋與敦賀</p></div>
-            <div class="day-meta">住宿：金澤站周邊</div>
-          </summary>
-          <div class="day-content">
-            <div class="timeline">
-              <article class="event" data-tags="transport">
-                <div class="event-time">10:35</div><div class="dot"></div>
-                <div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d1-1"><div><div class="event-title">抵達小松機場</div><p>本頁依你提供的票面時間設定為 10:35；小松機場當時的冬季航班公告曾列台北線 10:25 抵達，因此最終仍以電子機票與航空公司通知為準。國際線入境、領行李與盥洗抓 45–75 分鐘。</p></div></div><div class="tags"><span class="tag must">必要</span><span class="tag flex">入境緩衝</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Komatsu+Airport">地圖</a></div></div>
-              </article>
-              <article class="event" data-tags="transport kanazawa">
-                <div class="event-time">11:30*</div><div class="dot"></div>
-                <div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d1-2"><div><div class="event-title">小松機場 → 金澤站西口</div><p>搭完成入境後最早可搭的北陸鐵道機場巴士，直達金澤，不需先去小松站。官方標示車程約 40–55 分鐘；星號代表實際發車須按當期航班與時刻表確認。</p></div></div><div class="tags"><span class="tag must">直達巴士</span><span class="tag flex">班次待核</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Komatsu+Airport&destination=Kanazawa+Station">路線</a></div></div>
-              </article>
-              <article class="event" data-tags="kanazawa">
-                <div class="event-time">12:30*</div><div class="dot"></div>
-                <div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d1-3"><div><div class="event-title">抵達金澤站、寄放行李</div><p>優先訂金澤站步行 5–8 分鐘內的飯店。若尚未到入住時間，先寄放行李，不要拖著行李逛 FORUS。</p></div></div><div class="tags"><span class="tag must">先放行李</span></div></div>
-              </article>
-              <article class="event" data-tags="kanazawa food">
-                <div class="event-time">13:00</div><div class="dot"></div>
-                <div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d1-4"><div><div class="event-title">金澤站午餐：黑百合關東煮</div><p>把原本晚餐前移成抵達餐，減少晚間候位壓力；若人潮過多，改站內其他壽司、咖哩或麵食，不為單店久等。</p></div></div><div class="tags"><span class="tag food">金澤關東煮</span><span class="tag flex">可替代</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Kuroyuri+Kanazawa+Station">地圖</a></div></div>
-              </article>
-              <article class="event" data-tags="kanazawa anime">
-                <div class="event-time">14:15</div><div class="dot"></div>
-                <div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d1-5"><div><div class="event-title">Pokémon Center KANAZAWA＋金澤 FORUS</div><p>寶可夢中心位於金澤 FORUS 5F，距金澤站近，適合安排在飛行日。先完成最想逛的金澤限定商品，再視體力逛同館商店；庫存與整理券以當日公告為準。</p></div></div><div class="tags"><span class="tag anime">寶可夢</span><span class="tag must">由 Day 3 前移</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pokemon+Center+Kanazawa">地圖</a></div></div>
-              </article>
-              <article class="event" data-tags="kanazawa">
-                <div class="event-time">16:30</div><div class="dot"></div>
-                <div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d1-6"><div><div class="event-title">入住、整理戰利品與休息</div><p>第一天提早到金澤，但不建議再塞戶外大景點。先補充體力，保留晚上是否出門的選擇權。</p></div></div><div class="tags"><span class="tag flex">恢復體力</span></div></div>
-              </article>
-              <article class="event" data-tags="kanazawa food">
-                <div class="event-time">18:00</div><div class="dot"></div>
-                <div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d1-7"><div><div class="event-title">金澤站周邊晚餐</div><p>選北陸居酒屋、迴轉壽司或車站商場餐廳。午餐已吃黑百合，晚餐可換海鮮或地方料理，避免同類型重複。</p></div></div><div class="tags"><span class="tag food">北陸料理</span></div></div>
-              </article>
-              <article class="event" data-tags="kanazawa anime">
-                <div class="event-time">20:00</div><div class="dot"></div>
-                <div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d1-8"><div><div class="event-title">ROUND1 金澤店（體力足夠才去）</div><p>店址不在金澤站前，需另搭車。若航班延誤、下雪或已疲勞，直接取消；Day 1 的核心只到寶可夢中心與晚餐。</p></div></div><div class="tags"><span class="tag flex">可取消</span><span class="tag anime">遊戲機台</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Round1+Stadium+Kanazawa">地圖</a></div></div>
-              </article>
-            </div>
-            <div class="note">優化邏輯：小松機場在石川縣，直接搭機場巴士進金澤即可。簡單例子：若 11:40 完成入境，搭下一班直達巴士約中午抵達金澤；不再需要先到名古屋、再經敦賀折返北陸。</div>
-          </div>
-        </details>
-
-        <details class="day-card panel" open data-day-tags="kanazawa anime food">
-          <summary>
-            <div class="day-index">D2</div>
-            <div class="day-heading"><h2>金澤經典街區＋安利美特</h2><p>2/10（二）｜由北往南，避免折返</p></div>
-            <div class="day-meta">市場 → 茶屋街 → 城園 → 豎町</div>
-          </summary>
-          <div class="day-content"><div class="timeline">
-            <article class="event" data-tags="kanazawa food"><div class="event-time">08:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d2-1"><div><div class="event-title">近江町市場早午餐</div><p>Morimori 壽司或 Ikiiki 亭二選一；避免兩家都排。若排隊超過 30 分鐘，直接改市場內其他海鮮丼。</p></div></div><div class="tags"><span class="tag food">海鮮</span><span class="tag flex">設排隊上限</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Omicho+Market+Kanazawa">地圖</a></div></div></article>
-            <article class="event" data-tags="kanazawa"><div class="event-time">10:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d2-2"><div><div class="event-title">東茶屋街</div><p>箔一金箔霜淇淋與志摩茶屋擇一深度停留；雪天步速較慢，保留 20 分鐘機動時間。</p></div></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Higashi+Chaya+District+Kanazawa">地圖</a></div></div></article>
-            <article class="event" data-tags="kanazawa"><div class="event-time">13:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d2-3"><div><div class="event-title">兼六園＋金澤城</div><p>先兼六園雪吊，再由石川門進金澤城。日落前完成主要戶外拍攝。</p></div></div><div class="tags"><span class="tag must">核心景點</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Kenrokuen+Garden">兼六園</a><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Kanazawa+Castle">金澤城</a></div></div></article>
-            <article class="event" data-tags="kanazawa anime"><div class="event-time">15:45</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d2-4"><div><div class="event-title">香林坊／豎町：Animate 金澤＋羅盤針</div><p>Animate 金澤位於 BELSEL 3F，官方常態營業時間為 11:00–20:00。先買限定與新品，再逛二手店。</p></div></div><div class="tags"><span class="tag anime">動漫主線</span><span class="tag must">20:00 前</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Animate+Kanazawa">地圖</a></div></div></article>
-            <article class="event" data-tags="kanazawa food"><div class="event-time">18:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d2-5"><div><div class="event-title">香林坊晚餐：能登牛燒肉</div><p>隔日為日本國定假日，熱門店應事前訂位。訂不到就改金澤站周邊，避免現場逐店碰運氣。</p></div></div><div class="tags"><span class="tag food">建議訂位</span></div></div></article>
-          </div></div>
-        </details>
-
-        <details class="day-card panel" open data-day-tags="shirakawa kanazawa anime food transport">
-          <summary>
-            <div class="day-index">D3</div>
-            <div class="day-heading"><h2>白川鄉合掌村＋寶可夢中心金澤</h2><p>2/11（三・建國紀念日）｜雪天延誤預案</p></div>
-            <div class="day-meta">預約制巴士日</div>
-          </summary>
-          <div class="day-content"><div class="timeline">
-            <article class="event" data-tags="transport shirakawa"><div class="event-time">08:10</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d3-1"><div><div class="event-title">提早到金澤站東口巴士站</div><p>預約制高速巴士至少提前 20–30 分鐘報到，確認站牌與行李艙。</p></div></div><div class="tags"><span class="tag must">預約憑證</span></div></div></article>
-            <article class="event" data-tags="transport shirakawa"><div class="event-time">08:40*</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d3-2"><div><div class="event-title">金澤 → 白川鄉</div><p>原案時間保留作參考。濃飛巴士官方明確提醒，積雪、塞車或道路封閉可能造成超過 2 小時延誤。</p></div></div><div class="tags"><span class="tag must">預約制</span><span class="tag flex">冬季延誤</span></div></div></article>
-            <article class="event" data-tags="shirakawa"><div class="event-time">10:05</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d3-3"><div><div class="event-title">白川鄉順走：展望台 → 和田家 → 主街</div><p>抵達先看展望台接駁車是否運行；若排隊過長或停駛，立刻改逛聚落，不把全程卡在展望台。</p></div></div><div class="tags"><span class="tag must">防滑鞋</span><span class="tag flex">視天候調整</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Shirakawa-go+Ogimachi">地圖</a></div></div></article>
-            <article class="event" data-tags="shirakawa food"><div class="event-time">12:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d3-4"><div><div class="event-title">路邊小吃＋回站緩衝</div><p>飛驒牛串、可樂餅、布丁採分食；13:25 前開始往巴士總站移動，保留至少 20 分鐘。</p></div></div><div class="tags"><span class="tag food">不排正式餐廳</span></div></div></article>
-            <article class="event" data-tags="transport kanazawa"><div class="event-time">13:55*</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d3-5"><div><div class="event-title">白川鄉 → 金澤</div><p>把 15:20 視為理想抵達，不把 15:30 後安排成不可取消的活動。</p></div></div></div></article>
-            <article class="event" data-tags="kanazawa anime food"><div class="event-time">16:00*</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d3-6"><div><div class="event-title">回金澤後自由活動／寶可夢備援</div><p>主要的 Pokémon Center KANAZAWA 已前移到 Day 1。若 Day 1 因航班延誤或整理券未完成，且巴士準時回金澤，今天才補逛；否則直接回飯店休息、整理照片或吃晚餐。</p></div></div><div class="tags"><span class="tag flex">完全彈性</span><span class="tag anime">備援才逛</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pokemon+Center+Kanazawa">地圖</a></div></div></article>
-          </div><div class="note danger">Day 3 不再有必趕行程。白川鄉巴士若因積雪延誤，回金澤後直接吃飯休息；限定商品、限定皮卡丘與一番賞仍受庫存、活動與整理券制度影響。</div></div>
-        </details>
-
-        <details class="day-card panel" open data-day-tags="kanazawa nagoya food transport">
-          <summary>
-            <div class="day-index">D4</div>
-            <div class="day-heading"><h2>金澤武家屋敷 → 名古屋榮</h2><p>2/12（四）｜修正錯誤的新幹線時長</p></div>
-            <div class="day-meta">住宿：名古屋市區</div>
-          </summary>
-          <div class="day-content"><div class="timeline">
-            <article class="event" data-tags="kanazawa"><div class="event-time">09:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d4-1"><div><div class="event-title">退房、寄放行李</div><p>若 Day 1 航班延誤、Day 3 也未補到寶可夢中心，可在 10:00 開門後作最後備援；但需壓縮長町停留時間。</p></div></div></div></article>
-            <article class="event" data-tags="kanazawa food"><div class="event-time">10:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d4-2"><div><div class="event-title">長町武家屋敷＋古民家午餐</div><p>雪季土牆「藁薦」是重點；12:30 前結束，回站取行李。</p></div></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Nagamachi+Samurai+District">地圖</a></div></div></article>
-            <article class="event" data-tags="transport"><div class="event-time">13:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d4-3"><div><div class="event-title">金澤站集合、確認轉乘組合</div><p>原案寫「14:18–14:43 金澤到敦賀」只給 25 分鐘，不合理。北陸新幹線一般需約 41–58 分鐘；應依售票系統選擇有足夠轉乘時間的組合。</p></div></div><div class="tags"><span class="tag must">原案需修正</span></div></div></article>
-            <article class="event" data-tags="transport nagoya"><div class="event-time">14:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d4-4"><div><div class="event-title">金澤 → 敦賀 → 名古屋</div><p>建議整段抓約 2.5–3 小時；敦賀站轉乘不要安排小於 10 分鐘的自訂組合。</p></div></div><div class="tags"><span class="tag flex">班次待核</span></div></div></article>
-            <article class="event" data-tags="nagoya"><div class="event-time">17:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d4-5"><div><div class="event-title">入住名古屋＋Oasis 21 夜景</div><p>冬季天黑早，抵達後直接去榮，先完成戶外拍攝。</p></div></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Oasis+21+Nagoya">地圖</a></div></div></article>
-            <article class="event" data-tags="nagoya food"><div class="event-time">18:45</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d4-6"><div><div class="event-title">あつた蓬萊軒 松坂屋店</div><p>一般席不可預約，採現場受理；官方也提醒混雜時可能提前停止受理。建議 18:30–18:45 到店登記，不要拖到 19:30 才開始排。</p></div></div><div class="tags"><span class="tag food">鰻魚飯三吃</span><span class="tag must">先登記</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Atsuta+Horaiken+Matsuzakaya">地圖</a></div></div></article>
-            <article class="event" data-tags="nagoya"><div class="event-time">21:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d4-7"><div><div class="event-title">榮地下街／唐吉訶德</div><p>只排補給品與消耗品；大型動漫戰利品留到 Day 5–7 集中購買。</p></div></div></div></article>
-          </div></div>
-        </details>
-
-        <details class="day-card panel" open data-day-tags="inuyama nagoya anime food">
-          <summary>
-            <div class="day-index">D5</div>
-            <div class="day-heading"><h2>犬山城先攻＋大須動漫街</h2><p>2/13（五）｜把天守移到上午，降低排隊與關門風險</p></div>
-            <div class="day-meta">犬山 → 大須</div>
-          </summary>
-          <div class="day-content"><div class="timeline">
-            <article class="event" data-tags="transport inuyama"><div class="event-time">09:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d5-1"><div><div class="event-title">名鐵名古屋 → 犬山</div><p>目標 10:00 前抵達城下町。犬山城官方 9:00 開城、16:30 停止入園。</p></div></div></div></article>
-            <article class="event" data-tags="inuyama"><div class="event-time">10:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d5-2"><div><div class="event-title">先登國寶犬山城</div><p>上午直接攻頂，避開午後人潮；木造樓梯陡峭，穿防滑但不要過厚重的鞋。</p></div></div><div class="tags"><span class="tag must">先城後逛街</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Inuyama+Castle">地圖</a></div></div></article>
-            <article class="event" data-tags="inuyama"><div class="event-time">11:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d5-3"><div><div class="event-title">三光稻荷神社</div><p>拍紅鳥居與銭洗池，再順坡往城下町。</p></div></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Sanko+Inari+Shrine">地圖</a></div></div></article>
-            <article class="event" data-tags="inuyama food"><div class="event-time">12:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d5-4"><div><div class="event-title">犬山城下町邊走邊吃</div><p>飛驒牛握壽司、醬油糰子與甜點最多選 2–3 樣，避免回名古屋後吃不下晚餐。</p></div></div><div class="tags"><span class="tag food">小份分食</span></div></div></article>
-            <article class="event" data-tags="transport nagoya"><div class="event-time">14:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d5-5"><div><div class="event-title">返回名古屋，轉大須</div><p>預留 30 分鐘進飯店放戰利品或短休。</p></div></div></div></article>
-            <article class="event" data-tags="nagoya anime"><div class="event-time">16:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d5-6"><div><div class="event-title">大須動漫採買</div><p>建議順序：大須觀音 → 駿河屋名古屋大須本館／動畫・Hobby館 → Mandarake 名古屋。原案的「BANDAI NAMCO Cross Store 在大須」不正確；官方現址在 mozo Wonder City，不納入本日。</p></div></div><div class="tags"><span class="tag anime">二手挖寶</span><span class="tag must">位置已修正</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Osu+Shopping+Street">大須</a><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Surugaya+Nagoya+Osu">駿河屋</a><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Mandarake+Nagoya">Mandarake</a></div></div></article>
-            <article class="event" data-tags="nagoya food"><div class="event-time">19:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d5-7"><div><div class="event-title">矢場とん 大須本店</div><p>採大須收尾，不再跨區移動。</p></div></div><div class="tags"><span class="tag food">味噌豬排</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Yabaton+Osu">地圖</a></div></div></article>
-          </div></div>
-        </details>
-
-        <details class="day-card panel" open data-day-tags="nagoya anime food">
-          <summary>
-            <div class="day-index">D6</div>
-            <div class="day-heading"><h2>熱田神宮＋白鳥庭園＋PARCO 動漫線</h2><p>2/14（六）｜南區景點後直上矢場町</p></div>
-            <div class="day-meta">新增寶可夢中心名古屋</div>
-          </summary>
-          <div class="day-content"><div class="timeline">
-            <article class="event" data-tags="nagoya"><div class="event-time">09:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d6-1"><div><div class="event-title">熱田神宮</div><p>由「熱田神宮西」站進入，重點看本宮、信長塀與大楠。神社境內不以「看得到神劍」為賣點，草薙神劍屬祭祀核心而非一般展示品。</p></div></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Atsuta+Jingu">地圖</a></div></div></article>
-            <article class="event" data-tags="nagoya food"><div class="event-time">11:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d6-2"><div><div class="event-title">宮きしめん</div><p>在神宮周邊吃寬扁麵，午餐控制在 45–60 分鐘。</p></div></div><div class="tags"><span class="tag food">名古屋麵食</span></div></div></article>
-            <article class="event" data-tags="nagoya"><div class="event-time">12:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d6-3"><div><div class="event-title">白鳥庭園</div><p>官方開園 9:00–17:00、16:30 停止入園；週六正常開園。安排 90 分鐘足夠散步與抹茶休息。</p></div></div><div class="tags"><span class="tag must">16:30 前</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Shirotori+Garden">地圖</a></div></div></article>
-            <article class="event" data-tags="nagoya anime"><div class="event-time">15:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d6-4"><div><div class="event-title">Pokémon Center NAGOYA</div><p>現址在名古屋 PARCO 東館 2F，矢場町站直結，官方常態營業時間 10:00–20:00。</p></div></div><div class="tags"><span class="tag anime">寶可夢</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pokemon+Center+Nagoya+PARCO">地圖</a></div></div></article>
-            <article class="event" data-tags="nagoya anime"><div class="event-time">16:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d6-5"><div><div class="event-title">Animate 名古屋 PARCO</div><p>同一棟東館 4F，與寶可夢中心垂直移動，幾乎零繞路；官方常態營業時間 10:00–20:00。</p></div></div><div class="tags"><span class="tag anime">安利美特</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Animate+Nagoya+PARCO">地圖</a></div></div></article>
-            <article class="event" data-tags="nagoya food"><div class="event-time">18:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d6-6"><div><div class="event-title">世界の山ちゃん</div><p>2/14 週六兼情人節，熱門分店可能客滿；先訂位或設定 20 分鐘候位上限。</p></div></div><div class="tags"><span class="tag food">手羽先</span><span class="tag flex">建議訂位</span></div></div></article>
-          </div><div class="note">優化邏輯：則武之森移到 Day 7，今天改排同棟的 Pokémon Center 與 Animate。簡單例子：白鳥庭園搭地鐵到矢場町後，兩間店只需上下樓；原案再拉到龜島，會增加約一段跨區交通。</div></div>
-        </details>
-
-        <details class="day-card panel" open data-day-tags="nagoya anime food">
-          <summary>
-            <div class="day-index">D7</div>
-            <div class="day-heading"><h2>名古屋城＋則武之森＋名站最後採買</h2><p>2/15（日）｜歷史、書牆與車站區串成一線</p></div>
-            <div class="day-meta">城北 → 則武 → 名站</div>
-          </summary>
-          <div class="day-content"><div class="timeline">
-            <article class="event" data-tags="nagoya food"><div class="event-time">08:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d7-1"><div><div class="event-title">Komeda 咖啡早餐</div><p>早半小時開始，讓名古屋城開門後不久就能進場。</p></div></div><div class="tags"><span class="tag food">Morning Service</span></div></div></article>
-            <article class="event" data-tags="nagoya"><div class="event-time">09:30</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d7-2"><div><div class="event-title">名古屋城：本丸御殿為主</div><p>名古屋城官方目前註明天守閣等建築不可進入；行程改寫為「外觀＋本丸御殿＋二之丸庭園」，不要寫成登天守。</p></div></div><div class="tags"><span class="tag must">天守不可入內</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Nagoya+Castle">地圖</a></div></div></article>
-            <article class="event" data-tags="nagoya food"><div class="event-time">12:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d7-3"><div><div class="event-title">山本屋總本家 金鯱橫丁店</div><p>就在名古屋城正門區，用味噌煮込みうどん收尾，避免為午餐特地回榮或名站。</p></div></div><div class="tags"><span class="tag food">味噌烏龍麵</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Yamamotoya+Sohonke+Kinshachi+Yokocho">地圖</a></div></div></article>
-            <article class="event" data-tags="nagoya"><div class="event-time">13:45</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d7-4"><div><div class="event-title">則武之森＋TSUTAYA BOOKSTORE 則武新町</div><p>拍戶外紅磚與兩層樓鏡面書牆。TSUTAYA 官方常態營業時間 10:00–21:00，從龜島站步行約 6 分鐘。</p></div></div><div class="tags"><span class="tag must">巨型書牆</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=TSUTAYA+BOOKSTORE+Noritake+Shinmachi">地圖</a></div></div></article>
-            <article class="event" data-tags="nagoya anime"><div class="event-time">16:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d7-5"><div><div class="event-title">名古屋站區最後採買＋Animate 名古屋本店</div><p>Animate 名古屋位於太閤通口步行約 5 分鐘，官方常態營業至 20:00；之後回高島屋、JR Gate Tower 或名鐵百貨補貨。</p></div></div><div class="tags"><span class="tag anime">最後補貨</span></div><div class="event-actions"><a class="mini-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Animate+Nagoya+Tsubakicho">地圖</a></div></div></article>
-            <article class="event" data-tags="nagoya food"><div class="event-time">19:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d7-6"><div><div class="event-title">鳥開總本家親子丼</div><p>選名站分店收尾，吃完直接回飯店整理行李。</p></div></div><div class="tags"><span class="tag food">名古屋交趾雞</span></div></div></article>
-          </div></div>
-        </details>
-
-        <details class="day-card panel" open data-day-tags="nagoya food transport">
-          <summary>
-            <div class="day-index">D8</div>
-            <div class="day-heading"><h2>中部機場伴手禮＋返台</h2><p>2/16（一）｜把安檢與登機口緩衝放回行程</p></div>
-            <div class="day-meta">13:15 起飛</div>
-          </summary>
-          <div class="day-content"><div class="timeline">
-            <article class="event" data-tags="nagoya"><div class="event-time">09:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d8-1"><div><div class="event-title">退房、確認行李重量</div><p>動漫商品與蝦餅體積大，先在飯店分配托運／手提，避免機場重整。</p></div></div></div></article>
-            <article class="event" data-tags="transport"><div class="event-time">09:50*</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d8-2"><div><div class="event-title">名鐵名古屋 → 中部國際機場</div><p>原案 μ-SKY 班次僅作參考；目標 10:30 前抵達航廈。</p></div></div><div class="tags"><span class="tag must">預留 2.5 小時以上</span></div></div></article>
-            <article class="event" data-tags="food nagoya"><div class="event-time">10:45</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d8-3"><div><div class="event-title">托運完成後逛 4F Sky Town</div><p>蝦餅之里、風來坊與其他伴手禮設定 60 分鐘上限；先確認國際線安檢入口與登機口距離。</p></div></div><div class="tags"><span class="tag food">伴手禮</span></div></div></article>
-            <article class="event" data-tags="transport"><div class="event-time">12:00</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d8-4"><div><div class="event-title">通過安檢與出境，前往登機口</div><p>不把所有購物壓到最後 30 分鐘；12:20 前到登機區較穩健。</p></div></div><div class="tags"><span class="tag must">停止購物</span></div></div></article>
-            <article class="event" data-tags="transport"><div class="event-time">13:15</div><div class="dot"></div><div class="event-card"><div class="event-title-row"><input class="event-check" type="checkbox" data-key="d8-5"><div><div class="event-title">班機起飛</div><p>結束行程。</p></div></div></div></article>
-          </div></div>
-        </details>
-      </div>
-    </section>
-
-    <section id="booking" class="tab-panel">
-      <div class="grid-2">
-        <section class="panel section-card">
-          <h2>出發前必處理</h2>
-          <div class="checklist">
-            <label class="check-item"><input class="persist-check" data-key="book-airport-bus" type="checkbox"><span><b>小松機場 → 金澤機場巴士</b><small>確認航班抵達日的時刻、乘車處與付款方式；不預設固定分鐘數。</small></span></label>
-            <label class="check-item"><input class="persist-check" data-key="book-bus" type="checkbox"><span><b>金澤 ↔ 白川鄉高速巴士</b><small>冬季熱門且部分班次預約制；確認去回程、乘車站與取消規則。</small></span></label>
-            <label class="check-item"><input class="persist-check" data-key="book-jr" type="checkbox"><span><b>金澤 → 名古屋 JR 指定席</b><small>只需處理 Day 4 單程；選擇系統提供的正式轉乘組合，不要自行拼出過短的敦賀轉乘。</small></span></label>
-            <label class="check-item"><input class="persist-check" data-key="book-hotel-k" type="checkbox"><span><b>金澤站周邊飯店 3 晚</b><small>優先步行 5–8 分鐘內、可寄放行李。</small></span></label>
-            <label class="check-item"><input class="persist-check" data-key="book-hotel-n" type="checkbox"><span><b>名古屋飯店 4 晚</b><small>名古屋站或榮二選一；若動漫採買量大，名站更利於 Day 7–8。</small></span></label>
-          </div>
-        </section>
-        <section class="panel section-card">
-          <h2>建議處理訂位</h2>
-          <div class="checklist">
-            <label class="check-item"><input class="persist-check" data-key="book-beef" type="checkbox"><span><b>2/10 能登牛晚餐</b><small>隔日為國定假日，前一晚聚餐需求較高。</small></span></label>
-            <label class="check-item"><input class="persist-check" data-key="book-yamachan" type="checkbox"><span><b>2/14 世界の山ちゃん</b><small>週六兼情人節；先訂位或準備同區替代分店。</small></span></label>
-            <label class="check-item"><input class="persist-check" data-key="book-round1" type="checkbox"><span><b>ROUND1 接駁／交通確認</b><small>不是站前店；出發前查接駁、末班車與回程計程車。</small></span></label>
-            <label class="check-item"><input class="persist-check" data-key="book-poke" type="checkbox"><span><b>寶可夢中心整理券公告</b><small>週末或新品發售日可能採整理券／抽選，出發前看官方公告。</small></span></label>
-          </div>
-        </section>
-      </div>
-      <section class="panel section-card" style="margin-top:14px">
-        <h2>不可預約／排隊策略</h2>
-        <div class="table-wrap"><table>
-          <thead><tr><th>地點</th><th>策略</th><th>放棄條件</th></tr></thead>
-          <tbody>
-            <tr><td>あつた蓬萊軒 松坂屋店</td><td>18:30–18:45 先現場登記；一般席不可預約。</td><td>受付已停止或等候超過 90 分鐘，改松坂屋內其他名古屋料理。</td></tr>
-            <tr><td>近江町市場熱門壽司</td><td>只選一家排，先取號再看市場。</td><td>預估超過 30 分鐘，改海鮮丼或立食壽司。</td></tr>
-            <tr><td>白川鄉展望台接駁</td><td>抵達先看運行與隊伍。</td><td>等候超過 30 分鐘或停駛，直接逛聚落。</td></tr>
-            <tr><td>寶可夢中心</td><td>先看官方整理券／新品公告。</td><td>不追單一缺貨商品；金澤與名古屋互為替代。</td></tr>
-          </tbody>
-        </table></div>
-      </section>
-    </section>
-
-    <section id="packing" class="tab-panel">
-      <div class="grid-2">
-        <section class="panel section-card"><h2>雪地必要裝備</h2><div class="checklist">
-          <label class="check-item"><input class="persist-check" data-key="pack-shoes" type="checkbox"><span><b>防水防滑鞋</b><small>鞋底需有深紋；白川鄉與金澤石板路可能結冰。</small></span></label>
-          <label class="check-item"><input class="persist-check" data-key="pack-socks" type="checkbox"><span><b>替換襪 2–3 雙</b><small>鞋內進雪或潮濕時可立即更換。</small></span></label>
-          <label class="check-item"><input class="persist-check" data-key="pack-gloves" type="checkbox"><span><b>可觸控防水手套</b><small>拍照、查地圖與排隊時都需要。</small></span></label>
-          <label class="check-item"><input class="persist-check" data-key="pack-shell" type="checkbox"><span><b>防水外層＋保暖中層</b><small>採洋蔥式穿法，室內百貨不至於過熱。</small></span></label>
-          <label class="check-item"><input class="persist-check" data-key="pack-heat" type="checkbox"><span><b>暖暖包</b><small>白川鄉戶外停留近 4 小時，手腳保暖優先。</small></span></label>
-        </div></section>
-        <section class="panel section-card"><h2>動漫採買裝備</h2><div class="checklist">
-          <label class="check-item"><input class="persist-check" data-key="pack-bag" type="checkbox"><span><b>可折疊購物袋</b><small>部分商場紙袋收費，模型盒也需要額外容量。</small></span></label>
-          <label class="check-item"><input class="persist-check" data-key="pack-bubble" type="checkbox"><span><b>氣泡布／衣物緩衝</b><small>保護模型、立牌與盒裝商品。</small></span></label>
-          <label class="check-item"><input class="persist-check" data-key="pack-scale" type="checkbox"><span><b>行李秤</b><small>Day 7 晚上先完成重量分配。</small></span></label>
-          <label class="check-item"><input class="persist-check" data-key="pack-list" type="checkbox"><span><b>購物優先清單</b><small>分成「必買／價格好才買／看到再說」，避免同商品重複購買。</small></span></label>
-          <label class="check-item"><input class="persist-check" data-key="pack-passport" type="checkbox"><span><b>護照隨身</b><small>免稅店結帳需要；購買後注意封袋規則。</small></span></label>
-        </div></section>
-      </div>
-    </section>
-
-    <section id="corrections" class="tab-panel">
-      <section class="panel section-card">
-        <h2>這次優化的核心修正</h2>
-        <div class="table-wrap"><table>
-          <thead><tr><th>原案問題</th><th>更新方式</th><th>實際影響</th></tr></thead>
-          <tbody>
-            <tr><td>Day 1 誤設從中部機場入境</td><td>改為 10:35 抵達小松機場，搭直達巴士進金澤</td><td>取消名古屋與敦賀轉乘，約中午抵達金澤。</td></tr>
-            <tr><td>Day 3 回金澤後才逛寶可夢中心</td><td>主要行程前移至 Day 1；Day 3、Day 4 只作備援</td><td>不再讓白川鄉冬季延誤影響最想逛的店。</td></tr>
-            <tr><td>Day 4 金澤到敦賀僅 25 分鐘</td><td>刪除不合理時間，改抓約 41–58 分鐘</td><td>避免訂錯轉乘與漏車。</td></tr>
-            <tr><td>Day 5 犬山城排到下午</td><td>改為抵達後先登城</td><td>避開午後排隊與 16:30 停止入園風險。</td></tr>
-            <tr><td>大須包含 Cross Store</td><td>移除；官方店址在 mozo Wonder City</td><td>避免跨到名古屋西北外圍，節省至少一段交通。</td></tr>
-            <tr><td>Day 6 南區後再去則武</td><td>改去矢場町 PARCO：寶可夢＋Animate</td><td>同棟上下樓，符合你的動漫偏好。</td></tr>
-            <tr><td>Day 7 名古屋城寫成登城</td><td>改成本丸御殿、庭園與外觀</td><td>符合官方「天守閣等不可進入」現況。</td></tr>
-            <tr><td>あつた蓬萊軒 19:30 才到</td><td>提早到 18:30–18:45 登記</td><td>降低受付提前結束而吃不到的風險。</td></tr>
-          </tbody>
-        </table></div>
-      </section>
-      <section class="panel section-card" style="margin-top:14px">
-        <h2>仍需在實際出發前重新核對</h2>
-        <p>小松機場巴士、JR 與高速巴士班次、積雪封路、餐廳臨時休業、寶可夢中心整理券、限定商品庫存、展望台接駁運行，以及航班與航廈資訊。這些都屬於高變動資訊，不應只靠本頁保存的歷史內容。</p>
-      </section>
-    </section>
-
-    <section id="sources" class="tab-panel">
-      <section class="panel section-card">
-        <h2>官方與第一手來源</h2>
-        <p>查核日期：2026/08/06。連結開啟後仍應以店家或運輸單位當日公告為準。</p>
-        <div class="source-list">
-          <div class="source-item"><b>小松機場：台北線冬季航班公告</b><small>2025/10/26–2026/03/28 的台北—小松航班參考；實際以機票與航空公司為準。</small><br><a target="_blank" rel="noopener" href="https://www.komatsuairport.jp/info/20251026130000.html">開啟官方網站</a></div>
-          <div class="source-item"><b>北陸鐵道：小松機場利木津巴士</b><small>小松機場直達金澤市區，官方標示車程約 40–55 分鐘；班次與票價須於出發前重查。</small><br><a target="_blank" rel="noopener" href="https://www.hokutetsu.co.jp/airport-bus/">開啟官方網站</a></div>
-          <div class="source-item"><b>JR 東海：各站時刻表／路線查詢</b><small>確認名古屋—敦賀的白鷺與轉乘資訊。</small><br><a target="_blank" rel="noopener" href="https://railway.jr-central.co.jp/time-schedule/search/">開啟官方網站</a></div>
-          <div class="source-item"><b>濃飛巴士：高山・白川鄉・金澤線</b><small>預約、時刻與冬季延誤警示。</small><br><a target="_blank" rel="noopener" href="https://www.nouhibus.co.jp/route_bus/shirakawago/">開啟官方網站</a></div>
-          <div class="source-item"><b>Pokémon Center KANAZAWA</b><small>金澤 FORUS 5F，常態 10:00–20:00。</small><br><a target="_blank" rel="noopener" href="https://shop.pokemon.co.jp/ja/shop/pokemoncenter-kanazawa/">開啟官方網站</a></div>
-          <div class="source-item"><b>Pokémon Center NAGOYA</b><small>名古屋 PARCO 東館 2F，常態 10:00–20:00。</small><br><a target="_blank" rel="noopener" href="https://shop.pokemon.co.jp/ja/shop/pokemoncenter-nagoya/">開啟官方網站</a></div>
-          <div class="source-item"><b>Animate 金澤／名古屋／名古屋 PARCO</b><small>店址與營業時間。</small><br><a target="_blank" rel="noopener" href="https://www.animate.co.jp/shop/kanazawa/">金澤</a>　<a target="_blank" rel="noopener" href="https://www.animate.co.jp/shop/nagoya/">名古屋</a>　<a target="_blank" rel="noopener" href="https://www.animate.co.jp/shop/sakae/">PARCO</a></div>
-          <div class="source-item"><b>名古屋城</b><small>開園時間、本丸御殿最晚入場與天守不可進入。</small><br><a target="_blank" rel="noopener" href="https://www.nagoyajo.city.nagoya.jp/">開啟官方網站</a></div>
-          <div class="source-item"><b>白鳥庭園</b><small>9:00–17:00、16:30 停止入園、週一休園規則。</small><br><a target="_blank" rel="noopener" href="https://www.shirotori-garden.jp/guidance/">開啟官方網站</a></div>
-          <div class="source-item"><b>國寶犬山城</b><small>9:00–17:00、16:30 停止入園。</small><br><a target="_blank" rel="noopener" href="https://inuyamajo.jp/zh-hant/visit/openinghours-and-entrancefee/opening-hours/">開啟官方網站</a></div>
-          <div class="source-item"><b>あつた蓬萊軒／松坂屋名古屋店</b><small>一般席不可預約、現場受理與營業時間。</small><br><a target="_blank" rel="noopener" href="https://www.matsuzakaya.co.jp/nagoya/restaurant/atsutahouraiken.html">開啟店鋪資訊</a></div>
-          <div class="source-item"><b>ROUND1 Stadium 金澤</b><small>店址、交通與營業資訊。</small><br><a target="_blank" rel="noopener" href="https://www.round1.co.jp/shop/tenpo/ishikawa-kanazawa.html">開啟官方網站</a></div>
-          <div class="source-item"><b>BANDAI NAMCO Cross Store 名古屋</b><small>官方現址為 mozo Wonder City 4F，不在大須。</small><br><a target="_blank" rel="noopener" href="https://bandainamco-am.co.jp/crossstore/store/?areaNo=5">開啟官方網站</a></div>
-          <div class="source-item"><b>TSUTAYA BOOKSTORE 則武新町</b><small>10:00–21:00，龜島站步行約 6 分鐘。</small><br><a target="_blank" rel="noopener" href="https://store-tsutaya.tsite.jp/store/detail?storeId=4255">開啟官方網站</a></div>
-          <div class="source-item"><b>山本屋總本家 金鯱橫丁店</b><small>名古屋城正門區分店資訊。</small><br><a target="_blank" rel="noopener" href="https://yamamotoya.co.jp/shoplist/">開啟官方網站</a></div>
-        </div>
-      </section>
-    </section>
-  </main>
-
-  <footer>
-    本頁使用 localStorage（瀏覽器本機儲存）記住勾選狀態；不會把資料上傳。清除瀏覽器網站資料後，進度會消失。
-  </footer>
-
-  <script>
+<div class="source-item"><b>Animate 金澤／名古屋／名古屋 PARCO</b><small>店址與營業時間。</small><br/><a href="https://www.animate.co.jp/shop/kanazawa/" rel="noopener" target="_blank">金澤</a>　<a href="https://www.animate.co.jp/shop/nagoya/" rel="noopener" target="_blank">名古屋</a>　<a href="https://www.animate.co.jp/shop/sakae/" rel="noopener" target="_blank">PARCO</a></div>
+<div class="source-item"><b>名古屋城</b><small>開園時間、本丸御殿最晚入場與天守不可進入。</small><br/><a href="https://www.nagoyajo.city.nagoya.jp/" rel="noopener" target="_blank">開啟官方網站</a></div>
+<div class="source-item"><b>白鳥庭園</b><small>9:00–17:00、16:30 停止入園、週一休園規則。</small><br/><a href="https://www.shirotori-garden.jp/guidance/" rel="noopener" target="_blank">開啟官方網站</a></div>
+<div class="source-item"><b>國寶犬山城</b><small>9:00–17:00、16:30 停止入園。</small><br/><a href="https://inuyamajo.jp/zh-hant/visit/openinghours-and-entrancefee/opening-hours/" rel="noopener" target="_blank">開啟官方網站</a></div>
+<div class="source-item"><b>あつた蓬萊軒／松坂屋名古屋店</b><small>一般席不可預約、現場受理與營業時間。</small><br/><a href="https://www.matsuzakaya.co.jp/nagoya/restaurant/atsutahouraiken.html" rel="noopener" target="_blank">開啟店鋪資訊</a></div>
+<div class="source-item"><b>ROUND1 Stadium 金澤</b><small>店址、交通與營業資訊。</small><br/><a href="https://www.round1.co.jp/shop/tenpo/ishikawa-kanazawa.html" rel="noopener" target="_blank">開啟官方網站</a></div>
+<div class="source-item"><b>BANDAI NAMCO Cross Store 名古屋</b><small>官方現址為 mozo Wonder City 4F，不在大須。</small><br/><a href="https://bandainamco-am.co.jp/crossstore/store/?areaNo=5" rel="noopener" target="_blank">開啟官方網站</a></div>
+<div class="source-item"><b>TSUTAYA BOOKSTORE 則武新町</b><small>10:00–21:00，龜島站步行約 6 分鐘。</small><br/><a href="https://store-tsutaya.tsite.jp/store/detail?storeId=4255" rel="noopener" target="_blank">開啟官方網站</a></div>
+<div class="source-item"><b>山本屋總本家 金鯱橫丁店</b><small>名古屋城正門區分店資訊。</small><br/><a href="https://yamamotoya.co.jp/shoplist/" rel="noopener" target="_blank">開啟官方網站</a></div>
+<div class="source-item"><b>北陸鐵道：金澤—白川鄉高速巴士</b><small>時刻、預約制標示、金澤站西口乘車處與票價。</small><br/><a href="https://www.hokutetsu.co.jp/kanazawa-daytrips/tc/shirakawago/outline/" rel="noopener" target="_blank">開啟官方網站</a></div><div class="source-item"><b>Canal Resort</b><small>天然溫泉、常態營業至深夜 1:00，以及名古屋站／伏見／金山／六番町免費接駁。</small><br/><a href="https://canalresort.jp/guide/" rel="noopener" target="_blank">開啟官方網站</a></div><div class="source-item"><b>Canal Resort 交通與接駁</b><small>金山站等接駁站位與時刻表入口。</small><br/><a href="https://canalresort.jp/access/" rel="noopener" target="_blank">開啟官方網站</a></div><div class="source-item"><b>湯涌溫泉觀光協會</b><small>湯涌溫泉旅館、總湯與交通資訊。</small><br/><a href="https://yuwaku.gr.jp/tw/" rel="noopener" target="_blank">開啟官方網站</a></div><div class="source-item"><b>金澤白鳥路 Hotel Sanraku</b><small>金澤城旁的市區天然溫泉住宿選項。</small><br/><a href="https://www.kanazawa-kankoukyoukai.or.jp/everyone/hotel/detail_50054.html" rel="noopener" target="_blank">開啟官方網站</a></div><div class="source-item"><b>湯涌溫泉 あたらしや</b><small>每日限定少量住客、源泉掛流與傳統旅館資訊。</small><br/><a href="https://www.kanazawa-kankoukyoukai.or.jp/reservation/detail_50195.html" rel="noopener" target="_blank">開啟官方網站</a></div></div>
+</section>
+</section>
+</main>
+<footer>本頁採 Responsive Web Design（響應式網頁設計），會依手機、平板與桌面寬度重新排列；localStorage 僅在訪客自己的瀏覽器保存勾選狀態。</footer>
+<script>
     (() => {
       const storagePrefix = 'nagoya-kanazawa-2026-';
       const allChecks = () => [...document.querySelectorAll('.event-check, .persist-check')];
