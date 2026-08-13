@@ -27,7 +27,7 @@
 - PWA 安裝與基本離線快取
 - Open Graph 社群分享預覽
 
-## 檔案結構（全放根目錄）
+## 檔案結構
 
 ```text
 /
@@ -35,12 +35,13 @@
 ├── manifest.webmanifest
 ├── service-worker.js
 ├── social-preview.png
-├── icon-192.png
-├── icon-512.png
-└── README.md
+├── README.md
+└── icons/
+    ├── icon-192.png
+    └── icon-512.png
 ```
 
-特別採用**無資料夾結構**，方便直接使用 GitHub 網頁介面的 `Add file → Upload files` 一次上傳。
+PWA 圖示集中放在 `icons/` 資料夾中。`manifest.webmanifest`、`service-worker.js` 與 `index.html` 都以相對路徑引用，因此可正常部署在 GitHub Pages 的 Repository 子路徑。
 
 ## GitHub Pages 更新
 
@@ -53,9 +54,9 @@ Branch: main
 Folder: / (root)
 ```
 
-之後不需要重新設定 Pages。把以上檔案上傳到 Repository 根目錄並 `Commit changes`，GitHub Pages 會自動重新部署。
+之後不需要重新設定 Pages。將 `index.html`、`manifest.webmanifest`、`service-worker.js`、`social-preview.png`、`README.md` 放在 Repository 根目錄，並保留 `icons/` 資料夾。完成後 `Commit changes`，GitHub Pages 會自動重新部署。
 
-若舊版曾使用 `icons/` 資料夾，本版已改成根目錄的 `icon-192.png` 與 `icon-512.png`，不需要再建立資料夾。
+若使用 GitHub 網頁版，可在 `Add file → Upload files` 頁面直接把 `icons` 資料夾拖進瀏覽器；若瀏覽器無法上傳資料夾，建議使用 GitHub Desktop 保留資料夾結構。
 
 ## PWA / 離線
 
