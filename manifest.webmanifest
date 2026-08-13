@@ -1,25 +1,22 @@
 {
   "name": "名古屋・金澤・白川鄉 8天7夜冬季旅程",
   "short_name": "北陸名古屋旅程",
-  "description": "金澤、白川鄉、名古屋 8 天 7 夜互動旅程管理頁",
-  "lang": "zh-Hant",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f5f7fb",
-  "theme_color": "#1f6f8b",
+  "background_color": "#f7f7f5",
+  "theme_color": "#263238",
+  "description": "2026 年 2 月小松、金澤、白川鄉、名古屋、犬山 8 天 7 夜互動行程。",
   "icons": [
     {
-      "src": "./icons/icon-192.png",
+      "src": "./icon-192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
-      "src": "./icons/icon-512.png",
+      "src": "./icon-512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
   ]
 }
