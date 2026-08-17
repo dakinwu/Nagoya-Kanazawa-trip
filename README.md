@@ -43,3 +43,8 @@ GitHub Pages 靜態互動行程網站。行程日期：2027/2/9–2/16。
 
 ## Supabase
 `cloud-config.js` 的 Function URL 要換成自己的 Supabase Edge Function；不要把 `TRIP_SHARE_SECRET`、`service_role` 或 Secret Key 放進 GitHub Repository。
+
+
+## V6 Semantic Color UI
+
+本版僅調整視覺層級，不更動行程內容：核心＝藍、彈性＝琥珀、可刪＝灰；成功／同步完成＝綠、待處理＝琥珀、錯誤＝紅。主要按鈕使用品牌藍，其餘控制項維持中性色，以降低首次使用的視覺負擔。

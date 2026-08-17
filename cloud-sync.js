@@ -221,8 +221,15 @@
     const button = $('#tripCloudButton');
     const status = $('#tripCloudStatus');
     const hint = $('#tripCloudHint');
-    if (button) button.textContent = `☁ ${text}`;
-    if (status) status.textContent = text;
+    const visualState = !configured ? 'disabled' : !shareToken ? 'local' : !navigator.onLine ? 'offline' : (state || 'local');
+    if (button) {
+      button.textContent = `☁ ${text}`;
+      button.dataset.state = visualState;
+    }
+    if (status) {
+      status.textContent = text;
+      status.dataset.state = visualState;
+    }
     if (hint) {
       if (!configured) hint.textContent = '先在 cloud-config.js 設定 Supabase Function URL。';
       else if (!shareToken) hint.textContent = '輸入旅行共享碼後，預約、住宿決選、預算與行程完成狀態會多人共用。';
@@ -251,7 +258,11 @@
   function injectUi() {
     const style = document.createElement('style');
     style.textContent = `
-      .trip-cloud-button{border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 11px;font:inherit;font-size:.78rem;font-weight:800;cursor:pointer}
+      .trip-cloud-button{border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 11px;font:inherit;font-size:.78rem;font-weight:800;cursor:pointer;transition:.16s ease}
+      .trip-cloud-button[data-state="synced"]{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 35%,var(--line));background:color-mix(in srgb,var(--ok) 7%,var(--surface))}
+      .trip-cloud-button[data-state="pending"],.trip-cloud-button[data-state="syncing"],.trip-cloud-button[data-state="offline"]{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 38%,var(--line));background:color-mix(in srgb,var(--warn) 7%,var(--surface))}
+      .trip-cloud-button[data-state="invalid"],.trip-cloud-button[data-state="error"]{color:var(--danger);border-color:color-mix(in srgb,var(--danger) 38%,var(--line));background:color-mix(in srgb,var(--danger) 7%,var(--surface))}
+      #tripCloudStatus[data-state="synced"]{color:var(--ok)}#tripCloudStatus[data-state="pending"],#tripCloudStatus[data-state="syncing"],#tripCloudStatus[data-state="offline"]{color:var(--warn)}#tripCloudStatus[data-state="invalid"],#tripCloudStatus[data-state="error"]{color:var(--danger)}
       .trip-cloud-modal{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.48);display:none;align-items:center;justify-content:center;padding:18px}
       .trip-cloud-modal.open{display:flex}
       .trip-cloud-dialog{width:min(520px,100%);background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 20px 60px rgba(0,0,0,.2)}

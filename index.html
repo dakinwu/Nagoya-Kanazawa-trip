@@ -8,35 +8,49 @@
 <title>名古屋・金澤・白川鄉・高山・飛驒古川｜2027 8天7夜 V6</title>
 <style>
     :root {
-      --bg: #f5f7fb;
+      --bg: #f6f8fc;
       --surface: #ffffff;
-      --surface-2: #eef3f8;
-      --text: #182230;
-      --muted: #667085;
-      --line: #dbe4ee;
-      --accent: #1f6f8b;
-      --accent-2: #b4475a;
-      --gold: #a77518;
-      --ok: #207a53;
-      --warn: #a15c10;
-      --danger: #a83245;
+      --surface-2: #f1f4f8;
+      --text: #192230;
+      --muted: #667386;
+      --line: #dce4ee;
+      --accent: #315da8;
+      --accent-2: #65758b;
+      --core: #2f6fd6;
+      --flexible: #a45d00;
+      --cut: #6b7687;
+      --map: #197789;
+      --stay: #7457a6;
+      --budget: #287a58;
+      --cloud: #2d6f9f;
+      --gold: #9a6b12;
+      --ok: #1f7a55;
+      --warn: #a45d00;
+      --danger: #b33b4b;
       --shadow: 0 14px 40px rgba(31, 50, 73, .10);
       --radius: 20px;
     }
 
     [data-theme="dark"] {
-      --bg: #0e1621;
-      --surface: #151f2c;
-      --surface-2: #1c2938;
-      --text: #edf3f8;
-      --muted: #a9b7c6;
-      --line: #2b3a4b;
-      --accent: #63b7d3;
-      --accent-2: #ef8da0;
-      --gold: #e8bc68;
-      --ok: #69c39b;
-      --warn: #efb266;
-      --danger: #f08596;
+      --bg: #0f1622;
+      --surface: #17202d;
+      --surface-2: #1d2938;
+      --text: #eef3f8;
+      --muted: #aab6c5;
+      --line: #2d3b4c;
+      --accent: #7fa8ef;
+      --accent-2: #9aa8ba;
+      --core: #82acf2;
+      --flexible: #efb25b;
+      --cut: #aab3c0;
+      --map: #70c0cc;
+      --stay: #b7a0e8;
+      --budget: #76c59d;
+      --cloud: #7ab7df;
+      --gold: #e7bd6b;
+      --ok: #70c79e;
+      --warn: #efb25b;
+      --danger: #f08a98;
       --shadow: 0 14px 40px rgba(0, 0, 0, .24);
     }
 
@@ -65,7 +79,7 @@
       padding: 38px 20px 90px;
       color: white;
       background:
-        linear-gradient(135deg, rgba(17, 73, 96, .97), rgba(45, 102, 127, .92) 45%, rgba(123, 58, 79, .94));
+        linear-gradient(135deg, rgba(25, 48, 82, .98), rgba(48, 82, 137, .95) 52%, rgba(76, 63, 112, .95));
     }
     .hero::before,
     .hero::after {
@@ -281,9 +295,9 @@
       background: var(--surface);
       color: var(--muted);
     }
-    .tag.must { color: var(--danger); border-color: color-mix(in srgb, var(--danger) 45%, var(--line)); }
-    .tag.flex { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 45%, var(--line)); }
-    .tag.cut { color: var(--muted); border-style: dashed; }
+    .tag.must { color: var(--core); border-color: color-mix(in srgb, var(--core) 42%, var(--line)); background: color-mix(in srgb, var(--core) 7%, var(--surface)); }
+    .tag.flex { color: var(--flexible); border-color: color-mix(in srgb, var(--flexible) 42%, var(--line)); background: color-mix(in srgb, var(--flexible) 7%, var(--surface)); }
+    .tag.cut { color: var(--cut); border-color: color-mix(in srgb, var(--cut) 36%, var(--line)); border-style: dashed; background: color-mix(in srgb, var(--cut) 5%, var(--surface)); }
     .tag.anime { color: #7351b8; border-color: #9d87d2; }
     .tag.food { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 45%, var(--line)); }
     .tag.onsen { color: var(--gold); border-color: color-mix(in srgb, var(--gold) 55%, var(--line)); }
@@ -694,9 +708,9 @@
     .day-index { width:50px; height:50px; border-radius:15px; }
     .day-scan-badges { display:flex; flex-wrap:wrap; gap:5px; margin-top:7px; }
     .day-scan-badge { border-radius:999px; padding:2px 7px; font-size:.66rem; font-weight:850; border:1px solid var(--line); color:var(--muted); }
-    .day-scan-badge.must { color:var(--danger); border-color:color-mix(in srgb,var(--danger) 28%,var(--line)); }
-    .day-scan-badge.flex { color:var(--accent); border-color:color-mix(in srgb,var(--accent) 28%,var(--line)); }
-    .day-scan-badge.cut { color:var(--muted); }
+    .day-scan-badge.must { color:var(--core); border-color:color-mix(in srgb,var(--core) 34%,var(--line)); background:color-mix(in srgb,var(--core) 6%,var(--surface)); }
+    .day-scan-badge.flex { color:var(--flexible); border-color:color-mix(in srgb,var(--flexible) 34%,var(--line)); background:color-mix(in srgb,var(--flexible) 6%,var(--surface)); }
+    .day-scan-badge.cut { color:var(--cut); border-color:color-mix(in srgb,var(--cut) 28%,var(--line)); background:color-mix(in srgb,var(--cut) 4%,var(--surface)); }
 
     .day-tools-disclosure { margin-top:15px; border:1px solid var(--line); border-radius:15px; background:color-mix(in srgb,var(--surface-2) 50%,var(--surface)); overflow:hidden; }
     .day-tools-disclosure > summary { list-style:none; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 13px; cursor:pointer; }
@@ -711,6 +725,78 @@
     .day-tools-body .transport-summary, .day-tools-body .daily-google-maps, .day-tools-body .dining-fallback, .day-tools-body .day-budget { background:var(--surface); }
 
     .bottom-nav button.active { color:var(--accent); background:color-mix(in srgb,var(--accent) 10%,var(--surface)); }
+
+    /* ===== Semantic color layer: color communicates meaning, not decoration ===== */
+    .btn.primary, .quick-start-action {
+      background:var(--accent); color:#fff; border-color:var(--accent);
+      box-shadow:0 5px 14px color-mix(in srgb,var(--accent) 18%,transparent);
+    }
+    .btn:not(.primary), .tool-menu > summary, .tab-more > summary, .mini-action, .mini-link {
+      background:var(--surface); color:var(--text);
+    }
+    .tab-btn.active {
+      color:var(--accent); background:color-mix(in srgb,var(--accent) 10%,var(--surface));
+      border-color:color-mix(in srgb,var(--accent) 40%,var(--line));
+      box-shadow:inset 0 -2px 0 var(--accent);
+    }
+    .filter-btn.active {
+      color:var(--accent); background:color-mix(in srgb,var(--accent) 8%,var(--surface));
+      border-color:color-mix(in srgb,var(--accent) 38%,var(--line));
+    }
+
+    /* Priority: core blue, flexible amber, cut neutral gray. */
+    .event:has(.tag.must) .dot { border-color:var(--core); }
+    .event:has(.tag.flex) .dot { border-color:var(--flexible); }
+    .event:has(.tag.cut) .dot { border-color:var(--cut); }
+    .event-card:has(.tag.must) {
+      border-left:3px solid var(--core);
+      background:color-mix(in srgb,var(--core) 3.5%,var(--surface-2));
+    }
+    .event-card:has(.tag.flex) {
+      border-left:3px solid var(--flexible);
+      background:color-mix(in srgb,var(--flexible) 3.5%,var(--surface-2));
+    }
+    .event-card:has(.tag.cut) {
+      border-left:3px solid var(--cut);
+      background:color-mix(in srgb,var(--cut) 3%,var(--surface-2));
+    }
+    .planning-tags .tag.must { color:var(--core); }
+    .planning-tags .tag.flex { color:var(--flexible); }
+
+    /* Function identity: subtle accents only. */
+    .tab-btn[data-tab="booking"].active { color:var(--map); border-color:color-mix(in srgb,var(--map) 40%,var(--line)); background:color-mix(in srgb,var(--map) 9%,var(--surface)); box-shadow:inset 0 -2px 0 var(--map); }
+    .tab-btn[data-tab="stay"].active { color:var(--stay); border-color:color-mix(in srgb,var(--stay) 40%,var(--line)); background:color-mix(in srgb,var(--stay) 9%,var(--surface)); box-shadow:inset 0 -2px 0 var(--stay); }
+    .tab-btn[data-tab="budget"].active { color:var(--budget); border-color:color-mix(in srgb,var(--budget) 40%,var(--line)); background:color-mix(in srgb,var(--budget) 9%,var(--surface)); box-shadow:inset 0 -2px 0 var(--budget); }
+    #booking .section-card { border-top:3px solid color-mix(in srgb,var(--map) 65%,var(--line)); }
+    #stay .section-card { border-top:3px solid color-mix(in srgb,var(--stay) 62%,var(--line)); }
+    #budget .section-card, .day-budget { border-top:3px solid color-mix(in srgb,var(--budget) 62%,var(--line)); }
+    #onsen .section-card { border-top:3px solid color-mix(in srgb,var(--gold) 64%,var(--line)); }
+    #packing .section-card { border-top:3px solid color-mix(in srgb,var(--cut) 40%,var(--line)); }
+    #stay .section-kicker { color:var(--stay); }
+    #budget .section-kicker, .day-budget .section-kicker, .budget-total b { color:var(--budget); }
+
+    /* Maps use teal instead of competing with the site primary color. */
+    .daily-google-maps { border-color:color-mix(in srgb,var(--map) 38%,var(--line)); background:color-mix(in srgb,var(--map) 5%,var(--surface)); }
+    .gm-kicker, .gm-time { color:var(--map); }
+    .gm-btn.primary { background:var(--map); border-color:var(--map); box-shadow:none; }
+    .gm-leg:hover { border-color:var(--map); }
+
+    /* Status colors are reserved for actual state. */
+    .network-pill.online { color:var(--ok); border-color:color-mix(in srgb,var(--ok) 32%,var(--line)); background:color-mix(in srgb,var(--ok) 7%,var(--surface)); }
+    .network-pill.offline { color:var(--danger); border-color:color-mix(in srgb,var(--danger) 32%,var(--line)); background:color-mix(in srgb,var(--danger) 7%,var(--surface)); }
+    .offline-banner { background:color-mix(in srgb,var(--warn) 7%,var(--surface)); border-color:var(--warn); }
+    .check-item.complete { border-color:color-mix(in srgb,var(--ok) 25%,var(--line)); background:color-mix(in srgb,var(--ok) 5%,var(--surface)); }
+    .prep-card.complete { border-color:color-mix(in srgb,var(--ok) 25%,var(--line)); background:color-mix(in srgb,var(--ok) 5%,var(--surface)); }
+    .prep-card.critical { border-color:color-mix(in srgb,var(--warn) 45%,var(--line)); background:color-mix(in srgb,var(--warn) 5%,var(--surface)); }
+
+    /* Keep large regions quiet; color appears on edges, labels and active states. */
+    .command-dashboard, .day-mode-panel, .filter-disclosure, .planning-disclosure, details.day-card, .day-tools-disclosure {
+      box-shadow:0 1px 0 rgba(31,50,73,.02);
+    }
+    .day-tools-disclosure { border-left:3px solid color-mix(in srgb,var(--accent) 45%,var(--line)); }
+    .weather-backup { border-left:3px solid var(--warn); }
+    .dining-fallback { border-left:3px solid color-mix(in srgb,var(--gold) 62%,var(--line)); }
+    .day-budget { border-left:3px solid var(--budget); }
 
     @media (max-width: 760px) {
       .hero { padding:24px 17px 56px; }
@@ -745,7 +831,7 @@
       .day-scan-badges { margin-top:5px; }
     }
 </style>
-<meta content="#1f6f8b" name="theme-color"/>
+<meta content="#315da8" name="theme-color"/>
 <meta content="yes" name="apple-mobile-web-app-capable"/>
 <meta content="default" name="apple-mobile-web-app-status-bar-style"/>
 <meta content="北陸名古屋旅程" name="apple-mobile-web-app-title"/>
