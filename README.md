@@ -1,37 +1,30 @@
 # 名古屋・金澤・白川鄉 8天7夜互動行程
 
-2026/2/9–2/16 的小松進、金澤・白川鄉・名古屋・犬山行程網站。此版本已依 2026 年 2 月當期日本國定假日、期間活動與重要交通資料重新校正。
+GitHub Pages 靜態旅行網站，包含每日行程、Google Maps 交通、預約 Dashboard、住宿候選、預算、雨雪備案、PWA 離線快取，以及可選的 Supabase 多人共用同步。
 
-## 本版重點
+## 多人同步範圍
 
-- Day 1 改為 **10:25 抵達小松機場**，直接搭機場巴士前往金澤。
-- Pokémon Center 全程只排 **Pokémon Center KANAZAWA** 一次。
-- Day 2 加入期間限定的片町雪吊燈飾，晚餐以祝日前夕規格處理。
-- Day 3 明確使用 **金澤站西口 4 號乘車處**；白川鄉高速巴士去回程皆需先預約。
-- Day 3 回程校正為 **13:50 白川鄉 → 15:05 金澤** 的對應班次，並標註 **2/11 無白川鄉點燈**。
-- Day 4 校正為 **Tsurugi 25（14:05→15:02）＋Shirasagi 10（15:10→16:49）**。
-- Day 5 改為先登犬山城，再逛城下町；大須刪除不在該區的 BANDAI NAMCO Cross Store。
-- Day 6 改為熱田神宮、白鳥庭園、可選情人節活動與 Canal Resort 溫泉。
-- Day 7 安排名古屋城本丸御殿、則武之森與最後採買，下午兼作全旅程補漏 buffer。
-- Day 8 不再硬寫歷史 μ-SKY 列車號，機場手羽先改用官方可確認的世界の山ちゃん作備選。
+啟用旅行共享碼後，以下資料會同步到 Supabase：
 
-## 功能
+- 行程完成勾選
+- 訂位／準備狀態
+- 住宿決選
+- 每日預算
 
-- 每日互動行程與勾選進度
-- Google Maps 每日交通捷徑
-- 預約 Dashboard
-- 雨雪／延誤備案
-- 餐飲 A/B Plan
-- 每日與總旅費估算
-- 深色模式與手機版固定導航
-- PWA 安裝與基本離線快取
-- Open Graph 社群分享預覽
+以下仍只保存在各自瀏覽器：
 
-## 檔案結構
+- 冬季行李勾選
+- 深色模式
+- 單日顯示模式
+- 其他個人 UI 偏好
+
+## 網站檔案
 
 ```text
 /
 ├── index.html
+├── cloud-config.js
+├── cloud-sync.js
 ├── manifest.webmanifest
 ├── service-worker.js
 ├── social-preview.png
@@ -41,34 +34,35 @@
     └── icon-512.png
 ```
 
-PWA 圖示集中放在 `icons/` 資料夾中。`manifest.webmanifest`、`service-worker.js` 與 `index.html` 都以相對路徑引用，因此可正常部署在 GitHub Pages 的 Repository 子路徑。
+## Supabase 後台參考檔
 
-## GitHub Pages 更新
-
-如果 Repository 已經設定為：
+這三個檔案是設定 Supabase 用的，不一定要上傳 GitHub Pages：
 
 ```text
-Settings → Pages
-Source: Deploy from a branch
-Branch: main
-Folder: / (root)
+supabase-setup.sql
+edge-function-trip-state.ts
+supabase-config.toml
 ```
 
-之後不需要重新設定 Pages。將 `index.html`、`manifest.webmanifest`、`service-worker.js`、`social-preview.png`、`README.md` 放在 Repository 根目錄，並保留 `icons/` 資料夾。完成後 `Commit changes`，GitHub Pages 會自動重新部署。
+## Supabase 設定摘要
 
-若使用 GitHub 網頁版，可在 `Add file → Upload files` 頁面直接把 `icons` 資料夾拖進瀏覽器；若瀏覽器無法上傳資料夾，建議使用 GitHub Desktop 保留資料夾結構。
+1. 在 Supabase SQL Editor 執行 `supabase-setup.sql`。
+2. 在 Edge Functions 建立 `trip-state`，貼上 `edge-function-trip-state.ts`。
+3. 新增 Secret：`TRIP_SHARE_SECRET`。
+4. 可選新增 `TRIP_ALLOWED_ORIGIN=https://你的帳號.github.io`。
+5. 將 `trip-state` 的 JWT verification 關閉；CLI 對應設定為 `supabase-config.toml` 中的 `verify_jwt = false`。
+6. 在 `cloud-config.js` 把 `YOUR_PROJECT_REF` 換成 Supabase Project Reference。
+7. 把網站檔案 Commit 到 GitHub Pages。
 
-## PWA / 離線
+## 共用方式
 
-第一次在線開啟網站後，Service Worker 會快取核心檔案。行程頁可基本離線閱讀，但以下功能仍需要網路：
+網站仍可在沒有共享碼時正常使用，此時資料只存在本機；輸入正確共享碼後，網站會在開啟、回到前景、恢復網路以及固定週期同步雲端資料。
 
-- Google Maps
-- 即時道路與交通資訊
-- 外部官方網站
-- 最新班次、營業資訊與活動公告
+修改會先寫入本機，因此短暫離線時仍可操作；恢復網路後會嘗試補同步。
 
-## 重要提醒
+## 安全提醒
 
-這是一份歷史日期行程。若未來照此路線再走一次，交通班次、票價、店舖營業時間、接駁車與活動日期都要重新查證。
-
-GitHub Pages 為公開網站，請勿把護照號碼、航空訂位代碼、飯店訂房編號、電話、信用卡等敏感資料寫入公開 Repository。
+- 不要把 `TRIP_SHARE_SECRET` 寫進 GitHub Repository。
+- 不要把 Supabase Secret Key / `service_role` 放進瀏覽器程式。
+- 持有旅行共享碼的人具有共同編輯權限。
+- 不要在共用網站儲存護照號碼、信用卡、訂位密碼等敏感資訊。

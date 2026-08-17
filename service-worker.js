@@ -1,5 +1,5 @@
-const CACHE_NAME = 'nagoya-kanazawa-trip-v4-icons';
-const CORE = ['./','./index.html','./manifest.webmanifest','./social-preview.png','./icons/icon-192.png','./icons/icon-512.png'];
+const CACHE_NAME = 'nagoya-kanazawa-trip-v6-supabase';
+const CORE = ['./','./index.html','./manifest.webmanifest','./social-preview.png','./icons/icon-192.png','./icons/icon-512.png','./cloud-config.js','./cloud-sync.js'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(CORE)).then(() => self.skipWaiting()));
 });
