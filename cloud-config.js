@@ -1,6 +1,6 @@
 window.TRIP_CLOUD_CONFIG = {
-  // 只需把 YOUR_PROJECT_REF 換成 Supabase Project Reference。
-  // 例：https://abcdefghijklmnopqrst.supabase.co/functions/v1/trip-state
-  functionUrl: 'https://zahmltswbiucslmboxwt.supabase.co/functions/v1/trip-state',
+  namespace: 'nagoya-hokuriku-v6-2027',
+  // 把 YOUR_PROJECT_REF 換成你的 Supabase Project Reference。
+  functionUrl: 'https://YOUR_PROJECT_REF.supabase.co/functions/v1/trip-state',
   syncIntervalMs: 60000
 };

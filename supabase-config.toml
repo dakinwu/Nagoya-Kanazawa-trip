@@ -1,0 +1,2 @@
+[functions.trip-state]
+verify_jwt = false

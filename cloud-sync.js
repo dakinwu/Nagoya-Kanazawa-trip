@@ -3,8 +3,9 @@
 
   const config = window.TRIP_CLOUD_CONFIG || {};
   const functionUrl = String(config.functionUrl || '').trim();
-  const syncIntervalMs = Math.max(5000, Number(config.syncIntervalMs) || 15000);
-  const storagePrefix = 'nagoya-kanazawa-2026-';
+  const cloudNamespace = String(config.namespace || 'nagoya-hokuriku-v6-2027').replace(/[^a-zA-Z0-9._-]/g, '') + ':';
+  const syncIntervalMs = Math.max(10000, Number(config.syncIntervalMs) || 60000);
+  const storagePrefix = 'nagoya-hokuriku-2027-v6-';
   const tokenStorageKey = storagePrefix + 'cloud-share-token';
   const pendingStorageKey = storagePrefix + 'cloud-pending';
   const configured = /^https:\/\/[a-z0-9-]+\.supabase\.co\/functions\/v1\/trip-state$/i.test(functionUrl)
@@ -169,7 +170,8 @@
     updateCloudUi('syncing');
     try {
       const result = await apiRequest('GET');
-      const states = result.states || {};
+      const allStates = result.states || {};
+      const states = Object.fromEntries(Object.entries(allStates).filter(([key]) => key.startsWith(cloudNamespace)).map(([key, value]) => [key.slice(cloudNamespace.length), value]));
       const remoteKeys = Object.keys(states);
 
       if (initializeIfEmpty && remoteKeys.length === 0) {
