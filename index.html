@@ -3,7 +3,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <meta content="2027 年 2 月小松、金澤、白川鄉、高山、飛驒古川、名古屋、犬山 8 天 7 夜互動旅程：彈性標記、住宿、交通、預約、預算、PWA 與多人同步。" name="description"/>
 <title>名古屋・金澤・白川鄉・高山・飛驒古川｜2027 8天7夜 V6</title>
 <style>
@@ -449,65 +449,9 @@
       font-size: .78rem;
     }
 
-    @media (max-width: 760px) {
-      .hero { padding: 28px 16px 78px; }
-      .subtitle { font-size: .98rem; }
-      .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .grid-2 { grid-template-columns: 1fr; }
-      .shell { margin-top: -58px; padding: 0 12px; }
-      .toolbar {
-        top: 0;
-        border-radius: 0 0 16px 16px;
-        margin-left: -12px;
-        margin-right: -12px;
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .toolbar .search { min-width: 0; width: 100%; grid-column: 1 / -1; order: -1; }
-      .toolbar .btn { width: 100%; min-height: 44px; padding-inline: 8px; }
-      .tabs { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 5px; scroll-snap-type: x proximity; scrollbar-width: thin; }
-      .tab-btn { flex: 0 0 auto; min-height: 44px; scroll-snap-align: start; }
-      .filter-btn, .mini-link { min-height: 40px; display: inline-flex; align-items: center; justify-content: center; }
-      .gm-header { display: block; }
-      .gm-header .gm-btn { margin-top: 10px; width: 100%; }
-      .gm-leg { grid-template-columns: 58px minmax(0, 1fr); }
-      .gm-mode { grid-column: 2; justify-self: start; }
-      .gm-actions .gm-btn { flex: 1 1 150px; min-height: 44px; }
-      .route-map { scroll-snap-type: x mandatory; }
-      .route-stop { scroll-snap-align: center; }
-      details.day-card > summary { grid-template-columns: auto minmax(0, 1fr); }
-      .day-meta { display: none; }
-      .day-content { padding-left: 12px; padding-right: 12px; }
-      .timeline::before { left: 58px; }
-      .event { grid-template-columns: 48px 18px minmax(0, 1fr); gap: 8px; }
-      .event-time { font-size: .75rem; }
-      .event-card { min-width: 0; }
-    }
+    
 
-    @media (max-width: 480px) {
-      h1 { font-size: 2rem; }
-      .hero-tags { gap: 6px; }
-      .hero-tag { padding: 6px 9px; font-size: .78rem; }
-      .summary { gap: 8px; padding: 10px; }
-      .stat { padding: 12px; }
-      .stat b { font-size: 1.2rem; }
-      details.day-card > summary { padding: 14px 12px; gap: 10px; }
-      .day-index { width: 48px; height: 48px; border-radius: 14px; font-size: .92rem; }
-      .day-heading h2 { font-size: 1rem; }
-      .day-heading p { font-size: .82rem; }
-      .timeline { margin-left: 0; }
-      .timeline::before { left: 49px; }
-      .event { grid-template-columns: 40px 15px minmax(0, 1fr); gap: 6px; }
-      .event-card { padding: 10px; border-radius: 12px; }
-      .event-title-row { gap: 8px; }
-      .event p { font-size: .86rem; }
-      .section-card { padding: 14px; }
-      .daily-google-maps { border-radius: 13px; }
-      .gm-header, .gm-legs, .gm-actions, .gm-note { padding-left: 11px; padding-right: 11px; }
-      .gm-overview { padding-left: 11px; padding-right: 11px; }
-      .gm-leg { padding: 9px; }
-      table { min-width: 640px; }
-    }
+    
 
     @media print {
       .hero { padding-bottom: 32px; }
@@ -617,29 +561,8 @@
       .prep-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
       .budget-inputs { grid-template-columns:repeat(3,minmax(0,1fr)); }
     }
-    @media (max-width: 760px) {
-      body { padding-bottom:82px; }
-      .dashboard-head, .budget-head, .budget-tab-head, .dining-title { display:block; }
-      .network-pill { margin-top:10px; }
-      .dashboard-metrics, .budget-overview-cards { grid-template-columns:repeat(2,minmax(0,1fr)); }
-      .prep-grid { grid-template-columns:1fr 1fr; }
-      .transport-summary-grid, .backup-grid, .dining-grid { grid-template-columns:1fr; }
-      .budget-inputs { grid-template-columns:repeat(2,minmax(0,1fr)); }
-      .budget-total { text-align:left; margin-top:8px; }
-      .day-selector { flex-wrap:nowrap; overflow-x:auto; padding-bottom:3px; }
-      .day-select-btn { flex:0 0 auto; min-height:40px; }
-      .bottom-nav { position:fixed; display:grid; grid-template-columns:repeat(5,1fr); left:8px; right:8px; bottom:8px; z-index:80; border:1px solid var(--line); border-radius:18px; background:color-mix(in srgb,var(--surface) 92%,transparent); backdrop-filter:blur(16px); box-shadow:var(--shadow); padding:5px; }
-      .bottom-nav button { border:0; background:transparent; color:var(--muted); min-height:52px; border-radius:13px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1px; font-weight:800; }
-      .bottom-nav button:active { background:var(--surface-2); color:var(--accent); }
-      .bottom-nav button span { font-size:1rem; line-height:1; }
-      .bottom-nav button small { font-size:.67rem; }
-      .toast { bottom:76px; }
-    }
-    @media (max-width: 480px) {
-      .dashboard-metrics { grid-template-columns:1fr 1fr; }
-      .prep-grid { grid-template-columns:1fr; }
-      .budget-inputs { grid-template-columns:1fr 1fr; }
-    }
+    
+    
 
 
     /* ===== UX layer: progressive disclosure / lower learning curve ===== */
@@ -798,38 +721,544 @@
     .dining-fallback { border-left:3px solid color-mix(in srgb,var(--gold) 62%,var(--line)); }
     .day-budget { border-left:3px solid var(--budget); }
 
+    /* ===== Mobile UI Cleanup: one responsive layer, no duplicate breakpoint overrides ===== */
     @media (max-width: 760px) {
-      .hero { padding:24px 17px 56px; }
-      .hero-tags-primary { flex-wrap:nowrap; overflow-x:auto; padding-bottom:3px; scrollbar-width:none; }
-      .hero-tags-primary::-webkit-scrollbar { display:none; }
-      .hero-tags-primary .hero-tag { flex:0 0 auto; }
-      .hero-more { margin-top:7px; }
-      .quick-start { grid-template-columns:auto 1fr; }
-      .quick-start-action { grid-column:1 / -1; width:100%; }
-      .toolbar { top:6px; }
-      .toolbar-main { grid-template-columns:1fr 1fr 1fr; }
-      .toolbar-main .search { grid-column:1 / -1; }
-      .tool-menu-items { position:fixed; left:12px; right:12px; top:auto; bottom:80px; width:auto; }
-      .tabs { overflow:visible; }
-      .tab-primary { overflow-x:auto; scrollbar-width:none; }
-      .tab-primary::-webkit-scrollbar { display:none; }
-      .tab-primary .tab-btn { flex:0 0 auto; min-width:88px; }
-      .tab-more-items { position:fixed; left:12px; right:12px; top:auto; bottom:80px; width:auto; }
-      .day-meta { text-align:left; grid-column:2 / -1; }
-      details.day-card > summary { grid-template-columns:auto 1fr; gap:11px; }
-      .planning-tags { display:none; }
+      html { scroll-padding-top: 112px; }
+      body {
+        padding-bottom: calc(94px + env(safe-area-inset-bottom));
+      }
+
+      /* Hero: keep the floating-card effect, but preserve real breathing room below tags. */
+      .hero {
+        padding-top: calc(24px + env(safe-area-inset-top));
+        padding-right: calc(17px + env(safe-area-inset-right));
+        padding-bottom: 86px;
+        padding-left: calc(17px + env(safe-area-inset-left));
+      }
+      .subtitle { font-size: .98rem; }
+      .hero-tags { gap: 7px; }
+      .hero-tags-primary {
+        flex-wrap: wrap;
+        overflow: visible;
+        padding-bottom: 0;
+      }
+      .hero-tags-primary .hero-tag,
+      .hero-tags-secondary .hero-tag {
+        flex: 0 1 auto;
+        max-width: 100%;
+      }
+      .hero-more {
+        width: 100%;
+        margin-top: 8px;
+      }
+      .hero-more > summary {
+        min-height: 44px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 12px;
+      }
+      .hero-more > summary::after { content: '＋'; opacity: .8; }
+      .hero-more[open] > summary::after { content: '－'; }
+      .hero-tags-secondary { row-gap: 8px; }
+
+      /* Main shell: 86px hero reserve - 52px overlap = ~34px visual gap. */
+      .shell {
+        margin-top: -52px;
+        padding-right: calc(12px + env(safe-area-inset-right));
+        padding-left: calc(12px + env(safe-area-inset-left));
+      }
+      .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid-2 { grid-template-columns: 1fr; }
+
+      .quick-start { grid-template-columns: auto 1fr; }
+      .quick-start-action { grid-column: 1 / -1; width: 100%; min-height: 44px; }
+
+      /* Sticky toolbar: search first, then three obvious actions. */
+      .toolbar {
+        top: calc(6px + env(safe-area-inset-top));
+        border-radius: 0 0 16px 16px;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: color-mix(in srgb, var(--surface) 97%, transparent);
+        margin-left: calc(-12px - env(safe-area-inset-left));
+        margin-right: calc(-12px - env(safe-area-inset-right));
+      }
+      .toolbar-main {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 7px;
+      }
+      .toolbar-main .search {
+        grid-column: 1 / -1;
+        min-width: 0;
+        width: 100%;
+        min-height: 44px;
+      }
+      .toolbar .btn,
+      .tool-menu > summary {
+        width: 100%;
+        min-height: 44px;
+        padding-inline: 8px;
+      }
+
+      /* Menus become bottom sheets and stay usable on short/landscape screens. */
+      .tool-menu-items,
+      .tab-more-items {
+        position: fixed;
+        left: calc(12px + env(safe-area-inset-left));
+        right: calc(12px + env(safe-area-inset-right));
+        top: auto;
+        bottom: calc(80px + env(safe-area-inset-bottom));
+        width: auto;
+        max-height: min(62dvh, calc(100dvh - 150px - env(safe-area-inset-bottom)));
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      /* Primary tabs: explicit 2x2 grid; "More" stays on its own row. */
+      .tabs {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 7px;
+        overflow: visible;
+        padding: 7px;
+      }
+      .tab-primary {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+        overflow: visible;
+        width: 100%;
+      }
+      .tab-primary .tab-btn {
+        flex: none;
+        width: 100%;
+        min-width: 0;
+        min-height: 44px;
+        scroll-snap-align: unset;
+      }
+      .tab-more { width: 100%; }
+      .tab-more > summary {
+        width: 100%;
+        min-height: 44px;
+        justify-content: center;
+      }
+      .tab-btn { min-height: 44px; }
+
+      .filter-btn, .mini-link, .mini-action { min-height: 40px; display: inline-flex; align-items: center; justify-content: center; }
+
+      .dashboard-head, .budget-head, .budget-tab-head, .dining-title { display: block; }
+      .network-pill { margin-top: 10px; }
+      .dashboard-metrics, .budget-overview-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .prep-grid { grid-template-columns: 1fr 1fr; }
+      .transport-summary-grid, .backup-grid, .dining-grid { grid-template-columns: 1fr; }
+      .budget-inputs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .budget-total { text-align: left; margin-top: 8px; }
+
+      /* Day selector may scroll, but keeps native visual affordance and padding. */
+      .day-selector {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 0 2px 7px;
+        scrollbar-width: thin;
+        -webkit-overflow-scrolling: touch;
+      }
+      .day-select-btn { flex: 0 0 auto; min-height: 40px; }
+
+      .gm-header { display: block; }
+      .gm-header .gm-btn { margin-top: 10px; width: 100%; }
+      .gm-leg { grid-template-columns: 58px minmax(0, 1fr); }
+      .gm-mode { grid-column: 2; justify-self: start; }
+      .gm-actions .gm-btn { flex: 1 1 150px; min-height: 44px; }
+      .route-map, .table-wrap { -webkit-overflow-scrolling: touch; }
+      .route-map { scroll-snap-type: x mandatory; }
+      .route-stop { scroll-snap-align: center; }
+
+      /* Day cards: restore hotel/flight meta instead of silently hiding it. */
+      details.day-card > summary {
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: 11px;
+      }
+      .day-meta {
+        display: block;
+        grid-column: 2 / -1;
+        text-align: left;
+        margin-top: -4px;
+        font-size: .78rem;
+      }
+      .day-content { padding-left: 12px; padding-right: 12px; }
+      .timeline::before { left: 58px; }
+      .event { grid-template-columns: 48px 18px minmax(0, 1fr); gap: 8px; }
+      .event-time { font-size: .75rem; }
+      .event-card { min-width: 0; }
+      .planning-tags { display: none; }
+
+      /* scrollIntoView() respects these margins and won't hide content under sticky UI. */
+      details.day-card,
+      .daily-google-maps,
+      .tabs,
+      .tab-panel,
+      [data-jump-target] {
+        scroll-margin-top: calc(104px + env(safe-area-inset-top));
+      }
+
+      /* iPhone / standalone PWA safe area. */
+      .bottom-nav {
+        position: fixed;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        left: calc(8px + env(safe-area-inset-left));
+        right: calc(8px + env(safe-area-inset-right));
+        bottom: calc(8px + env(safe-area-inset-bottom));
+        z-index: 80;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: color-mix(in srgb, var(--surface) 92%, transparent);
+        backdrop-filter: blur(16px);
+        box-shadow: var(--shadow);
+        padding: 5px;
+      }
+      .bottom-nav button {
+        border: 0;
+        background: transparent;
+        color: var(--muted);
+        min-width: 0;
+        min-height: 52px;
+        border-radius: 13px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1px;
+        font-weight: 800;
+      }
+      .bottom-nav button:active { background: var(--surface-2); color: var(--accent); }
+      .bottom-nav button span { font-size: 1rem; line-height: 1; }
+      .bottom-nav button small { font-size: .67rem; }
+      .toast {
+        bottom: calc(78px + env(safe-area-inset-bottom));
+        max-width: calc(100vw - 28px - env(safe-area-inset-left) - env(safe-area-inset-right));
+      }
+    }
+
+    @media (max-height: 520px) and (max-width: 950px) {
+      /* Short mobile landscape: keep popup menus entirely inside the viewport. */
+      .toolbar {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: color-mix(in srgb, var(--surface) 97%, transparent);
+      }
+      .tool-menu-items,
+      .tab-more-items {
+        position: fixed;
+        left: calc(12px + env(safe-area-inset-left));
+        right: calc(12px + env(safe-area-inset-right));
+        top: auto;
+        bottom: calc(12px + env(safe-area-inset-bottom));
+        width: auto;
+        max-height: calc(100dvh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+      }
     }
 
     @media (max-width: 480px) {
-      .summary { grid-template-columns:repeat(2,1fr); }
-      .quick-start-icon { width:40px; height:40px; border-radius:12px; font-size:.78rem; }
-      .toolbar-main { gap:6px; }
-      .toolbar-main .btn, .tool-menu > summary { padding:8px 9px; font-size:.76rem; }
-      .dashboard-metrics { gap:7px; }
-      .dash-metric { padding:10px; }
-      .day-heading h2 { font-size:1.03rem; }
-      .day-scan-badges { margin-top:5px; }
+      h1 { font-size: 2rem; }
+      .hero-tags { gap: 6px; }
+      .hero-tag { padding: 6px 9px; font-size: .78rem; }
+      .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 10px; }
+      .stat { padding: 12px; }
+      .stat b { font-size: 1.2rem; }
+      .quick-start-icon { width: 40px; height: 40px; border-radius: 12px; font-size: .78rem; }
+      .toolbar-main { gap: 6px; }
+      .toolbar-main .btn, .tool-menu > summary { padding: 8px 7px; font-size: .76rem; }
+      .dashboard-metrics { grid-template-columns: 1fr 1fr; gap: 7px; }
+      .dash-metric { padding: 10px; }
+      .prep-grid { grid-template-columns: 1fr; }
+      .budget-inputs { grid-template-columns: 1fr 1fr; }
+      details.day-card > summary { padding: 14px 12px; gap: 10px; }
+      .day-index { width: 48px; height: 48px; border-radius: 14px; font-size: .92rem; }
+      .day-heading h2 { font-size: 1.03rem; }
+      .day-heading p { font-size: .82rem; }
+      .day-scan-badges { margin-top: 5px; }
+      .timeline { margin-left: 0; }
+      .timeline::before { left: 49px; }
+      .event { grid-template-columns: 40px 15px minmax(0, 1fr); gap: 6px; }
+      .event-card { padding: 10px; border-radius: 12px; }
+      .event-title-row { gap: 8px; }
+      .event p { font-size: .86rem; }
+      .section-card { padding: 14px; }
+      .daily-google-maps { border-radius: 13px; }
+      .gm-header, .gm-legs, .gm-actions, .gm-note { padding-left: 11px; padding-right: 11px; }
+      .gm-overview { padding-left: 11px; padding-right: 11px; }
+      .gm-leg { padding: 9px; }
+      table { min-width: 640px; }
     }
+
+
+
+    /* ===== Desktop Workspace: visual guidance for wide screens ===== */
+    .desktop-overview { display: contents; }
+    .desktop-workspace,
+    .desktop-rail,
+    .desktop-context,
+    .desktop-journey-rail { display: none; }
+
+    @media (min-width: 1100px) {
+      html { scroll-padding-top: 88px; }
+      .hero-inner, .shell { max-width: 1320px; }
+      .hero { padding: 26px 20px 66px; }
+      .hero h1 { max-width: 1240px; font-size: clamp(3rem, 4.1vw, 3.8rem); line-height: 1.05; margin-top: 7px; }
+      .hero .subtitle { max-width: 1040px; }
+      .hero-tags { margin-top: 16px; }
+      .shell { margin-top: -40px; }
+
+      .desktop-overview {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(340px, .82fr);
+        gap: 10px;
+        align-items: stretch;
+        margin-bottom: 14px;
+      }
+      .desktop-overview > .alert,
+      .desktop-overview > .offline-banner,
+      .desktop-overview > .command-dashboard { grid-column: 1 / -1; margin-bottom: 0; }
+      .desktop-overview > .summary,
+      .desktop-overview > .quick-start { margin-bottom: 0; height: 100%; }
+      .desktop-overview > .summary { padding: 9px; }
+      .desktop-overview > .quick-start { grid-template-columns: auto minmax(0,1fr) auto; }
+      .desktop-overview > .alert { padding: 13px 17px; }
+      .desktop-overview > .command-dashboard .dashboard-prep-disclosure { margin-top: 9px; }
+
+      /* Turn the lower half into a real workspace rather than a stretched mobile stack. */
+      .desktop-workspace {
+        display: grid;
+        grid-template-columns: 242px minmax(0, 1fr);
+        gap: 18px;
+        align-items: start;
+        margin-top: 2px;
+      }
+      .workspace-main { min-width: 0; }
+
+      .desktop-rail {
+        display: block;
+        position: sticky;
+        top: 14px;
+        max-height: calc(100vh - 28px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-width: thin;
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: color-mix(in srgb, var(--surface) 97%, transparent);
+        box-shadow: 0 10px 32px rgba(31,50,73,.07);
+      }
+      .desktop-rail-head { padding: 2px 3px 12px; border-bottom: 1px solid var(--line); }
+      .desktop-rail-head .section-kicker { margin-bottom: 4px; }
+      .desktop-rail-head strong { display: block; font-size: 1.02rem; }
+      .desktop-rail-head small { display: block; margin-top: 3px; color: var(--muted); font-size: .74rem; line-height: 1.45; }
+      .desktop-rail-group { padding: 12px 0; border-bottom: 1px solid var(--line); }
+      .desktop-rail-group:last-child { border-bottom: 0; padding-bottom: 0; }
+      .desktop-rail-label { display: block; margin: 0 4px 7px; color: var(--muted); font-size: .68rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+      .desktop-tab-nav { display: grid; gap: 5px; }
+      .desktop-tab-btn {
+        width: 100%;
+        border: 1px solid transparent;
+        background: transparent;
+        color: var(--muted);
+        border-radius: 10px;
+        padding: 8px 9px;
+        text-align: left;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .desktop-tab-btn:hover { color: var(--text); background: var(--surface-2); }
+      .desktop-tab-btn.active {
+        color: var(--accent);
+        border-color: color-mix(in srgb, var(--accent) 28%, var(--line));
+        background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+      }
+      .desktop-tab-btn[data-desktop-tab="booking"].active { color: var(--map); background: color-mix(in srgb,var(--map) 7%,var(--surface)); border-color: color-mix(in srgb,var(--map) 28%,var(--line)); }
+      .desktop-tab-btn[data-desktop-tab="stay"].active { color: var(--stay); background: color-mix(in srgb,var(--stay) 7%,var(--surface)); border-color: color-mix(in srgb,var(--stay) 28%,var(--line)); }
+      .desktop-tab-btn[data-desktop-tab="budget"].active { color: var(--budget); background: color-mix(in srgb,var(--budget) 7%,var(--surface)); border-color: color-mix(in srgb,var(--budget) 28%,var(--line)); }
+      .desktop-tab-btn .desktop-nav-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: .55; }
+
+      .desktop-day-nav { display: grid; gap: 4px; }
+      .desktop-day-btn {
+        position: relative;
+        width: 100%;
+        border: 1px solid transparent;
+        background: transparent;
+        color: var(--text);
+        border-radius: 10px;
+        padding: 7px 8px;
+        text-align: left;
+        display: grid;
+        grid-template-columns: 31px minmax(0, 1fr);
+        gap: 8px;
+        align-items: center;
+      }
+      .desktop-day-btn:hover { background: var(--surface-2); }
+      .desktop-day-btn.active {
+        border-color: color-mix(in srgb,var(--accent) 28%,var(--line));
+        background: color-mix(in srgb,var(--accent) 8%,var(--surface));
+      }
+      .desktop-day-code {
+        width: 31px; height: 31px; border-radius: 9px; display: grid; place-items: center;
+        color: var(--muted); background: var(--surface-2); font-size: .72rem; font-weight: 900;
+      }
+      .desktop-day-btn.active .desktop-day-code { color: #fff; background: var(--accent); }
+      .desktop-day-copy { min-width: 0; }
+      .desktop-day-copy b, .desktop-day-copy small { display: block; }
+      .desktop-day-copy b { font-size: .76rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .desktop-day-copy small { margin-top: 1px; color: var(--muted); font-size: .66rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .desktop-day-btn[data-desktop-day="all"] { grid-template-columns: 31px minmax(0,1fr); margin-bottom: 3px; }
+      .desktop-day-btn.mode-all { border-color: color-mix(in srgb,var(--accent) 18%,var(--line)); }
+      .desktop-day-btn.mode-all .desktop-day-copy small::after { content: ' · 模式'; color: var(--accent); font-weight: 850; }
+
+      .desktop-rail-status { display: grid; gap: 8px; }
+      .desktop-status-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: .72rem; }
+      .desktop-status-row span { color: var(--muted); }
+      .desktop-status-row b { font-size: .74rem; text-align: right; }
+      .desktop-status-bar { height: 6px; overflow: hidden; border-radius: 999px; background: var(--surface-2); }
+      .desktop-status-bar > div { height: 100%; width: 0; background: var(--accent); transition: width .2s ease; }
+      #desktopCloudText { color: var(--muted); font-size: .69rem; line-height: 1.35; }
+
+      /* Original top tabs/day mode remain in DOM for mobile and scripts, but desktop uses the workspace rail. */
+      .workspace-main > .tabs { display: none; }
+      #itinerary > .route-map,
+      #itinerary > .day-mode-panel { display: none; }
+
+      /* Context bar = where am I + what can I do here. */
+      .workspace-main > .toolbar {
+        top: 12px;
+        display: grid;
+        grid-template-columns: minmax(260px, .72fr) minmax(520px, 1.28fr);
+        gap: 12px;
+        align-items: center;
+        padding: 10px 12px;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(31,50,73,.06);
+      }
+      .desktop-context {
+        display: flex;
+        min-width: 0;
+        align-items: center;
+        gap: 11px;
+        padding-right: 12px;
+        border-right: 1px solid var(--line);
+      }
+      .desktop-context-code {
+        flex: 0 0 auto;
+        min-width: 46px;
+        height: 40px;
+        padding: 0 9px;
+        border-radius: 11px;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        background: var(--accent);
+        font-size: .76rem;
+        font-weight: 900;
+      }
+      .desktop-context-copy { min-width: 0; flex: 1; }
+      .desktop-context-copy b,
+      .desktop-context-copy small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .desktop-context-copy b { font-size: .86rem; }
+      .desktop-context-copy small { margin-top: 1px; color: var(--muted); font-size: .7rem; }
+      .desktop-context-badges { flex: 0 0 auto; display: flex; gap: 4px; }
+      .desktop-context-badge { border-radius: 999px; padding: 3px 7px; font-size: .65rem; font-weight: 850; border: 1px solid var(--line); color: var(--muted); }
+      .desktop-context-badge.must { color: var(--core); border-color: color-mix(in srgb,var(--core) 30%,var(--line)); }
+      .desktop-context-badge.flex { color: var(--flexible); border-color: color-mix(in srgb,var(--flexible) 30%,var(--line)); }
+      .desktop-context-badge.cut { color: var(--cut); border-color: color-mix(in srgb,var(--cut) 28%,var(--line)); }
+      .workspace-main .toolbar-main { grid-template-columns: minmax(220px,1fr) auto auto auto; }
+      .workspace-main .toolbar-main .search { min-width: 0; }
+
+      /* Journey rail replaces two separate navigation widgets on desktop. */
+      .desktop-journey-rail {
+        display: block;
+        padding: 13px 14px 14px;
+        margin-bottom: 14px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: var(--surface);
+      }
+      .desktop-journey-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 10px; }
+      .desktop-journey-head b, .desktop-journey-head small { display: block; }
+      .desktop-journey-head small { color: var(--muted); font-size: .72rem; margin-top: 1px; }
+      .desktop-journey-all {
+        border: 1px solid var(--line); border-radius: 9px; background: var(--surface); color: var(--text); padding: 6px 10px; font-size: .72rem; font-weight: 850;
+      }
+      .desktop-journey-all.active { color: var(--accent); border-color: color-mix(in srgb,var(--accent) 35%,var(--line)); background: color-mix(in srgb,var(--accent) 7%,var(--surface)); }
+      .desktop-journey-track { display: grid; grid-template-columns: repeat(8, minmax(0,1fr)); gap: 0; }
+      .desktop-journey-btn {
+        position: relative;
+        border: 0;
+        background: transparent;
+        color: var(--muted);
+        min-width: 0;
+        padding: 19px 5px 4px;
+        text-align: center;
+      }
+      .desktop-journey-btn::before {
+        content: '';
+        position: absolute;
+        top: 5px; left: 50%;
+        width: 11px; height: 11px; border-radius: 50%;
+        transform: translateX(-50%);
+        background: var(--surface);
+        border: 3px solid var(--line);
+        z-index: 2;
+      }
+      .desktop-journey-btn:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: 9px; left: 50%; right: -50%; height: 2px;
+        background: var(--line);
+        z-index: 1;
+      }
+      .desktop-journey-btn.active { color: var(--accent); }
+      .desktop-journey-btn.active::before { border-color: var(--accent); background: color-mix(in srgb,var(--accent) 10%,var(--surface)); }
+      .desktop-journey-btn.completed::before { border-color: var(--ok); background: var(--ok); }
+      .desktop-journey-btn b, .desktop-journey-btn small { display: block; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .desktop-journey-btn b { font-size: .72rem; }
+      .desktop-journey-btn small { margin-top: 2px; color: var(--muted); font-size: .62rem; }
+      .desktop-journey-btn:hover b { color: var(--text); }
+
+      /* Desktop scanning: day cards have stronger hierarchy and obvious hover focus. */
+      details.day-card { scroll-margin-top: 86px; }
+      details.day-card > summary { padding: 16px 17px; }
+      details.day-card:not([open]) > summary:hover { background: color-mix(in srgb,var(--accent) 2.5%,var(--surface)); }
+      details.day-card[open] > summary { background: color-mix(in srgb,var(--accent) 3%,var(--surface)); }
+      .day-index { width: 52px; height: 52px; }
+      .event-card { transition: transform .14s ease, box-shadow .14s ease, border-color .14s ease; }
+      .event-card:hover { transform: translateY(-1px); box-shadow: 0 7px 18px rgba(31,50,73,.06); }
+      .tag.must, .tag.flex, .tag.cut { cursor: help; }
+
+      /* More compact onboarding above the workspace on desktop. */
+      .quick-start { padding: 11px 14px; }
+      .quick-start-icon { width: 42px; height: 42px; }
+      .command-dashboard { padding: 15px 16px; }
+      .dashboard-metrics { gap: 8px; margin-top: 11px; }
+      .dash-metric { padding: 11px 12px; }
+      .summary { padding: 10px; gap: 8px; }
+      .stat { padding: 12px 14px; }
+
+      .desktop-only-help {
+        margin-top: 9px;
+        color: var(--muted);
+        font-size: .68rem;
+        line-height: 1.45;
+      }
+    }
+
 </style>
 <meta content="#315da8" name="theme-color"/>
 <meta content="yes" name="apple-mobile-web-app-capable"/>
@@ -866,6 +1295,7 @@
 </div>
 </header>
 <main class="shell">
+<div class="desktop-overview">
 <section aria-label="日期提醒" class="panel alert">
 <div class="alert-icon">⚠</div>
 <div><strong>日期狀態：2027 規劃版</strong> 行程日期為 2027/02/09–02/16。星期與 2/11 建國紀念日已依日曆配置；2027/2 的 JR、濃飛巴士、機場巴士、部分活動與營業日尚未完整公布，因此班次一律標示「約／待確認」，不以 2026 時刻冒充正式資料。</div>
@@ -914,6 +1344,58 @@
 <label class="prep-card"><input class="persist-check" data-key="book-luggage" type="checkbox"/><span><b>Day 4 行李物流</b><small>宅配到名古屋／寄物備案</small></span></label>
 <label class="prep-card"><input class="persist-check" data-key="book-poke" type="checkbox"/><span><b>Pokémon Center</b><small>金澤＋名古屋整理券公告</small></span></label>
 </div></details></section>
+
+</div>
+<div class="desktop-workspace">
+<aside aria-label="桌機旅行工作台導覽" class="desktop-rail">
+  <div class="desktop-rail-head">
+    <span class="section-kicker">TRIP WORKSPACE</span>
+    <strong>旅程導覽</strong>
+    <small>左側選功能或 Day，右側專心閱讀；目前位置會隨捲動自動高亮。</small>
+  </div>
+  <div class="desktop-rail-group">
+    <span class="desktop-rail-label">主要功能</span>
+    <nav class="desktop-tab-nav">
+      <button class="desktop-tab-btn active" data-desktop-tab="itinerary" type="button"><span>每日行程</span><span class="desktop-nav-dot"></span></button>
+      <button class="desktop-tab-btn" data-desktop-tab="booking" type="button"><span>訂位清單</span><span class="desktop-nav-dot"></span></button>
+      <button class="desktop-tab-btn" data-desktop-tab="stay" type="button"><span>住宿</span><span class="desktop-nav-dot"></span></button>
+      <button class="desktop-tab-btn" data-desktop-tab="budget" type="button"><span>預算總覽</span><span class="desktop-nav-dot"></span></button>
+    </nav>
+  </div>
+  <div class="desktop-rail-group">
+    <span class="desktop-rail-label">其他功能</span>
+    <nav class="desktop-tab-nav">
+      <button class="desktop-tab-btn" data-desktop-tab="packing" type="button"><span>冬季行李</span><span class="desktop-nav-dot"></span></button>
+      <button class="desktop-tab-btn" data-desktop-tab="onsen" type="button"><span>泡湯選項</span><span class="desktop-nav-dot"></span></button>
+      <button class="desktop-tab-btn" data-desktop-tab="tools" type="button"><span>App／離線</span><span class="desktop-nav-dot"></span></button>
+      <button class="desktop-tab-btn" data-desktop-tab="corrections" type="button"><span>關鍵修正</span><span class="desktop-nav-dot"></span></button>
+      <button class="desktop-tab-btn" data-desktop-tab="sources" type="button"><span>官方來源</span><span class="desktop-nav-dot"></span></button>
+    </nav>
+  </div>
+  <div class="desktop-rail-group">
+    <span class="desktop-rail-label">Day Navigation</span>
+    <div class="desktop-day-nav">
+      <button class="desktop-day-btn active" data-desktop-day="all" type="button"><span class="desktop-day-code">ALL</span><span class="desktop-day-copy"><b>全旅程</b><small>一次瀏覽 8 天</small></span></button>
+      <button class="desktop-day-btn" data-desktop-day="1" type="button"><span class="desktop-day-code">D1</span><span class="desktop-day-copy"><b>小松 → 金澤</b><small>02/09・抵達日</small></span></button>
+      <button class="desktop-day-btn" data-desktop-day="2" type="button"><span class="desktop-day-code">D2</span><span class="desktop-day-copy"><b>金澤市區</b><small>02/10・市場／茶屋街</small></span></button>
+      <button class="desktop-day-btn" data-desktop-day="3" type="button"><span class="desktop-day-code">D3</span><span class="desktop-day-copy"><b>白川鄉 → 高山</b><small>02/11・雪地核心日</small></span></button>
+      <button class="desktop-day-btn" data-desktop-day="4" type="button"><span class="desktop-day-code">D4</span><span class="desktop-day-copy"><b>高山 → 飛驒古川</b><small>02/12・最密集</small></span></button>
+      <button class="desktop-day-btn" data-desktop-day="5" type="button"><span class="desktop-day-code">D5</span><span class="desktop-day-copy"><b>犬山</b><small>02/13・自由下午</small></span></button>
+      <button class="desktop-day-btn" data-desktop-day="6" type="button"><span class="desktop-day-code">D6</span><span class="desktop-day-copy"><b>熱田 → 榮</b><small>02/14・Pokémon</small></span></button>
+      <button class="desktop-day-btn" data-desktop-day="7" type="button"><span class="desktop-day-code">D7</span><span class="desktop-day-copy"><b>名古屋城 → 大須</b><small>02/15・Urban Quar</small></span></button>
+      <button class="desktop-day-btn" data-desktop-day="8" type="button"><span class="desktop-day-code">D8</span><span class="desktop-day-copy"><b>名古屋 → NGO</b><small>02/16・返台</small></span></button>
+    </div>
+  </div>
+  <div class="desktop-rail-group desktop-rail-status">
+    <span class="desktop-rail-label">狀態</span>
+    <div class="desktop-status-row"><span>行程完成</span><b id="desktopRailProgress">0%</b></div>
+    <div class="desktop-status-bar"><div id="desktopRailProgressBar"></div></div>
+    <div class="desktop-status-row"><span>必要準備</span><b id="desktopRailPrep">0 / 11</b></div>
+    <div class="desktop-status-row"><span>網路</span><b id="desktopNetworkText">偵測中</b></div>
+    <div id="desktopCloudText">雲端同步尚未初始化</div>
+  </div>
+</aside>
+<div class="workspace-main">
 <section aria-label="行程工具列" class="panel toolbar">
 
 
@@ -922,7 +1404,11 @@
 
 
 
-<div class="toolbar-main"><input class="search" id="searchInput" placeholder="搜尋景點、餐廳、動漫店或提醒…" type="search"/><button class="btn" id="todayMode" type="button">今日模式</button><button class="btn" id="weatherModeToggle" type="button">雨雪備案</button><details class="tool-menu"><summary>更多工具</summary><div class="tool-menu-items"><button class="btn primary" id="expandAll">展開全部</button><button class="btn" id="collapseAll">摺疊全部</button><button class="btn" id="copyPlan">複製純文字</button><button class="btn" id="printPlan">列印</button><button aria-label="切換深色模式" class="btn" id="themeToggle">深色</button><button class="btn" id="resetChecks">重設勾選</button><button class="btn" id="sharePlan" type="button">分享</button><button class="btn hidden" id="installApp" type="button">安裝 App</button></div></details></div></section>
+<div class="desktop-context" aria-live="polite">
+  <div class="desktop-context-code" id="desktopContextCode">ALL</div>
+  <div class="desktop-context-copy"><b id="desktopContextTitle">全旅程總覽</b><small id="desktopContextMeta">2027/02/09–02/16・8 天 7 夜</small></div>
+  <div class="desktop-context-badges" id="desktopContextBadges"></div>
+</div><div class="toolbar-main"><input class="search" id="searchInput" placeholder="搜尋景點、餐廳、動漫店或提醒…" type="search"/><button class="btn" id="todayMode" type="button">今日模式</button><button class="btn" id="weatherModeToggle" type="button">雨雪備案</button><details class="tool-menu"><summary>更多工具</summary><div class="tool-menu-items"><button class="btn primary" id="expandAll">展開全部</button><button class="btn" id="collapseAll">摺疊全部</button><button class="btn" id="copyPlan">複製純文字</button><button class="btn" id="printPlan">列印</button><button aria-label="切換深色模式" class="btn" id="themeToggle">深色</button><button class="btn" id="resetChecks">重設勾選</button><button class="btn" id="sharePlan" type="button">分享</button><button class="btn hidden" id="installApp" type="button">安裝 App</button></div></details></div></section>
 
 <nav aria-label="內容分頁" class="tabs">
 
@@ -931,7 +1417,19 @@
 
 
 <div class="tab-primary"><button class="tab-btn active" data-tab="itinerary">每日行程</button><button class="tab-btn" data-tab="booking">訂位清單</button><button class="tab-btn" data-tab="stay" type="button">住宿</button><button class="tab-btn" data-tab="budget" type="button">預算總覽</button></div><details class="tab-more"><summary><span id="moreTabLabel">更多</span><span class="nav-chevron">⌄</span></summary><div class="tab-more-items"><button class="tab-btn" data-tab="packing">冬季行李</button><button class="tab-btn" data-tab="onsen">泡湯選項</button><button class="tab-btn" data-tab="tools" type="button">App／離線</button><button class="tab-btn" data-tab="corrections">關鍵修正</button><button class="tab-btn" data-tab="sources">官方來源</button></div></details></nav>
-<section class="tab-panel active" id="itinerary">
+<section class="tab-panel active" id="itinerary"><section aria-label="桌機旅程路線導航" class="desktop-journey-rail">
+  <div class="desktop-journey-head"><div><span class="section-kicker">JOURNEY RAIL</span><b>8 天移動路線</b><small>路線圖同時就是 Day 導覽；點任一天即可聚焦。</small></div><button class="desktop-journey-all active" data-desktop-day="all" type="button">全旅程</button></div>
+  <div class="desktop-journey-track">
+    <button class="desktop-journey-btn" data-desktop-day="1" type="button" title="Day 1｜小松機場 → 金澤"><b>D1・小松</b><small>金澤</small></button>
+    <button class="desktop-journey-btn" data-desktop-day="2" type="button" title="Day 2｜金澤市區"><b>D2・金澤</b><small>市區精華</small></button>
+    <button class="desktop-journey-btn" data-desktop-day="3" type="button" title="Day 3｜金澤 → 白川鄉 → 高山"><b>D3・白川鄉</b><small>高山</small></button>
+    <button class="desktop-journey-btn" data-desktop-day="4" type="button" title="Day 4｜高山 → 飛驒古川 → 名古屋"><b>D4・古川</b><small>名古屋</small></button>
+    <button class="desktop-journey-btn" data-desktop-day="5" type="button" title="Day 5｜犬山"><b>D5・犬山</b><small>自由下午</small></button>
+    <button class="desktop-journey-btn" data-desktop-day="6" type="button" title="Day 6｜熱田神宮 → 榮"><b>D6・熱田</b><small>榮</small></button>
+    <button class="desktop-journey-btn" data-desktop-day="7" type="button" title="Day 7｜柳橋 → 名古屋城 → 大須"><b>D7・大須</b><small>泡湯</small></button>
+    <button class="desktop-journey-btn" data-desktop-day="8" type="button" title="Day 8｜名古屋 → NGO"><b>D8・NGO</b><small>返台</small></button>
+  </div>
+</section>
 <section aria-label="移動路線" class="panel route-map">
 <div class="route-line"><div class="route-stop">小松</div><div class="route-stop">金澤</div><div class="route-stop">白川鄉→高山</div><div class="route-stop">飛驒古川</div><div class="route-stop">犬山</div><div class="route-stop">榮</div><div class="route-stop">名古屋城→大須</div><div class="route-stop">NGO</div></div></section><section aria-label="單日模式" class="panel day-mode-panel">
 <div class="day-mode-head">
@@ -1165,7 +1663,7 @@
 <div class="source-item"><b>Pokémon Center NAGOYA</b><small>名古屋 PARCO 東館 2F；假日整理券公告。</small><br/><a href="https://shop.pokemon.co.jp/ja/shop/pokemoncenter-nagoya/" rel="noopener" target="_blank">官方店舖</a></div>
 <div class="source-item"><b>Urban Quar</b><small>Day 7 天然溫泉、營業與臨時休館。</small><br/><a href="https://p-castle.co.jp/urban_quar/" rel="noopener" target="_blank">官方網站</a></div>
 <div class="source-item"><b>高山空手觀光</b><small>行李寄存與寄送資訊。</small><br/><a href="https://www.hida.jp/chinese/traveltips/practicalguide/4000714/4001424.html" rel="noopener" target="_blank">官方資訊</a></div>
-</div></section></section></main>
+</div></section></section></div></div></main>
 <nav aria-label="手機快速導航" class="bottom-nav">
 <button data-bottom-action="today" type="button"><span>◎</span><small>今日</small></button>
 <button data-bottom-action="itinerary" type="button"><span>≡</span><small>行程</small></button>
@@ -1188,6 +1686,7 @@
   let currentDayMode = localStorage.getItem(storagePrefix + 'day-mode') || 'all';
   let deferredInstallPrompt = null;
   let toastTimer = null;
+  let desktopObservedDay = currentDayMode !== 'all' ? currentDayMode : '1';
 
   function showToast(message) {
     const toast = $('#toast');
@@ -1228,6 +1727,126 @@
     updateBookingProgress();
   }));
 
+
+
+  const desktopTabLabels = {
+    itinerary:'每日行程', booking:'訂位清單', stay:'住宿', budget:'預算總覽',
+    packing:'冬季行李', onsen:'泡湯選項', tools:'App／離線', corrections:'關鍵修正', sources:'官方來源'
+  };
+
+  function desktopDayInfo(dayNum) {
+    const day = $(`#day-${dayNum}`);
+    if (!day) return null;
+    const title = $('.day-heading h2', day)?.textContent.trim() || `Day ${dayNum}`;
+    const meta = $('.day-heading p', day)?.textContent.trim() || tripDates[Number(dayNum)-1] || '';
+    const badges = $$('.day-scan-badge', day).map(el => ({
+      text: el.textContent.trim(),
+      cls: el.classList.contains('must') ? 'must' : el.classList.contains('flex') ? 'flex' : 'cut'
+    }));
+    return {title, meta, badges};
+  }
+
+  function updateDesktopDayHighlight(dayNum = desktopObservedDay) {
+    const visibleDay = currentDayMode !== 'all' ? currentDayMode : dayNum;
+    $$('.desktop-day-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.desktopDay === visibleDay);
+      btn.classList.toggle('mode-all', btn.dataset.desktopDay === 'all' && currentDayMode === 'all');
+    });
+    $$('.desktop-journey-all').forEach(btn => btn.classList.toggle('active', currentDayMode === 'all'));
+    $$('.desktop-journey-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.desktopDay === visibleDay));
+  }
+
+  function updateDesktopContext(tabId = $('.tab-btn.active')?.dataset.tab || 'itinerary', dayNum = desktopObservedDay) {
+    const code = $('#desktopContextCode');
+    const title = $('#desktopContextTitle');
+    const meta = $('#desktopContextMeta');
+    const badges = $('#desktopContextBadges');
+    if (!code || !title || !meta || !badges) return;
+
+    if (tabId !== 'itinerary') {
+      code.textContent = 'VIEW';
+      title.textContent = desktopTabLabels[tabId] || '旅程工具';
+      meta.textContent = '左側可隨時切回每日行程或其他功能';
+      badges.innerHTML = '';
+      return;
+    }
+
+    if (currentDayMode === 'all') {
+      const info = desktopDayInfo(dayNum);
+      code.textContent = dayNum ? `D${dayNum}` : 'ALL';
+      title.textContent = info ? info.title : '全旅程總覽';
+      meta.textContent = info ? `${info.meta}・目前閱讀位置` : '2027/02/09–02/16・8 天 7 夜';
+      badges.innerHTML = info ? info.badges.map(b => `<span class="desktop-context-badge ${b.cls}">${b.text}</span>`).join('') : '';
+    } else {
+      const info = desktopDayInfo(currentDayMode);
+      code.textContent = `D${currentDayMode}`;
+      title.textContent = info ? info.title : `Day ${currentDayMode}`;
+      meta.textContent = info ? `${info.meta}・單日模式` : tripDates[Number(currentDayMode)-1];
+      badges.innerHTML = info ? info.badges.map(b => `<span class="desktop-context-badge ${b.cls}">${b.text}</span>`).join('') : '';
+    }
+  }
+
+  function updateDesktopTabNav(tabId) {
+    $$('.desktop-tab-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.desktopTab === tabId));
+    updateDesktopContext(tabId, desktopObservedDay);
+  }
+
+  function updateDesktopJourneyCompletion() {
+    $$('.desktop-journey-btn').forEach(btn => {
+      const day = $(`#day-${btn.dataset.desktopDay}`);
+      if (!day) return;
+      const checks = $$('.event-check', day);
+      btn.classList.toggle('completed', checks.length > 0 && checks.every(cb => cb.checked));
+    });
+  }
+
+  function initDesktopGuidance() {
+    $$('.desktop-tab-btn').forEach(btn => btn.addEventListener('click', () => activateTab(btn.dataset.desktopTab)));
+    $$('[data-desktop-day]').forEach(btn => btn.addEventListener('click', () => {
+      activateTab('itinerary', false);
+      const day = btn.dataset.desktopDay;
+      setDayMode(day, {scroll: day !== 'all'});
+      if (day === 'all') {
+        desktopObservedDay = '1';
+        updateDesktopDayHighlight('1');
+        updateDesktopContext('itinerary', '1');
+      }
+    }));
+
+    $$('.tag.must').forEach(el => el.title = '核心：除交通中斷、惡劣天候或身體不適外優先保留。');
+    $$('.tag.flex').forEach(el => el.title = '彈性：可依天候、人潮、排隊時間與體力縮短或取消。');
+    $$('.tag.cut').forEach(el => el.title = '可刪：第一順位犧牲項目。');
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        if (currentDayMode !== 'all' || !window.matchMedia('(min-width: 1100px)').matches) return;
+        const candidates = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio);
+        if (!candidates.length) return;
+        const next = candidates[0].target.dataset.dayNumber;
+        if (!next || next === desktopObservedDay) return;
+        desktopObservedDay = next;
+        updateDesktopDayHighlight(next);
+        updateDesktopContext('itinerary', next);
+      }, {rootMargin:'-18% 0px -58% 0px', threshold:[0,.12,.3,.55]});
+      $$('.day-card').forEach(day => observer.observe(day));
+    }
+
+    const cloudObserver = new MutationObserver(() => {
+      const button = $('#tripCloudButton');
+      const target = $('#desktopCloudText');
+      if (button && target) target.textContent = button.textContent.replace(/^☁\s*/, '雲端：');
+    });
+    cloudObserver.observe(document.body, {childList:true, subtree:true, characterData:true});
+    setTimeout(() => {
+      const button = $('#tripCloudButton');
+      if (button && $('#desktopCloudText')) $('#desktopCloudText').textContent = button.textContent.replace(/^☁\s*/, '雲端：');
+    }, 0);
+
+    updateDesktopTabNav('itinerary');
+    updateDesktopDayHighlight(desktopObservedDay);
+    updateDesktopJourneyCompletion();
+  }
+
   function updateProgress() {
     const checks = eventChecks();
     const done = checks.filter(c => c.checked).length;
@@ -1236,6 +1855,9 @@
     $('#progressText').textContent = `${done} / ${total}`;
     $('#progressBar').style.width = `${pct}%`;
     if ($('#dashboardEventProgress')) $('#dashboardEventProgress').textContent = `${pct}%`;
+    if ($('#desktopRailProgress')) $('#desktopRailProgress').textContent = `${pct}%`;
+    if ($('#desktopRailProgressBar')) $('#desktopRailProgressBar').style.width = `${pct}%`;
+    updateDesktopJourneyCompletion();
   }
 
   function updateBookingProgress() {
@@ -1244,6 +1866,7 @@
     if ($('#bookingProgressText')) $('#bookingProgressText').textContent = `${done} / ${keys.length}`;
     if ($('#bookingProgressMini')) $('#bookingProgressMini').textContent = `${done} / ${keys.length}`;
     if ($('#bookingProgressBar')) $('#bookingProgressBar').style.width = keys.length ? `${done / keys.length * 100}%` : '0%';
+    if ($('#desktopRailPrep')) $('#desktopRailPrep').textContent = `${done} / ${keys.length}`;
   }
 
   $('#expandAll').addEventListener('click', () => $$('.day-card').forEach(d => d.open = true));
@@ -1267,7 +1890,11 @@
     if ($('#moreTabLabel')) $('#moreTabLabel').textContent = secondary.includes(id) ? `更多 · ${tabs.find(b => b.dataset.tab === id)?.textContent || ''}` : '更多';
     if (more && !secondary.includes(id)) more.open = false;
     updateBottomNav(id);
-    if (scroll) window.scrollTo({top: $('.tabs').offsetTop - 70, behavior:'smooth'});
+    updateDesktopTabNav(id);
+    if (scroll) {
+      const anchor = window.matchMedia('(min-width: 1100px)').matches ? $('.workspace-main') : $('.tabs');
+      if (anchor) window.scrollTo({top: anchor.offsetTop - 72, behavior:'smooth'});
+    }
   }
   tabs.forEach(btn => btn.addEventListener('click', () => activateTab(btn.dataset.tab)));
 
@@ -1302,6 +1929,9 @@
     if (persist) localStorage.setItem(storagePrefix + 'day-mode', mode);
     $$('.day-select-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.dayMode === mode));
     $$('.day-card').forEach(day => day.classList.toggle('day-mode-hidden', mode !== 'all' && day.dataset.dayNumber !== mode));
+    if (mode !== 'all') desktopObservedDay = mode;
+    updateDesktopDayHighlight(desktopObservedDay);
+    updateDesktopContext('itinerary', desktopObservedDay);
     const status = $('#dayModeStatus');
     if (status) status.textContent = mode === 'all' ? '目前顯示：全旅程' : `目前顯示：Day ${mode}・${tripDates[Number(mode)-1]}`;
     if (mode !== 'all') {
@@ -1431,6 +2061,7 @@
     const pill = $('#networkPill');
     if (pill) { pill.classList.toggle('online', online); pill.classList.toggle('offline', !online); }
     if ($('#networkText')) $('#networkText').textContent = online ? '在線' : '離線';
+    if ($('#desktopNetworkText')) $('#desktopNetworkText').textContent = online ? '在線' : '離線';
     if ($('#offlineBanner')) $('#offlineBanner').classList.toggle('hidden', online);
   }
   window.addEventListener('online', () => { updateNetworkState(); showToast('網路已恢復'); });
@@ -1496,6 +2127,7 @@
     if (action === 'info') activateTab('tools');
   }));
 
+  initDesktopGuidance();
   setDayMode(currentDayMode, {scroll:false, persist:false});
   updateBottomNav('itinerary');
   loadChecks();

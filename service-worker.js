@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nagoya-hokuriku-trip-v8-2027-v6-semantic-color';
+const CACHE_NAME = 'nagoya-hokuriku-trip-v10-2027-v6-desktop-workspace';
 const CORE = ['./','./index.html','./manifest.webmanifest','./social-preview.png','./icons/icon-192.png','./icons/icon-512.png','./cloud-config.js','./cloud-sync.js'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(CORE)).then(() => self.skipWaiting()));

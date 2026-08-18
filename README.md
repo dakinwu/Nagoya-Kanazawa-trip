@@ -13,6 +13,23 @@ GitHub Pages 靜態互動行程網站。行程日期：2027/2/9–2/16。
 - PWA 離線快取
 - Supabase 共享碼多人同步
 
+## V6 Semantic Color UI
+核心＝藍、彈性＝琥珀、可刪＝灰；成功／同步完成＝綠、待處理＝琥珀、錯誤＝紅。主要按鈕使用品牌藍，其餘控制項維持中性色。
+
+## V6 Mobile UI Cleanup
+760px 以下維持手機專用 Bottom Navigation；已整理 Responsive CSS、Hero 間距、Day Meta、2×2 主分頁、iPhone/PWA safe-area、Bottom Sheet 與 sticky toolbar 捲動空間。
+
+## V6 Desktop Workspace
+1100px 以上啟用桌機旅行工作台：
+- 左側 Sticky Navigation：主要功能、其他功能、D1–D8 與同步／完成狀態
+- Journey Rail：路線圖同時作為 Day 導覽
+- Context Bar：顯示目前正在閱讀的 Day／功能，以及核心・彈性・可刪數量
+- Scroll Spy：全旅程模式向下閱讀時，左側與 Journey Rail 會跟著目前 Day 高亮
+- Desktop Hover Guidance：核心／彈性／可刪標籤提供滑鼠提示
+- 桌機頂部 Overview Grid：日期提醒、摘要、第一次使用與 Dashboard 重新排版，讓主要工作台更早進入視野
+
+1100px 以下不啟用左側 Workspace，沿用既有平板／手機資訊架構，避免窄螢幕硬塞雙欄。
+
 ## 專案結構
 ```text
 /
@@ -29,7 +46,7 @@ GitHub Pages 靜態互動行程網站。行程日期：2027/2/9–2/16。
 ```
 
 ## 2027 待確認
-截至 2026/08/17，2027/2 的完整交通／活動資料尚未全部發布，網站刻意不寫死：
+截至 2026/08/18，2027/2 的完整交通／活動資料尚未全部發布，網站刻意不寫死：
 - 小松機場 → 金澤巴士
 - 金澤 → 白川鄉 → 高山高速巴士
 - 高山本線／特急ひだ
@@ -39,12 +56,7 @@ GitHub Pages 靜態互動行程網站。行程日期：2027/2/9–2/16。
 - Urban Quar 2/15 臨時休館
 
 ## GitHub Pages 更新
-把上述網站檔案覆蓋到原 Repository，Commit 到 Pages 使用的 `main / (root)` 即可，不需要重新設定 Pages。
+把網站檔案覆蓋到原 Repository，Commit 到 Pages 使用的 `main / (root)` 即可，不需要重新設定 Pages。
 
 ## Supabase
 `cloud-config.js` 的 Function URL 要換成自己的 Supabase Edge Function；不要把 `TRIP_SHARE_SECRET`、`service_role` 或 Secret Key 放進 GitHub Repository。
-
-
-## V6 Semantic Color UI
-
-本版僅調整視覺層級，不更動行程內容：核心＝藍、彈性＝琥珀、可刪＝灰；成功／同步完成＝綠、待處理＝琥珀、錯誤＝紅。主要按鈕使用品牌藍，其餘控制項維持中性色，以降低首次使用的視覺負擔。
