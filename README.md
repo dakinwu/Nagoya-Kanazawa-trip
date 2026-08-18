@@ -100,3 +100,12 @@ functionUrl: 'https://YOUR_PROJECT_REF.supabase.co/functions/v1/trip-state'
 - `index.html` cache-busts `cloud-config.js`, `cloud-sync.js`, and Service Worker registration (`v=13`).
 - `cloud-sync.js` reads `window.TRIP_CLOUD_CONFIG` dynamically instead of freezing `configured` at startup.
 - This fixes the case where GitHub already contains a valid Supabase Function URL but the UI still says the Function URL is not configured.
+
+
+## V14 Layout Completion
+
+- Added the missing `stay-card`, `stay-head`, `stay-rank`, and `stay-facts` styles so the Takayama lodging criteria card no longer renders as raw unpadded text.
+- Added the previously missing `grid-3` layout used by the itinerary flexibility legend; it becomes one column on mobile.
+- Verified the accommodation tab DOM structure: the Takayama card remains inside `#stay`, and the following Onsen tab is not nested incorrectly.
+- Corrected one stale Kanazawa lodging warning from `2027/2/9–2/12` to the current two-night stay `2027/2/9–2/11`.
+- PWA cache bumped to `nagoya-hokuriku-trip-v14-2027-v6-layout-completion`.

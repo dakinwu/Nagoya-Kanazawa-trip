@@ -721,6 +721,81 @@
     .dining-fallback { border-left:3px solid color-mix(in srgb,var(--gold) 62%,var(--line)); }
     .day-budget { border-left:3px solid var(--budget); }
 
+    /* ===== Lodging / planning component completion ===== */
+    .grid-3 {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px;
+    }
+    .flexibility-legend .grid-3 > div {
+      min-width:0;
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:11px 12px;
+      background:var(--surface-2);
+    }
+    .flexibility-legend .grid-3 p {
+      margin:8px 0 0;
+      color:var(--muted);
+      font-size:.84rem;
+    }
+
+    .stay-card {
+      margin-top:14px;
+      padding:18px;
+      border-top:3px solid color-mix(in srgb,var(--stay) 62%,var(--line));
+      box-shadow:0 1px 0 rgba(31,50,73,.02);
+    }
+    .stay-head {
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .stay-head > div { min-width:0; }
+    .stay-head h3 {
+      margin:7px 0 5px;
+      font-size:1.08rem;
+      line-height:1.4;
+    }
+    .stay-head p {
+      margin:0;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+    .stay-rank {
+      display:inline-flex;
+      align-items:center;
+      min-height:28px;
+      border:1px solid color-mix(in srgb,var(--stay) 38%,var(--line));
+      border-radius:999px;
+      padding:4px 9px;
+      color:var(--stay);
+      background:color-mix(in srgb,var(--stay) 8%,var(--surface));
+      font-size:.74rem;
+      font-weight:900;
+      letter-spacing:.02em;
+    }
+    .stay-facts {
+      display:flex;
+      flex-wrap:wrap;
+      gap:7px;
+      margin-top:13px;
+    }
+    .stay-facts span {
+      display:inline-flex;
+      align-items:center;
+      min-height:31px;
+      border:1px solid color-mix(in srgb,var(--stay) 24%,var(--line));
+      border-radius:999px;
+      padding:5px 9px;
+      background:color-mix(in srgb,var(--stay) 5%,var(--surface));
+      color:var(--text);
+      font-size:.78rem;
+      font-weight:800;
+    }
+    .stay-card > .note { margin-top:13px; }
+
     /* ===== Mobile UI Cleanup: one responsive layer, no duplicate breakpoint overrides ===== */
     @media (max-width: 760px) {
       html { scroll-padding-top: 112px; }
@@ -771,6 +846,11 @@
       }
       .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .grid-2 { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .stay-card { padding:14px; }
+      .stay-head { display:block; }
+      .stay-facts { gap:6px; }
+      .stay-facts span { flex:1 1 160px; justify-content:center; text-align:center; }
 
       .quick-start { grid-template-columns: auto 1fr; }
       .quick-start-action { grid-column: 1 / -1; width: 100%; min-height: 44px; }
@@ -1621,7 +1701,7 @@
 <h2>我的決選策略</h2>
 <p><b>先比較 3 間：</b>御宿 野乃金澤、Dormy Inn 金澤、三井花園飯店金澤。這三間分別代表「整體體驗」、「車站交通」、「三張正式床」。如果 Intergate 含稅總價明顯低於前三間，再把它拉進最後決選。</p>
 <div class="note">簡單例子：Dormy Inn 比野乃便宜每房每晚 ¥5,000，兩間房住 2 晚就是差 ¥20,000，這時交通型選擇很有吸引力；如果只差 ¥1,000～¥2,000／房晚，我會選野乃換更舒服的三床與住宿體驗。</div>
-<div class="note warn">目前沒有把「2027/2/9–2/12 真的還有兩間 Triple」寫成已確認事實。房量與價格是動態資訊，最後仍要在 Agoda／官方訂房頁以 6 成人、2 房重新查。</div>
+<div class="note warn">目前沒有把「2027/2/9–2/11 真的還有兩間 Triple」寫成已確認事實。房量與價格是動態資訊，最後仍要在 Agoda／官方訂房頁以 6 成人、2 房重新查。</div>
 </section>
 <section class="panel stay-card"><div class="stay-head"><div><span class="stay-rank">高山 1 晚</span><h3>高山住宿條件｜2/11 入住、2/12 退房</h3><p>V6 只住一晚，建議比「豪華程度」更重視 <b>濃飛巴士中心／JR 高山站距離＋大浴場／溫泉＋可協助行李寄送</b>。</p></div></div><div class="stay-facts"><span>6 成人／2 間房</span><span>有泡湯設施優先</span><span>Day 4 早上可處理行李</span></div><div class="note">選房時先確認三人房是真三床、沙發床或和洋式；Day 4 要去飛驒古川後再移動名古屋，飯店能否宅配大件行李會直接影響當日舒適度。</div></section></section>
 <section class="tab-panel" id="onsen"><div class="grid-2"><section class="panel section-card"><span class="section-kicker">ONSEN PLAN</span><h2>V6 泡湯配置</h2><p><b>Day 3 高山：</b>住宿優先選有大浴場／天然溫泉，白川鄉雪地日回飯店後直接泡湯。</p><p><b>Day 7 名古屋：</b>晚間安排 Urban Quar 作彈性收尾；目前官方仍提供天然溫泉、大浴場與桑拿等設施。</p><div class="note">泡湯不是每天硬塞。Day 4 最累，抵達名古屋後直接休息；Day 7 若大須走太久，Urban Quar 也可以取消。</div></section><section class="panel section-card"><h2>天然溫泉 Urban Quar</h2><p>放在最後完整觀光日，目的不是新增景點，而是讓大須採買後有一段坐著／泡湯恢復的時間。</p><p><b>2027 注意：</b>營業時間、最後受付與臨時休館尚未能提前確認，出發前再查官方公告。</p><div class="event-actions"><a class="mini-link" href="https://p-castle.co.jp/urban_quar/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Urban+Quar+Nagoya" rel="noopener" target="_blank">Google Maps</a></div></section></div></section><section class="tab-panel" id="tools">
@@ -2093,7 +2173,7 @@
   if ($('#installAppInside')) $('#installAppInside').addEventListener('click', handleInstallClick);
 
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js?v=13', { updateViaCache: 'none' }).then(registration => registration.update()).catch(() => {}));
+    window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js?v=14', { updateViaCache: 'none' }).then(registration => registration.update()).catch(() => {}));
   }
 
   function jumpToCurrentMap() {
@@ -2148,7 +2228,7 @@
   loadBudgets();
 })();
 </script>
-<script src="./cloud-config.js?v=13"></script>
-<script src="./cloud-sync.js?v=13"></script>
+<script src="./cloud-config.js?v=14"></script>
+<script src="./cloud-sync.js?v=14"></script>
 </body>
 </html>
