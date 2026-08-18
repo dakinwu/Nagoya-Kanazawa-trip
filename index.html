@@ -2093,7 +2093,7 @@
   if ($('#installAppInside')) $('#installAppInside').addEventListener('click', handleInstallClick);
 
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js').catch(() => {}));
+    window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js?v=13', { updateViaCache: 'none' }).then(registration => registration.update()).catch(() => {}));
   }
 
   function jumpToCurrentMap() {
@@ -2148,7 +2148,7 @@
   loadBudgets();
 })();
 </script>
-<script src="./cloud-config.js"></script>
-<script src="./cloud-sync.js"></script>
+<script src="./cloud-config.js?v=13"></script>
+<script src="./cloud-sync.js?v=13"></script>
 </body>
 </html>

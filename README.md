@@ -93,3 +93,10 @@ functionUrl: 'https://YOUR_PROJECT_REF.supabase.co/functions/v1/trip-state'
 
 請先把 `YOUR_PROJECT_REF` 改回你的 Supabase Project Reference；Project Reference 不是 Secret，但 `TRIP_SHARE_SECRET`、Secret Key、`service_role` 絕對不要放到 GitHub Pages。
 
+
+## V13 Config Cache Fix
+
+- `cloud-config.js` is no longer precached as a fixed app-shell asset. Online loads explicitly bypass the HTTP cache and refresh the PWA fallback copy.
+- `index.html` cache-busts `cloud-config.js`, `cloud-sync.js`, and Service Worker registration (`v=13`).
+- `cloud-sync.js` reads `window.TRIP_CLOUD_CONFIG` dynamically instead of freezing `configured` at startup.
+- This fixes the case where GitHub already contains a valid Supabase Function URL but the UI still says the Function URL is not configured.

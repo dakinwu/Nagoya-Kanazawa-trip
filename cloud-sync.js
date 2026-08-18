@@ -1,16 +1,23 @@
 (() => {
   'use strict';
 
-  const config = window.TRIP_CLOUD_CONFIG || {};
-  const functionUrl = String(config.functionUrl || '').trim().replace(/\/+$/, '');
-  const cloudNamespace = String(config.namespace || 'nagoya-hokuriku-v6-2027').replace(/[^a-zA-Z0-9._-]/g, '') + ':';
-  const syncIntervalMs = Math.max(10000, Number(config.syncIntervalMs) || 60000);
-  const requestTimeoutMs = Math.max(5000, Number(config.requestTimeoutMs) || 12000);
   const storagePrefix = 'nagoya-hokuriku-2027-v6-';
   const tokenStorageKey = storagePrefix + 'cloud-share-token';
   const pendingStorageKey = storagePrefix + 'cloud-pending';
-  const configured = /^https:\/\/[a-z0-9-]+\.supabase\.co\/functions\/v1\/trip-state$/i.test(functionUrl)
-    && !functionUrl.includes('YOUR_PROJECT_REF');
+
+  // Read cloud-config.js dynamically instead of freezing its value at script startup.
+  // This also makes a recovered/fresh config usable without stale in-memory `configured` state.
+  function readCloudConfig() {
+    const config = window.TRIP_CLOUD_CONFIG || {};
+    const functionUrl = String(config.functionUrl || '').trim().replace(/\/+$/, '');
+    const namespaceBase = String(config.namespace || 'nagoya-hokuriku-v6-2027').replace(/[^a-zA-Z0-9._-]/g, '');
+    const cloudNamespace = (namespaceBase || 'nagoya-hokuriku-v6-2027') + ':';
+    const syncIntervalMs = Math.max(10000, Number(config.syncIntervalMs) || 60000);
+    const requestTimeoutMs = Math.max(5000, Number(config.requestTimeoutMs) || 12000);
+    const configured = /^https:\/\/[a-z0-9-]+\.supabase\.co\/functions\/v1\/trip-state$/i.test(functionUrl)
+      && !functionUrl.includes('YOUR_PROJECT_REF');
+    return { functionUrl, cloudNamespace, syncIntervalMs, requestTimeoutMs, configured };
+  }
 
   let shareToken = localStorage.getItem(tokenStorageKey) || '';
   let applyingRemote = false;
@@ -56,15 +63,15 @@
 
   function toRemoteChanges(changes) {
     return Object.fromEntries(
-      Object.entries(changes || {}).map(([key, value]) => [cloudNamespace + key, value])
+      Object.entries(changes || {}).map(([key, value]) => [readCloudConfig().cloudNamespace + key, value])
     );
   }
 
   function fromRemoteStates(allStates) {
     return Object.fromEntries(
       Object.entries(allStates || {})
-        .filter(([key]) => key.startsWith(cloudNamespace))
-        .map(([key, value]) => [key.slice(cloudNamespace.length), value])
+        .filter(([key]) => key.startsWith(readCloudConfig().cloudNamespace))
+        .map(([key, value]) => [key.slice(readCloudConfig().cloudNamespace.length), value])
     );
   }
 
@@ -136,6 +143,7 @@
   }
 
   async function apiRequest(method = 'GET', body = null) {
+    const { configured, functionUrl, requestTimeoutMs } = readCloudConfig();
     if (!configured) {
       const error = new Error('cloud-config.js 尚未設定有效的 Supabase Function URL。');
       error.code = 'config';
@@ -199,7 +207,7 @@
   }
 
   async function flushPending() {
-    if (syncing || !shareToken || !navigator.onLine || !configured) return false;
+    if (syncing || !shareToken || !navigator.onLine || !readCloudConfig().configured) return false;
     const pending = getPending();
     const keys = Object.keys(pending);
     if (!keys.length) return true;
@@ -228,7 +236,7 @@
   }
 
   async function pullRemote({ initializeIfEmpty = false } = {}) {
-    if (syncing || !shareToken || !navigator.onLine || !configured) return false;
+    if (syncing || !shareToken || !navigator.onLine || !readCloudConfig().configured) return false;
     syncing = true;
     updateCloudUi('syncing');
     try {
@@ -269,7 +277,7 @@
   }
 
   async function syncNow({ initializeIfEmpty = false, reportErrors = false } = {}) {
-    if (!configured) {
+    if (!readCloudConfig().configured) {
       updateCloudUi('config');
       if (reportErrors) showCloudMessage('尚未設定 Supabase Function URL。請先確認 GitHub 上的 cloud-config.js 沒有被覆蓋成 YOUR_PROJECT_REF。', 'error');
       return false;
@@ -301,7 +309,7 @@
   }
 
   function statusText(state) {
-    if (!configured) return '未設定雲端';
+    if (!readCloudConfig().configured) return '未設定雲端';
     if (!shareToken) return '僅本機';
     if (!navigator.onLine) return '離線・待同步';
     const map = {
@@ -319,7 +327,7 @@
     const button = $('#tripCloudButton');
     const status = $('#tripCloudStatus');
     const hint = $('#tripCloudHint');
-    const visualState = !configured ? 'disabled' : !shareToken ? 'local' : !navigator.onLine ? 'offline' : (state || 'local');
+    const visualState = !readCloudConfig().configured ? 'disabled' : !shareToken ? 'local' : !navigator.onLine ? 'offline' : (state || 'local');
     if (button) {
       button.textContent = `☁ ${text}`;
       button.dataset.state = visualState;
@@ -329,7 +337,7 @@
       status.dataset.state = visualState;
     }
     if (hint) {
-      if (!configured) hint.textContent = '尚未設定雲端：cloud-config.js 的 functionUrl 仍是空值或 YOUR_PROJECT_REF。';
+      if (!readCloudConfig().configured) hint.textContent = '尚未設定雲端：cloud-config.js 的 functionUrl 仍是空值或 YOUR_PROJECT_REF。';
       else if (!shareToken) hint.textContent = '輸入旅行共享碼後，預約、住宿決選、預算與行程完成狀態會多人共用。';
       else if (!navigator.onLine) hint.textContent = '目前離線；修改會先保存在本機，恢復網路後再上傳。';
       else if (state === 'invalid') hint.textContent = '共享碼驗證失敗；請重新輸入正確的旅行共享碼。';
@@ -375,7 +383,7 @@
       setTimeout(() => input.focus(), 30);
     }
     updateCloudUi();
-    if (!configured) showCloudMessage('尚未設定 Supabase Function URL；如果你剛用完整 ZIP 覆蓋 GitHub，請把原本的 cloud-config.js 還原。', 'error');
+    if (!readCloudConfig().configured) showCloudMessage('尚未設定 Supabase Function URL；如果你剛用完整 ZIP 覆蓋 GitHub，請把原本的 cloud-config.js 還原。', 'error');
     else showCloudMessage();
   }
 
@@ -449,7 +457,7 @@
         if (input) input.focus();
         return;
       }
-      if (!configured) {
+      if (!readCloudConfig().configured) {
         updateCloudUi('config');
         showCloudMessage('尚未設定 Supabase Function URL。請檢查 GitHub 上的 cloud-config.js，確認 functionUrl 不是 YOUR_PROJECT_REF。', 'error');
         return;
@@ -503,7 +511,7 @@
     clearInterval(pollTimer);
     pollTimer = setInterval(() => {
       if (document.visibilityState === 'visible' && navigator.onLine && shareToken) syncNow();
-    }, syncIntervalMs);
+    }, readCloudConfig().syncIntervalMs);
   }
 
   function start() {
@@ -517,14 +525,14 @@
       if (document.visibilityState === 'visible') syncNow();
     });
 
-    if (shareToken && configured) syncNow({ initializeIfEmpty: true });
+    if (shareToken && readCloudConfig().configured) syncNow({ initializeIfEmpty: true });
   }
 
   window.tripCloud = {
     open: openModal,
     sync: () => syncNow(),
-    isConfigured: () => configured,
-    isConnected: () => Boolean(configured && shareToken && verifiedConnection),
+    isConfigured: () => readCloudConfig().configured,
+    isConnected: () => Boolean(readCloudConfig().configured && shareToken && verifiedConnection),
     lastError: () => lastCloudError
   };
 
