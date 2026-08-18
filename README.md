@@ -60,3 +60,13 @@ GitHub Pages 靜態互動行程網站。行程日期：2027/2/9–2/16。
 
 ## Supabase
 `cloud-config.js` 的 Function URL 要換成自己的 Supabase Edge Function；不要把 `TRIP_SHARE_SECRET`、`service_role` 或 Secret Key 放進 GitHub Repository。
+
+## V11 Desktop Freeze Fix
+
+本版修正 Desktop Workspace 的雲端狀態監聽造成頁面卡住的問題。
+
+原因：舊版 `MutationObserver` 監聽整個 `document.body`，callback 又會修改 `#desktopCloudText`，因此該修改會再次觸發同一個 Observer，形成無限 microtask 迴圈。
+
+修正：只監聽真正會變動的 `#tripCloudButton`；按鈕尚未掛載時使用一次性的 mount observer，找到按鈕後立即 disconnect，並且只有文字實際不同時才更新桌機狀態文字。
+
+PWA Cache 已升級為 `nagoya-hokuriku-trip-v11-2027-v6-desktop-freeze-fix`。

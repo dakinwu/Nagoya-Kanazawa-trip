@@ -1831,16 +1831,30 @@
       $$('.day-card').forEach(day => observer.observe(day));
     }
 
-    const cloudObserver = new MutationObserver(() => {
+    function syncDesktopCloudText() {
       const button = $('#tripCloudButton');
       const target = $('#desktopCloudText');
-      if (button && target) target.textContent = button.textContent.replace(/^☁\s*/, '雲端：');
-    });
-    cloudObserver.observe(document.body, {childList:true, subtree:true, characterData:true});
-    setTimeout(() => {
+      if (!button || !target) return false;
+      const nextText = button.textContent.replace(/^☁\s*/, '雲端：');
+      if (target.textContent !== nextText) target.textContent = nextText;
+      return true;
+    }
+
+    function attachDesktopCloudObserver() {
       const button = $('#tripCloudButton');
-      if (button && $('#desktopCloudText')) $('#desktopCloudText').textContent = button.textContent.replace(/^☁\s*/, '雲端：');
-    }, 0);
+      if (!button) return false;
+      syncDesktopCloudText();
+      const cloudObserver = new MutationObserver(syncDesktopCloudText);
+      cloudObserver.observe(button, {childList:true, subtree:true, characterData:true});
+      return true;
+    }
+
+    if (!attachDesktopCloudObserver()) {
+      const cloudMountObserver = new MutationObserver(() => {
+        if (attachDesktopCloudObserver()) cloudMountObserver.disconnect();
+      });
+      cloudMountObserver.observe(document.body, {childList:true, subtree:true});
+    }
 
     updateDesktopTabNav('itinerary');
     updateDesktopDayHighlight(desktopObservedDay);
