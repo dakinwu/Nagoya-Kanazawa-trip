@@ -70,3 +70,26 @@ GitHub Pages 靜態互動行程網站。行程日期：2027/2/9–2/16。
 修正：只監聽真正會變動的 `#tripCloudButton`；按鈕尚未掛載時使用一次性的 mount observer，找到按鈕後立即 disconnect，並且只有文字實際不同時才更新桌機狀態文字。
 
 PWA Cache 已升級為 `nagoya-hokuriku-trip-v11-2027-v6-desktop-freeze-fix`。
+
+## V12 Supabase Sync Fix
+
+本版修正旅行共享碼「按下後像沒反應」以及多人資料 namespace 不一致問題。
+
+- `cloud-sync.js` 現在會明確顯示：未設定 Function URL、共享碼錯誤、連線逾時、CORS／網路失敗、同步成功。
+- 所有寫入的 state key 都會加上 `nagoya-hokuriku-v6-2027:` namespace，與讀取邏輯一致。
+- 若資料庫內仍有 V11 以前的無 namespace 舊資料，第一次成功連線時會把能辨識的舊 key 自動搬到新 namespace。
+- Edge Function 請求加入 12 秒 timeout，避免畫面長時間停在「同步中」。
+- PWA Cache 已升級為 `nagoya-hokuriku-trip-v12-2027-v6-supabase-sync-fix`。
+
+### 重要：不要覆蓋正式 `cloud-config.js`
+
+若 GitHub 上的 `cloud-config.js` 已經填入真正的 Supabase Project Reference，更新時只上傳 V12 update-only ZIP 內的檔案。
+
+若目前 `cloud-config.js` 已經變回以下佔位值：
+
+```js
+functionUrl: 'https://YOUR_PROJECT_REF.supabase.co/functions/v1/trip-state'
+```
+
+請先把 `YOUR_PROJECT_REF` 改回你的 Supabase Project Reference；Project Reference 不是 Secret，但 `TRIP_SHARE_SECRET`、Secret Key、`service_role` 絕對不要放到 GitHub Pages。
+
