@@ -56,6 +56,12 @@
     return Boolean(key) && !key.startsWith('pack-');
   }
 
+  function isSharedValueInput(input) {
+    if (!(input instanceof HTMLInputElement)) return false;
+    const key = input.dataset.cloudKey || '';
+    return Boolean(key);
+  }
+
   function stateKeyForBudget(input) {
     return `budget-${input.dataset.day}-${input.dataset.category}`;
   }
@@ -103,6 +109,11 @@
       snapshot[key] = Boolean(input.checked);
     });
 
+    $$('input[data-cloud-key]').forEach(input => {
+      if (!isSharedValueInput(input)) return;
+      snapshot[input.dataset.cloudKey] = String(input.value || '');
+    });
+
     $$('.budget-input[data-day][data-category]').forEach(input => {
       snapshot[stateKeyForBudget(input)] = Math.max(0, Number(input.value) || 0);
     });
@@ -124,6 +135,16 @@
           if (Number(input.value) !== nextValue) {
             input.value = String(nextValue);
             input.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+          continue;
+        }
+
+        const valueInput = $(`input[data-cloud-key="${CSS.escape(key)}"]`);
+        if (valueInput && isSharedValueInput(valueInput)) {
+          const nextValue = value === null || value === undefined ? '' : String(value);
+          if (valueInput.value !== nextValue) {
+            valueInput.value = nextValue;
+            valueInput.dispatchEvent(new Event('change', { bubbles: true }));
           }
           continue;
         }
@@ -338,7 +359,7 @@
     }
     if (hint) {
       if (!readCloudConfig().configured) hint.textContent = '尚未設定雲端：cloud-config.js 的 functionUrl 仍是空值或 YOUR_PROJECT_REF。';
-      else if (!shareToken) hint.textContent = '輸入旅行共享碼後，預約、住宿決選、預算與行程完成狀態會多人共用。';
+      else if (!shareToken) hint.textContent = '輸入旅行共享碼後，預約、住宿候選／最終住宿、預算與行程完成狀態會多人共用。';
       else if (!navigator.onLine) hint.textContent = '目前離線；修改會先保存在本機，恢復網路後再上傳。';
       else if (state === 'invalid') hint.textContent = '共享碼驗證失敗；請重新輸入正確的旅行共享碼。';
       else if (state === 'error') hint.textContent = lastCloudError || '雲端連線失敗；請檢查 Function URL、CORS 與網路。';
@@ -493,8 +514,12 @@
   function bindSharedInputs() {
     document.addEventListener('change', event => {
       const target = event.target;
-      if (applyingRemote || !isSharedCheckbox(target)) return;
-      queueChange(target.dataset.key, Boolean(target.checked));
+      if (applyingRemote) return;
+      if (isSharedCheckbox(target)) {
+        queueChange(target.dataset.key, Boolean(target.checked));
+        return;
+      }
+      if (isSharedValueInput(target)) queueChange(target.dataset.cloudKey, String(target.value || ''));
     });
 
     document.addEventListener('input', event => {

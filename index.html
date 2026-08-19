@@ -854,6 +854,94 @@
     .hotel-longlist-body ul { margin:10px 0 0; padding-left:1.25rem; }
     .hotel-longlist-body li { margin:7px 0; color:var(--muted); }
     .hotel-secondary-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin-top:12px; }
+    .hotel-secondary-item { display:grid; gap:7px; min-width:0; }
+    .hotel-secondary-item .set-final-hotel { justify-self:start; }
+
+
+    /* ===== V16 final lodging decision ===== */
+    .final-stay-panel {
+      margin-top:14px;
+      padding:18px;
+      border-top:3px solid color-mix(in srgb,var(--stay) 72%,var(--line));
+      background:linear-gradient(135deg,color-mix(in srgb,var(--stay) 5%,var(--surface)),var(--surface));
+    }
+    .final-stay-heading {
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+    }
+    .final-stay-heading h2 { margin:4px 0 0; }
+    .final-stay-status {
+      flex:0 0 auto;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:5px 9px;
+      color:var(--muted);
+      background:var(--surface);
+      font-size:.76rem;
+      font-weight:900;
+    }
+    .final-stay-status[data-state="selected"] {
+      color:var(--stay);
+      border-color:color-mix(in srgb,var(--stay) 38%,var(--line));
+      background:color-mix(in srgb,var(--stay) 8%,var(--surface));
+    }
+    .final-stay-status[data-state="booked"] {
+      color:var(--ok);
+      border-color:color-mix(in srgb,var(--ok) 38%,var(--line));
+      background:color-mix(in srgb,var(--ok) 8%,var(--surface));
+    }
+    .final-stay-current {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-top:12px;
+      border:1px solid color-mix(in srgb,var(--stay) 25%,var(--line));
+      border-radius:14px;
+      padding:13px 14px;
+      background:var(--surface);
+    }
+    .final-stay-current > div { min-width:0; }
+    .final-stay-current small { display:block; color:var(--muted); font-weight:800; }
+    .final-stay-current b { display:block; margin-top:3px; font-size:1rem; line-height:1.35; }
+    .final-stay-current span { display:block; margin-top:3px; color:var(--muted); font-size:.78rem; }
+    .final-stay-current a[hidden] { display:none; }
+    .final-stay-controls {
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto auto;
+      gap:8px;
+      align-items:end;
+      margin-top:12px;
+    }
+    .final-stay-controls label { min-width:0; color:var(--muted); font-size:.76rem; font-weight:850; }
+    .final-stay-controls select {
+      width:100%;
+      min-height:42px;
+      margin-top:5px;
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:8px 10px;
+      background:var(--surface);
+      color:var(--text);
+      font:inherit;
+    }
+    .final-stay-controls .btn { min-height:42px; }
+    .final-booked-check { margin-top:10px; }
+    .hotel-choice.is-final {
+      border-color:color-mix(in srgb,var(--stay) 45%,var(--line));
+      border-left-color:var(--stay);
+      box-shadow:0 0 0 2px color-mix(in srgb,var(--stay) 9%,transparent);
+      background:color-mix(in srgb,var(--stay) 4%,var(--surface));
+    }
+    .set-final-hotel[type="button"] { color:var(--stay); cursor:pointer; font-family:inherit; }
+    .set-final-hotel[aria-pressed="true"] {
+      color:white;
+      border-color:var(--stay);
+      background:var(--stay);
+    }
+    .hotel-dynamic-leg[hidden] { display:none; }
 
     /* ===== Mobile UI Cleanup: one responsive layer, no duplicate breakpoint overrides ===== */
     @media (max-width: 760px) {
@@ -915,6 +1003,13 @@
       .hotel-choice-head { display:block; }
       .hotel-price-snapshot { display:inline-flex; margin-top:8px; }
       .hotel-secondary-grid { grid-template-columns:1fr; }
+      .final-stay-panel { padding:14px; }
+      .final-stay-heading { display:block; }
+      .final-stay-status { display:inline-flex; margin-top:8px; }
+      .final-stay-current { align-items:flex-start; flex-direction:column; }
+      .final-stay-controls { grid-template-columns:1fr 1fr; }
+      .final-stay-controls label { grid-column:1 / -1; }
+      .final-stay-controls .btn { width:100%; }
 
       .quick-start { grid-template-columns: auto 1fr; }
       .quick-start-action { grid-column: 1 / -1; width: 100%; min-height: 44px; }
@@ -1690,8 +1785,29 @@
 <h2>金澤住宿決選｜6 成人・2 間三人房・2/9–2/11</h2>
 <p>這次把你提供的 19 間比價資料併入原本候選，但不再只看單價。對這趟路線，優先順序改成：<b>兩間都能住 3 成人且床型清楚 → Day 3 前往金澤站的冬季動線 → 價格 → 大浴場／溫泉 → 房間空間</b>。</p>
 <div class="note warn"><b>價格只是本次快照：</b>下方「你提供：xxx／人」直接沿用你這次整理的數字；幣別、是否含稅、是否為兩晚總價與取消條件仍以原訂房頁為準，網站不把它當成 2027 固定房價。</div>
-<div class="note"><b>候選勾選目前不會改行程或地圖：</b>「加入住宿決選」只用來多人討論 shortlist，不會自動改 D1／D2 的飯店節點、Google Maps 或交通時間；真正訂房後再把單一飯店寫進行程，避免多個候選同時勾選時地圖亂跳。</div>
+<div class="note"><b>現在分成兩層：</b>「保留候選」仍可多選，只是 shortlist；「設為最終住宿」只能有 1 間，選定後會同步更新 D1／D2／D3 的住宿文字與飯店相關 Google Maps，但不改景點順序或原本時間。</div>
 <div class="tags"><span class="tag must">硬門檻：2 間 × 3 成人</span><span class="tag flex">Day 3 早班交通</span><span class="tag onsen">大浴場是加分，不是硬門檻</span></div>
+</section>
+
+<section class="panel final-stay-panel" id="kanazawaFinalStayPanel">
+  <div class="final-stay-heading">
+    <div><span class="section-kicker">FINAL STAY</span><h2>金澤最終住宿</h2></div>
+    <span class="final-stay-status" id="kanazawaFinalStayStatus" data-state="empty">尚未選定</span>
+  </div>
+  <div class="final-stay-current">
+    <div><small>目前套用到行程與地圖</small><b id="kanazawaFinalHotelName">尚未選定</b><span id="kanazawaFinalHotelHint">先保留候選沒有副作用；只有「設為最終住宿」才會改 D1–D3 的飯店相關節點。</span></div>
+    <a class="mini-link" id="kanazawaFinalHotelMap" href="#" target="_blank" rel="noopener" hidden>飯店地圖</a>
+  </div>
+  <div class="final-stay-controls">
+    <label>選擇最終住宿
+      <select id="kanazawaFinalHotelSelect"><option value="">請選擇飯店</option></select>
+    </label>
+    <button class="btn primary" id="kanazawaApplyFinalHotel" type="button">設為最終住宿</button>
+    <button class="btn" id="kanazawaClearFinalHotel" type="button">清除</button>
+  </div>
+  <input id="kanazawaFinalHotelCloudState" type="hidden" data-cloud-key="hotel-final-kanazawa" value="" />
+  <label class="check-item final-booked-check"><input class="persist-check" data-key="book-hotel-k" type="checkbox"/><span><b>已完成預訂</b><small>這是另一個狀態：先選最終住宿，再真的下訂；勾選後會同步到準備清單。</small></span></label>
+  <div class="note"><b>地圖更新範圍：</b>D1 金澤站 → 飯店、飯店 → Pokémon Center；D2 飯店 → 近江町；D3 飯店 → 金澤站。景點順序、巴士／JR 與既有時間不會被自動改動。</div>
 </section>
 
 <section class="panel section-card" style="margin-top:14px">
@@ -1702,43 +1818,43 @@
   <div class="hotel-choice-head"><div><div class="tags"><span class="tag food">CP 首選</span><span class="tag flex">近江町</span></div><h3>Hotel Resol Trinity Kanazawa</h3><small>價格低很多時，最值得先查兩間 Triple 是否同時有房。</small></div><span class="hotel-price-snapshot">你提供：639／人</span></div>
   <p><b>保留理由：</b>官方列有 24㎡ Standard Triple，3 人入住時是雙床房加第 3 床；武藏辻／近江町市場巴士站步行約 1 分鐘，Day 2 市區觀光很順。</p>
   <p><b>取捨：</b>沒有大浴場；Day 3 仍要搭公車或計程車前往金澤站。若兩間三人房庫存成立，這個價差足以讓它直接進前二。</p>
-  <label class="check-item"><input class="persist-check" data-key="hotel-short-resol" type="checkbox"/><span><b>加入住宿決選</b><small>適合：價格優先，但不想犧牲獨立飯店房間。</small></span></label>
-  <div class="event-actions"><a class="mini-link" href="https://www.resol-hotel.jp/trinity-kanazawa/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Resol+Trinity+Kanazawa" rel="noopener" target="_blank">地圖</a></div>
+  <label class="check-item"><input class="persist-check" data-key="hotel-short-resol" type="checkbox"/><span><b>保留候選</b><small>適合：價格優先，但不想犧牲獨立飯店房間。</small></span></label>
+  <div class="event-actions"><button class="mini-link set-final-hotel" data-final-hotel="resol" type="button" aria-pressed="false">設為最終住宿</button><a class="mini-link" href="https://www.resol-hotel.jp/trinity-kanazawa/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Resol+Trinity+Kanazawa" rel="noopener" target="_blank">地圖</a></div>
 </section>
 <section class="panel section-card hotel-choice">
   <div class="hotel-choice-head"><div><div class="tags"><span class="tag must">交通首選</span></div><h3>Daiwa Roynet Hotel Kanazawa Eki Nishiguchi</h3><small>Day 3 白川鄉早班的風險最低。</small></div><span class="hotel-price-snapshot">你提供：971／人</span></div>
   <p><b>保留理由：</b>官方位置是 JR 金澤站西口步行約 4 分鐘；你整理的方案為 27㎡、3 張床，對 6 人分兩房很直接。</p>
   <p><b>取捨：</b>沒有大浴場，且下單前仍要在最終房型頁確認「3 成人 × 2 房」不是臨時加床或不同房型拼房。</p>
-  <label class="check-item"><input class="persist-check" data-key="hotel-short-daiwa-west" type="checkbox"/><span><b>加入住宿決選</b><small>適合：冬季交通、拖行李與 Day 3 早班優先。</small></span></label>
-  <div class="event-actions"><a class="mini-link" href="https://www.daiwaroynet.jp/kanazawa-ekinishi/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Daiwa+Roynet+Hotel+Kanazawa+Eki+Nishiguchi" rel="noopener" target="_blank">地圖</a></div>
+  <label class="check-item"><input class="persist-check" data-key="hotel-short-daiwa-west" type="checkbox"/><span><b>保留候選</b><small>適合：冬季交通、拖行李與 Day 3 早班優先。</small></span></label>
+  <div class="event-actions"><button class="mini-link set-final-hotel" data-final-hotel="daiwa-west" type="button" aria-pressed="false">設為最終住宿</button><a class="mini-link" href="https://www.daiwaroynet.jp/kanazawa-ekinishi/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Daiwa+Roynet+Hotel+Kanazawa+Eki+Nishiguchi" rel="noopener" target="_blank">地圖</a></div>
 </section>
 <section class="panel section-card hotel-choice">
   <div class="hotel-choice-head"><div><div class="tags"><span class="tag food">平衡首選</span><span class="tag flex">近江町 4 分鐘</span></div><h3>Hotel Forza Kanazawa</h3><small>房間、觀光位置、價格三者最均衡。</small></div><span class="hotel-price-snapshot">你提供：1,309／人</span></div>
   <p><b>保留理由：</b>官方明確表示 Superior Twin 加 extra bed 可住 3 成人；飯店距金澤站約步行 10 分鐘、近江町市場約 4 分鐘。</p>
   <p><b>取捨：</b>不是大浴場型飯店；若實際房型是加床，睡眠舒適度仍不如三張固定床的三井花園。</p>
-  <label class="check-item"><input class="persist-check" data-key="hotel-short-forza" type="checkbox"/><span><b>加入住宿決選</b><small>適合：不想住太遠，又希望價格與房間品質平衡。</small></span></label>
-  <div class="event-actions"><a class="mini-link" href="https://www.hotelforza.jp/kanazawa/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Forza+Kanazawa" rel="noopener" target="_blank">地圖</a></div>
+  <label class="check-item"><input class="persist-check" data-key="hotel-short-forza" type="checkbox"/><span><b>保留候選</b><small>適合：不想住太遠，又希望價格與房間品質平衡。</small></span></label>
+  <div class="event-actions"><button class="mini-link set-final-hotel" data-final-hotel="forza" type="button" aria-pressed="false">設為最終住宿</button><a class="mini-link" href="https://www.hotelforza.jp/kanazawa/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Forza+Kanazawa" rel="noopener" target="_blank">地圖</a></div>
 </section>
 <section class="panel section-card hotel-choice">
   <div class="hotel-choice-head"><div><div class="tags"><span class="tag food">三床最穩</span><span class="tag onsen">景觀大浴場</span></div><h3>Mitsui Garden Hotel Kanazawa</h3><small>若六個人都要正式床，這間最乾淨。</small></div><span class="hotel-price-snapshot">你提供：1,578／人</span></div>
   <p><b>保留理由：</b>官方 Superior 3 Beds 是 31.5㎡、1,110mm × 3 張正式床，並有頂樓大浴場；也提供行李寄送服務。</p>
   <p><b>取捨：</b>官方標示距 JR 金澤站步行約 17 分鐘／計程車約 8 分鐘，Day 3 清晨建議直接搭計程車。</p>
-  <label class="check-item"><input class="persist-check" data-key="hotel-short-mitsui" type="checkbox"/><span><b>加入住宿決選</b><small>適合：床型確定性與泡湯都想保留。</small></span></label>
-  <div class="event-actions"><a class="mini-link" href="https://www.gardenhotels.co.jp/kanazawa/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Mitsui+Garden+Hotel+Kanazawa" rel="noopener" target="_blank">地圖</a></div>
+  <label class="check-item"><input class="persist-check" data-key="hotel-short-mitsui" type="checkbox"/><span><b>保留候選</b><small>適合：床型確定性與泡湯都想保留。</small></span></label>
+  <div class="event-actions"><button class="mini-link set-final-hotel" data-final-hotel="mitsui" type="button" aria-pressed="false">設為最終住宿</button><a class="mini-link" href="https://www.gardenhotels.co.jp/kanazawa/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Mitsui+Garden+Hotel+Kanazawa" rel="noopener" target="_blank">地圖</a></div>
 </section>
 <section class="panel section-card hotel-choice">
   <div class="hotel-choice-head"><div><div class="tags"><span class="tag onsen">溫泉體驗首選</span><span class="tag food">三人房</span></div><h3>Onyado Nono Kanazawa</h3><small>舒服，但要確認你是否願意為兩晚住宿體驗付明顯溢價。</small></div><span class="hotel-price-snapshot">你提供：2,357／人</span></div>
   <p><b>保留理由：</b>有三人房與天然溫泉大浴場，位置靠近近江町；如果你們把住宿本身視為行程的一部分，它仍是體驗最完整的選項。</p>
   <p><b>取捨：</b>你這次提供的價格是主決選中最高；而 Day 3 白川鄉後本來就會住高山溫泉型飯店，所以金澤兩晚未必需要再為溫泉支付最高溢價。</p>
-  <label class="check-item"><input class="persist-check" data-key="hotel-short-nono" type="checkbox"/><span><b>加入住宿決選</b><small>適合：泡湯與住宿體驗優先，價格不是第一考量。</small></span></label>
-  <div class="event-actions"><a class="mini-link" href="https://dormy-hotels.com/dormyinn/hotels/nono_kanazawa/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Onyado+Nono+Kanazawa" rel="noopener" target="_blank">地圖</a></div>
+  <label class="check-item"><input class="persist-check" data-key="hotel-short-nono" type="checkbox"/><span><b>保留候選</b><small>適合：泡湯與住宿體驗優先，價格不是第一考量。</small></span></label>
+  <div class="event-actions"><button class="mini-link set-final-hotel" data-final-hotel="nono" type="button" aria-pressed="false">設為最終住宿</button><a class="mini-link" href="https://dormy-hotels.com/dormyinn/hotels/nono_kanazawa/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Onyado+Nono+Kanazawa" rel="noopener" target="_blank">地圖</a></div>
 </section>
 <section class="panel section-card hotel-choice">
   <div class="hotel-choice-head"><div><div class="tags"><span class="tag flex">超值備案</span><span class="tag onsen">大浴場</span></div><h3>the square hotel KANAZAWA</h3><small>價格很漂亮，但睡法不是六個人都「一人一張標準床」。</small></div><span class="hotel-price-snapshot">你提供：744／人</span></div>
   <p><b>保留理由：</b>官方 20㎡ Moderate Twin 可住 3 人，配置 1 張 1,400mm 床＋1 張 1,000mm loft bed，且館內有大浴場；位置在武藏辻／近江町一帶。</p>
   <p><b>取捨：</b>三人房的床型比較像家庭／朋友共享，對 6 位成人與冬季大件行李不如 Resol、Forza、三井乾淨。</p>
-  <label class="check-item"><input class="persist-check" data-key="hotel-short-square" type="checkbox"/><span><b>加入住宿決選</b><small>適合：價格非常重要、可接受特殊床型。</small></span></label>
-  <div class="event-actions"><a class="mini-link" href="https://www.the-squarehotel.com/skz/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=the+square+hotel+KANAZAWA" rel="noopener" target="_blank">地圖</a></div>
+  <label class="check-item"><input class="persist-check" data-key="hotel-short-square" type="checkbox"/><span><b>保留候選</b><small>適合：價格非常重要、可接受特殊床型。</small></span></label>
+  <div class="event-actions"><button class="mini-link set-final-hotel" data-final-hotel="square" type="button" aria-pressed="false">設為最終住宿</button><a class="mini-link" href="https://www.the-squarehotel.com/skz/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=the+square+hotel+KANAZAWA" rel="noopener" target="_blank">地圖</a></div>
 </section>
 </div>
 </section>
@@ -1746,10 +1862,10 @@
 <section class="panel section-card" style="margin-top:14px">
 <h2>次選與觀望</h2>
 <div class="hotel-secondary-grid">
-<label class="check-item"><input class="persist-check" data-key="hotel-short-dormy" type="checkbox"/><span><b>Dormy Inn Kanazawa</b><small>車站＋天然溫泉很強；這次沒有同口徑價格，等拿到 3 成人房價再與 Daiwa／三井比較。</small></span></label>
-<label class="check-item"><input class="persist-check" data-key="hotel-short-intergate" type="checkbox"/><span><b>Hotel Intergate Kanazawa</b><small>三人房＋大浴場的結構仍好；若最終含稅價接近 Forza，可重新升主決選。</small></span></label>
-<label class="check-item"><input class="persist-check" data-key="hotel-short-amanek" type="checkbox"/><span><b>HOTEL AMANEK Kanazawa</b><small>你提供 1,333／人；官方有大浴場，但距金澤站較遠，適合把片町夜生活放在 Day 2 優先的人。</small></span></label>
-<label class="check-item"><input class="persist-check" data-key="hotel-short-sainoniwa" type="checkbox"/><span><b>金澤 彩之庭飯店</b><small>住宿品質很高，但不屬站前型，且這次沒有同口徑價格；除非房價很有吸引力，否則先降為品質型備選。</small></span></label>
+<div class="hotel-secondary-item"><label class="check-item"><input class="persist-check" data-key="hotel-short-dormy" type="checkbox"/><span><b>Dormy Inn Kanazawa</b><small>車站＋天然溫泉很強；這次沒有同口徑價格，等拿到 3 成人房價再與 Daiwa／三井比較。</small></span></label><button class="mini-link set-final-hotel" data-final-hotel="dormy" type="button" aria-pressed="false">設為最終住宿</button></div>
+<div class="hotel-secondary-item"><label class="check-item"><input class="persist-check" data-key="hotel-short-intergate" type="checkbox"/><span><b>Hotel Intergate Kanazawa</b><small>三人房＋大浴場的結構仍好；若最終含稅價接近 Forza，可重新升主決選。</small></span></label><button class="mini-link set-final-hotel" data-final-hotel="intergate" type="button" aria-pressed="false">設為最終住宿</button></div>
+<div class="hotel-secondary-item"><label class="check-item"><input class="persist-check" data-key="hotel-short-amanek" type="checkbox"/><span><b>HOTEL AMANEK Kanazawa</b><small>你提供 1,333／人；官方有大浴場，但距金澤站較遠，適合把片町夜生活放在 Day 2 優先的人。</small></span></label><button class="mini-link set-final-hotel" data-final-hotel="amanek" type="button" aria-pressed="false">設為最終住宿</button></div>
+<div class="hotel-secondary-item"><label class="check-item"><input class="persist-check" data-key="hotel-short-sainoniwa" type="checkbox"/><span><b>金澤 彩之庭飯店</b><small>住宿品質很高，但不屬站前型，且這次沒有同口徑價格；除非房價很有吸引力，否則先降為品質型備選。</small></span></label><button class="mini-link set-final-hotel" data-final-hotel="sainoniwa" type="button" aria-pressed="false">設為最終住宿</button></div>
 </div>
 <details class="hotel-longlist"><summary>其他 9 間為什麼先不進主決選</summary><div class="hotel-longlist-body"><ul>
 <li><b>Torifito Hotel &amp; Pod Kanazawa（630）／Ryokan Yamamuro（1,566）：</b>沒有獨立衛浴，6 成人冬季行程的便利性折損太大，只在極端省預算或想住日式旅館時考慮。</li>
@@ -1873,6 +1989,236 @@
     updateBookingProgress();
   }));
 
+  const KANAZAWA_HOTELS = [
+    {id:'resol', group:'主決選', name:'Hotel Resol Trinity Kanazawa', short:'Resol Trinity', query:'Hotel Resol Trinity Kanazawa Japan'},
+    {id:'daiwa-west', group:'主決選', name:'Daiwa Roynet Hotel Kanazawa Eki Nishiguchi', short:'Daiwa Roynet 金澤站西口', query:'Daiwa Roynet Hotel Kanazawa Eki Nishiguchi Japan'},
+    {id:'forza', group:'主決選', name:'Hotel Forza Kanazawa', short:'Hotel Forza Kanazawa', query:'Hotel Forza Kanazawa Japan'},
+    {id:'mitsui', group:'主決選', name:'Mitsui Garden Hotel Kanazawa', short:'三井花園飯店金澤', query:'Mitsui Garden Hotel Kanazawa Japan'},
+    {id:'nono', group:'主決選', name:'Onyado Nono Kanazawa', short:'御宿 野乃金澤', query:'Onyado Nono Kanazawa Japan'},
+    {id:'square', group:'主決選', name:'the square hotel KANAZAWA', short:'the square hotel KANAZAWA', query:'the square hotel KANAZAWA Japan'},
+    {id:'dormy', group:'次選', name:'Dormy Inn Kanazawa', short:'Dormy Inn 金澤', query:'Dormy Inn Kanazawa Japan'},
+    {id:'intergate', group:'次選', name:'Hotel Intergate Kanazawa', short:'Hotel Intergate Kanazawa', query:'Hotel Intergate Kanazawa Japan'},
+    {id:'amanek', group:'次選', name:'HOTEL AMANEK Kanazawa', short:'HOTEL AMANEK Kanazawa', query:'HOTEL AMANEK Kanazawa Japan'},
+    {id:'sainoniwa', group:'次選', name:'The Kanazawa Sainoniwa Hotel', short:'金澤 彩之庭飯店', query:'The Kanazawa Sainoniwa Hotel Japan'},
+    {id:'pod-torifito', group:'其他名單', name:'Torifito Hotel & Pod Kanazawa', short:'Torifito Hotel & Pod Kanazawa', query:'Torifito Hotel & Pod Kanazawa Japan'},
+    {id:'linnas', group:'其他名單', name:'LINNAS Kanazawa', short:'LINNAS Kanazawa', query:'LINNAS Kanazawa Japan'},
+    {id:'tokyu-stay', group:'其他名單', name:'Tokyu Stay Kanazawa', short:'Tokyu Stay Kanazawa', query:'Tokyu Stay Kanazawa Japan'},
+    {id:'ana-sky', group:'其他名單', name:'Holiday Inn ANA Kanazawa Sky', short:'ANA Holiday Inn Kanazawa Sky', query:'Holiday Inn ANA Kanazawa Sky Japan'},
+    {id:'daiwa-miyabi', group:'其他名單', name:'Daiwa Roynet Hotel KANAZAWA-MIYABI', short:'Daiwa Roynet KANAZAWA-MIYABI', query:'Daiwa Roynet Hotel KANAZAWA-MIYABI Japan'},
+    {id:'minn', group:'其他名單', name:'Minn Kanazawa', short:'Minn Kanazawa', query:'Minn Kanazawa Japan'},
+    {id:'torifito', group:'其他名單', name:'HOTEL TORIFITO KANAZAWA', short:'HOTEL TORIFITO KANAZAWA', query:'HOTEL TORIFITO KANAZAWA Japan'},
+    {id:'hakuchoro', group:'其他名單', name:'Kanazawa Hakuchoro Hotel Sanraku', short:'金澤白鳥路山樂飯店', query:'Kanazawa Hakuchoro Hotel Sanraku Japan'},
+    {id:'soki', group:'其他名單', name:'SOKI KANAZAWA', short:'SOKI KANAZAWA', query:'SOKI KANAZAWA Japan'},
+    {id:'yamamuro', group:'其他名單', name:'Ryokan Yamamuro', short:'山室日式旅館', query:'Ryokan Yamamuro Kanazawa Japan'},
+    {id:'mystays-castle', group:'其他名單', name:'HOTEL MYSTAYS Kanazawa Castle', short:'MYSTAYS 金澤城堡', query:'HOTEL MYSTAYS Kanazawa Castle Japan'},
+    {id:'sanraku', group:'其他名單', name:'THE HOTEL SANRAKU KANAZAWA', short:'THE HOTEL SANRAKU KANAZAWA', query:'THE HOTEL SANRAKU KANAZAWA Japan'}
+  ];
+  const kanazawaFinalHotelStorageKey = storagePrefix + 'final-hotel-kanazawa';
+
+  function hotelById(id) { return KANAZAWA_HOTELS.find(hotel => hotel.id === id) || null; }
+  function mapsSearch(query) { return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`; }
+  function mapsDir(origin, destination, mode='transit') {
+    return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&travelmode=${mode}`;
+  }
+  function eventForKey(key) {
+    const input = $(`input[data-key="${CSS.escape(key)}"]`);
+    return input ? input.closest('.event') : null;
+  }
+  function ensureHotelMapLeg(dayNum, key, time, modeText) {
+    const legs = $(`#day-${dayNum} .daily-google-maps .gm-legs`);
+    if (!legs) return null;
+    let leg = $(`[data-dynamic-hotel-leg="${key}"]`, legs);
+    if (!leg) {
+      leg = document.createElement('a');
+      leg.className = 'gm-leg hotel-dynamic-leg';
+      leg.dataset.dynamicHotelLeg = key;
+      leg.target = '_blank';
+      leg.rel = 'noopener';
+      leg.innerHTML = `<span class="gm-time">${time}</span><span><strong></strong><small>最終住宿選定後自動更新</small></span><span class="gm-mode">${modeText}</span>`;
+      if (key === 'd1-hotel') {
+        const first = $('.gm-leg', legs);
+        if (first && first.nextSibling) legs.insertBefore(leg, first.nextSibling);
+        else legs.appendChild(leg);
+      } else {
+        legs.insertBefore(leg, legs.firstChild);
+      }
+    }
+    return leg;
+  }
+  function setDynamicLeg(leg, href, title, note) {
+    if (!leg) return;
+    leg.hidden = false;
+    leg.href = href;
+    const strong = $('strong', leg); if (strong) strong.textContent = title;
+    const small = $('small', leg); if (small) small.textContent = note;
+  }
+  function hideDynamicHotelLegs() {
+    $$('[data-dynamic-hotel-leg]').forEach(leg => { leg.hidden = true; leg.removeAttribute('href'); });
+  }
+  function updateKanazawaBookingLabel(hotel) {
+    $$('input[data-key="book-hotel-k"]').forEach(input => {
+      const small = $('small', input.closest('label'));
+      if (!small) return;
+      if (input.closest('.final-booked-check')) return;
+      small.textContent = hotel ? `${hotel.short}・2 晚（2/9、2/10）` : (input.closest('.prep-card') ? '2 晚（2/9、2/10）' : '6 成人・2 間三人房；先選最終住宿再完成預訂。');
+    });
+  }
+  function isKanazawaHotelBooked() {
+    return $$('input[data-key="book-hotel-k"]').some(input => input.checked);
+  }
+  function refreshFinalHotelStatus(hotel) {
+    const status = $('#kanazawaFinalStayStatus');
+    const name = $('#kanazawaFinalHotelName');
+    const hint = $('#kanazawaFinalHotelHint');
+    const map = $('#kanazawaFinalHotelMap');
+    const booked = isKanazawaHotelBooked();
+    if (status) {
+      status.textContent = hotel ? (booked ? '已選定・已預訂' : '已選定・待預訂') : '尚未選定';
+      status.dataset.state = hotel ? (booked ? 'booked' : 'selected') : 'empty';
+    }
+    if (name) name.textContent = hotel ? hotel.name : '尚未選定';
+    if (hint) hint.textContent = hotel ? 'D1–D3 的飯店相關文字與 Google Maps 已套用這間；景點順序與時間維持原案。' : '先保留候選沒有副作用；只有「設為最終住宿」才會改 D1–D3 的飯店相關節點。';
+    if (map) {
+      if (hotel) { map.href = mapsSearch(hotel.query); map.hidden = false; }
+      else { map.hidden = true; map.removeAttribute('href'); }
+    }
+  }
+  function applyKanazawaHotelToItinerary(hotel) {
+    const d1Meta = $('#day-1 .day-meta');
+    const d2Meta = $('#day-2 .day-meta');
+    const d1Drop = eventForKey('d1-4');
+    const d1Checkin = eventForKey('d1-8');
+    const d1Dinner = eventForKey('d1-9');
+    const d1PokemonLeg = $$('#day-1 .daily-google-maps .gm-leg').find(leg => $('strong', leg)?.textContent.includes('Pokémon Center'));
+    const d2Map = $('#day-2 .daily-google-maps');
+    const d2Primary = $('.gm-header .gm-btn.primary', d2Map);
+    const d2FirstLeg = $('.gm-leg', d2Map);
+    const d2OverviewFirst = $('.gm-overview span', d2Map);
+
+    if (!hotel) {
+      if (d1Meta) d1Meta.textContent = '住宿：金澤（第 1/2 晚）';
+      if (d2Meta) d2Meta.textContent = '住宿：金澤（第 2/2 晚）';
+      if (d1Drop) {
+        const title = $('.event-title', d1Drop); if (title) title.textContent = '金澤站 → 飯店寄放行李';
+        const p = $('.event-card p', d1Drop); if (p) p.textContent = '飯店若尚未能入住，先寄放行李，下午以車站周邊室內行程為主。';
+        const actions = $('.event-actions', d1Drop); if (actions) $$('[data-final-hotel-map]', actions).forEach(el => el.remove());
+      }
+      if (d1Checkin) { const title = $('.event-title', d1Checkin); if (title) title.textContent = '飯店 Check-in＋休息'; }
+      if (d1Dinner) { const p = $('.event-card p', d1Dinner); if (p) p.textContent = '選容易回飯店的餐廳；不再安排跨區夜生活。'; }
+      if (d1PokemonLeg) {
+        d1PokemonLeg.href = mapsDir('Kanazawa Station Japan','Pokemon Center Kanazawa Japan','walking');
+        const strong = $('strong', d1PokemonLeg); if (strong) strong.textContent = '金澤站 → Pokémon Center KANAZAWA';
+      }
+      if (d2Primary) d2Primary.href = mapsDir('Kanazawa Station Japan','Omicho Market Kanazawa','transit');
+      if (d2FirstLeg) {
+        d2FirstLeg.href = mapsDir('Kanazawa Station Japan','Omicho Market Kanazawa','transit');
+        const strong = $('strong', d2FirstLeg); if (strong) strong.textContent = '飯店／金澤站 → 近江町市場';
+      }
+      if (d2OverviewFirst) d2OverviewFirst.textContent = '金澤站／飯店';
+      hideDynamicHotelLegs();
+      return;
+    }
+
+    if (d1Meta) d1Meta.textContent = `住宿：${hotel.short}（第 1/2 晚）`;
+    if (d2Meta) d2Meta.textContent = `住宿：${hotel.short}（第 2/2 晚）`;
+    if (d1Drop) {
+      const title = $('.event-title', d1Drop); if (title) title.textContent = `金澤站 → ${hotel.short} 寄放行李`;
+      const p = $('.event-card p', d1Drop); if (p) p.textContent = `抵達金澤站後先到 ${hotel.short} 寄放行李；是否能提早寄放仍以飯店回覆為準。`;
+      const actions = $('.event-actions', d1Drop);
+      if (actions) {
+        let link = $('[data-final-hotel-map]', actions);
+        if (!link) {
+          link = document.createElement('a'); link.className = 'mini-link'; link.dataset.finalHotelMap = '1'; link.target = '_blank'; link.rel = 'noopener'; link.textContent = '飯店地圖'; actions.appendChild(link);
+        }
+        link.href = mapsSearch(hotel.query);
+      }
+    }
+    if (d1Checkin) { const title = $('.event-title', d1Checkin); if (title) title.textContent = `${hotel.short} Check-in＋休息`; }
+    if (d1Dinner) { const p = $('.event-card p', d1Dinner); if (p) p.textContent = `晚餐以 ${hotel.short} 或金澤站／市中心回程順路為主，不為單店跨區移動。`; }
+
+    const d1HotelLeg = ensureHotelMapLeg(1,'d1-hotel','12:15','步行／公車');
+    setDynamicLeg(d1HotelLeg, mapsDir('Kanazawa Station Japan', hotel.query, 'transit'), `金澤站 → ${hotel.short}`, '寄放行李；依雪況選步行、公車或計程車');
+    if (d1PokemonLeg) {
+      d1PokemonLeg.href = mapsDir(hotel.query,'Pokemon Center Kanazawa Japan','transit');
+      const strong = $('strong', d1PokemonLeg); if (strong) strong.textContent = `${hotel.short} → Pokémon Center KANAZAWA`;
+    }
+
+    if (d2Primary) d2Primary.href = mapsDir(hotel.query,'Omicho Market Kanazawa','transit');
+    if (d2FirstLeg) {
+      d2FirstLeg.href = mapsDir(hotel.query,'Omicho Market Kanazawa','transit');
+      const strong = $('strong', d2FirstLeg); if (strong) strong.textContent = `${hotel.short} → 近江町市場`;
+    }
+    if (d2OverviewFirst) d2OverviewFirst.textContent = hotel.short;
+
+    const d3HotelLeg = ensureHotelMapLeg(3,'d3-hotel','出發前','步行／公車');
+    setDynamicLeg(d3HotelLeg, mapsDir(hotel.query,'Kanazawa Station Japan','transit'), `${hotel.short} → 金澤站`, '白川鄉高速巴士前先預留冬季移動緩衝');
+  }
+  function setFinalHotelCardState(hotelId) {
+    $$('.set-final-hotel').forEach(button => {
+      const active = button.dataset.finalHotel === hotelId;
+      button.setAttribute('aria-pressed', active ? 'true' : 'false');
+      button.textContent = active ? '目前最終住宿' : '設為最終住宿';
+      const card = button.closest('.hotel-choice'); if (card) card.classList.toggle('is-final', active);
+    });
+  }
+  function applyFinalHotelState(hotelId, {persist=true} = {}) {
+    const hotel = hotelById(hotelId);
+    if (persist) {
+      if (hotel) localStorage.setItem(kanazawaFinalHotelStorageKey, hotel.id);
+      else localStorage.removeItem(kanazawaFinalHotelStorageKey);
+    }
+    const select = $('#kanazawaFinalHotelSelect'); if (select) select.value = hotel ? hotel.id : '';
+    setFinalHotelCardState(hotel ? hotel.id : '');
+    refreshFinalHotelStatus(hotel);
+    updateKanazawaBookingLabel(hotel);
+    applyKanazawaHotelToItinerary(hotel);
+    return hotel;
+  }
+  function commitFinalHotel(hotelId) {
+    const hotel = hotelById(hotelId);
+    if (!hotel) { showToast('請先選擇一間飯店'); return; }
+    const state = $('#kanazawaFinalHotelCloudState');
+    if (state) {
+      state.value = hotel.id;
+      state.dispatchEvent(new Event('change', {bubbles:true}));
+    } else applyFinalHotelState(hotel.id);
+    const shortlist = $(`input[data-key="hotel-short-${CSS.escape(hotel.id)}"]`);
+    if (shortlist && !shortlist.checked) { shortlist.checked = true; shortlist.dispatchEvent(new Event('change', {bubbles:true})); }
+    showToast(`已設為最終住宿：${hotel.short}`);
+  }
+  function initKanazawaHotelDecision() {
+    const select = $('#kanazawaFinalHotelSelect');
+    const state = $('#kanazawaFinalHotelCloudState');
+    if (!select || !state) return;
+
+    const groups = ['主決選','次選','其他名單'];
+    groups.forEach(groupName => {
+      const groupHotels = KANAZAWA_HOTELS.filter(hotel => hotel.group === groupName);
+      if (!groupHotels.length) return;
+      const group = document.createElement('optgroup'); group.label = groupName;
+      groupHotels.forEach(hotel => {
+        const option = document.createElement('option'); option.value = hotel.id; option.textContent = hotel.name; group.appendChild(option);
+      });
+      select.appendChild(group);
+    });
+
+    const saved = localStorage.getItem(kanazawaFinalHotelStorageKey) || '';
+    state.value = hotelById(saved) ? saved : '';
+    applyFinalHotelState(state.value, {persist:false});
+
+    state.addEventListener('change', () => {
+      const hotelId = hotelById(state.value) ? state.value : '';
+      applyFinalHotelState(hotelId, {persist:true});
+    });
+    $('#kanazawaApplyFinalHotel')?.addEventListener('click', () => commitFinalHotel(select.value));
+    $('#kanazawaClearFinalHotel')?.addEventListener('click', () => {
+      if (!state.value) return;
+      if (!confirm('清除金澤最終住宿？候選勾選與已預訂狀態不會被刪除。')) return;
+      state.value = ''; state.dispatchEvent(new Event('change', {bubbles:true})); showToast('已清除金澤最終住宿');
+    });
+    $$('.set-final-hotel').forEach(button => button.addEventListener('click', () => commitFinalHotel(button.dataset.finalHotel)));
+    $$('input[data-key="book-hotel-k"]').forEach(input => input.addEventListener('change', () => refreshFinalHotelStatus(hotelById(state.value))));
+  }
 
 
   const desktopTabLabels = {
@@ -2244,7 +2590,7 @@
   if ($('#installAppInside')) $('#installAppInside').addEventListener('click', handleInstallClick);
 
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js?v=15', { updateViaCache: 'none' }).then(registration => registration.update()).catch(() => {}));
+    window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js?v=16', { updateViaCache: 'none' }).then(registration => registration.update()).catch(() => {}));
   }
 
   function mobileTargetDayNumber() {
@@ -2337,10 +2683,11 @@
   setDayMode(currentDayMode, {scroll:false, persist:false});
   updateBottomNav('itinerary');
   loadChecks();
+  initKanazawaHotelDecision();
   loadBudgets();
 })();
 </script>
-<script src="./cloud-config.js?v=15"></script>
-<script src="./cloud-sync.js?v=15"></script>
+<script src="./cloud-config.js?v=16"></script>
+<script src="./cloud-sync.js?v=16"></script>
 </body>
 </html>

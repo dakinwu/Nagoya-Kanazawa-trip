@@ -119,3 +119,13 @@ functionUrl: 'https://YOUR_PROJECT_REF.supabase.co/functions/v1/trip-state'
 - Lodging shortlist checkboxes remain **recommendation-only**; they do not automatically rewrite itinerary events or Google Maps.
 - PWA cache: `nagoya-hokuriku-trip-v15-2027-v6-mobile-nav-lodging`.
 
+
+
+## V16：最終住宿 → 行程／地圖連動
+
+- 「保留候選」仍可多選，只作 shortlist。
+- 新增「金澤最終住宿」：只能指定 1 間，狀態寫入 `hotel-final-kanazawa` 並可透過 Supabase 多人同步。
+- 選定後自動更新 D1／D2 的住宿名稱，以及 D1 金澤站→飯店、飯店→Pokémon Center、D2 飯店→近江町、D3 飯店→金澤站的 Google Maps 連結。
+- 「已完成預訂」沿用 `book-hotel-k`，與「最終住宿」分開，避免把「決定」誤當成「已下訂」。
+- 清除最終住宿只會移除單一最終選擇，不會刪除 shortlist 或已預訂勾選。
+- `cloud-sync.js` 新增字串型 shared state 支援；`cloud-config.js` 不需修改。
