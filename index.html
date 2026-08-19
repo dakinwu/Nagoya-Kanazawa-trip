@@ -1241,7 +1241,7 @@
 
     /* ===== Desktop Workspace: visual guidance for wide screens ===== */
     .desktop-overview { display: contents; }
-    .desktop-workspace,
+    .desktop-workspace { display: block; }
     .desktop-rail,
     .desktop-context,
     .desktop-journey-rail { display: none; }
@@ -2402,7 +2402,10 @@
       const activePanel = $(`#${CSS.escape(id)}`);
       const anchor = isDesktop ? $('.workspace-main') : (isMobile ? activePanel : $('.tabs'));
       const offset = isMobile ? 104 : 72;
-      if (anchor) window.scrollTo({top: Math.max(0, anchor.offsetTop - offset), behavior:'smooth'});
+      if (anchor) {
+        const targetTop = anchor.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({top: Math.max(0, targetTop), behavior:'smooth'});
+      }
     }
   }
   tabs.forEach(btn => btn.addEventListener('click', () => activateTab(btn.dataset.tab)));
@@ -2589,7 +2592,7 @@
   if ($('#installAppInside')) $('#installAppInside').addEventListener('click', handleInstallClick);
 
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js?v=17', { updateViaCache: 'none' }).then(registration => registration.update()).catch(() => {}));
+    window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js?v=18', { updateViaCache: 'none' }).then(registration => registration.update()).catch(() => {}));
   }
 
   function mobileTargetDayNumber() {
