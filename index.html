@@ -796,6 +796,65 @@
     }
     .stay-card > .note { margin-top:13px; }
 
+    /* ===== V15 lodging decision cards ===== */
+    .hotel-decision-grid {
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+      margin-top:14px;
+    }
+    .hotel-choice {
+      min-width:0;
+      box-shadow:none;
+      border-left:4px solid color-mix(in srgb,var(--stay) 62%,var(--line));
+    }
+    .hotel-choice-head {
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+      margin-bottom:8px;
+    }
+    .hotel-choice-head h3 { margin:0; font-size:1.03rem; line-height:1.35; }
+    .hotel-choice-head small { display:block; color:var(--muted); margin-top:3px; }
+    .hotel-price-snapshot {
+      flex:0 0 auto;
+      border:1px solid color-mix(in srgb,var(--budget) 34%,var(--line));
+      border-radius:999px;
+      padding:5px 9px;
+      color:var(--budget);
+      background:color-mix(in srgb,var(--budget) 7%,var(--surface));
+      font-size:.76rem;
+      font-weight:900;
+      white-space:nowrap;
+    }
+    .hotel-choice p { margin:7px 0; font-size:.88rem; }
+    .hotel-choice .check-item { margin-top:10px; }
+    .hotel-longlist {
+      margin-top:14px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:var(--surface);
+      overflow:hidden;
+    }
+    .hotel-longlist > summary {
+      list-style:none;
+      cursor:pointer;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding:12px 14px;
+      font-weight:850;
+    }
+    .hotel-longlist > summary::-webkit-details-marker { display:none; }
+    .hotel-longlist > summary::after { content:'展開'; color:var(--muted); font-size:.74rem; }
+    .hotel-longlist[open] > summary::after { content:'收合'; }
+    .hotel-longlist-body { padding:0 14px 14px; border-top:1px solid var(--line); }
+    .hotel-longlist-body ul { margin:10px 0 0; padding-left:1.25rem; }
+    .hotel-longlist-body li { margin:7px 0; color:var(--muted); }
+    .hotel-secondary-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin-top:12px; }
+
     /* ===== Mobile UI Cleanup: one responsive layer, no duplicate breakpoint overrides ===== */
     @media (max-width: 760px) {
       html { scroll-padding-top: 112px; }
@@ -851,6 +910,11 @@
       .stay-head { display:block; }
       .stay-facts { gap:6px; }
       .stay-facts span { flex:1 1 160px; justify-content:center; text-align:center; }
+      .hotel-decision-grid { grid-template-columns:1fr; gap:10px; }
+      .hotel-choice { padding:14px; }
+      .hotel-choice-head { display:block; }
+      .hotel-price-snapshot { display:inline-flex; margin-top:8px; }
+      .hotel-secondary-grid { grid-template-columns:1fr; }
 
       .quick-start { grid-template-columns: auto 1fr; }
       .quick-start-action { grid-column: 1 / -1; width: 100%; min-height: 44px; }
@@ -1623,87 +1687,89 @@
 <section class="tab-panel" id="stay">
 <section class="panel section-card">
 <span class="section-kicker">KANAZAWA STAY</span>
-<h2>金澤住宿候選｜6 成人・2 間三人房・連住 2 晚</h2>
-<p>這個分頁專門比較「三人入住是否合理、是否有大浴場／溫泉、以及對 Day 3 白川鄉早班巴士的相容度」。目前主行程已更新為 <b>2027/2/9–2/16</b>；金澤住宿依 V6 改為 <b>2/9 入住、2/11 退房，共 2 晚</b>。原 Agoda 3 晚搜尋條件已不再適用，重新比價時要改住宿日期。</p>
-<div class="note warn"><b>下單前的硬條件：</b>一次要兩間可住 3 位成人的房型，比一般雙人房更容易缺房。請以訂房頁最後顯示的「最多入住 3 成人」與床型為準；不要只看飯店有沒有 Triple 這個名稱。</div>
-<div class="tags"><span class="tag must">優先確認 2 間同房型庫存</span><span class="tag onsen">大浴場／溫泉</span><span class="tag flex">2027 房價與庫存需即時查</span></div>
+<h2>金澤住宿決選｜6 成人・2 間三人房・2/9–2/11</h2>
+<p>這次把你提供的 19 間比價資料併入原本候選，但不再只看單價。對這趟路線，優先順序改成：<b>兩間都能住 3 成人且床型清楚 → Day 3 前往金澤站的冬季動線 → 價格 → 大浴場／溫泉 → 房間空間</b>。</p>
+<div class="note warn"><b>價格只是本次快照：</b>下方「你提供：xxx／人」直接沿用你這次整理的數字；幣別、是否含稅、是否為兩晚總價與取消條件仍以原訂房頁為準，網站不把它當成 2027 固定房價。</div>
+<div class="note"><b>候選勾選目前不會改行程或地圖：</b>「加入住宿決選」只用來多人討論 shortlist，不會自動改 D1／D2 的飯店節點、Google Maps 或交通時間；真正訂房後再把單一飯店寫進行程，避免多個候選同時勾選時地圖亂跳。</div>
+<div class="tags"><span class="tag must">硬門檻：2 間 × 3 成人</span><span class="tag flex">Day 3 早班交通</span><span class="tag onsen">大浴場是加分，不是硬門檻</span></div>
 </section>
+
 <section class="panel section-card" style="margin-top:14px">
-<h2>候選順位</h2>
-<div class="table-wrap"><table>
-<thead><tr><th>順位</th><th>飯店</th><th>3 人房條件</th><th>泡湯</th><th>對行程的優勢</th><th>評價參考</th></tr></thead>
-<tbody>
-<tr><td>1</td><td><b>御宿 野乃金澤</b><br/><small>整體首選</small></td><td>Moderate Triple 27.1㎡／3 張正式床；另有 35.3㎡ Superior Triple</td><td>天然溫泉＋露天＋桑拿</td><td>近江町、金澤城市區觀光很順；Day 3 早上建議計程車去金澤站</td><td>Booking.com 約 9.0<br/><small>2026/8/13 查核</small></td></tr>
-<tr><td>2</td><td><b>Dormy Inn 金澤</b><br/><small>交通首選</small></td><td>可找 3 人入住方案，但常見為雙床＋沙發床／和洋室；下單前務必看床型</td><td>天然溫泉＋露天＋桑拿</td><td>金澤站步行約 2 分鐘，最適合 Day 3 清晨搭白川鄉方向預約巴士</td><td>Booking.com 約 8.5<br/><small>2026/8/13 查核</small></td></tr>
-<tr><td>3</td><td><b>金澤 彩之庭飯店</b><br/><small>住宿品質首選</small></td><td>有 Triple／多人房；3 人以上房型可能搭配高品質日式床墊</td><td>男女大浴場</td><td>房間寬敞、住宿體驗最好；但不屬站前步行型，Day 3 早班要提早移動</td><td>Booking.com 約 9.7<br/><small>2026/8/13 查核</small></td></tr>
-<tr><td>4</td><td><b>三井花園飯店金澤</b><br/><small>三床穩健</small></td><td>Superior 3 Beds 31.5㎡／1,110mm × 3 張正式床</td><td>13F 景觀大浴場</td><td>近近江町、尾山神社；三人房床型清楚，對 6 成人很好分房</td><td>Booking.com 約 9.1<br/><small>2026/8/13 查核</small></td></tr>
-<tr><td>5</td><td><b>Hotel Intergate Kanazawa</b><br/><small>CP 值候選</small></td><td>Superior Triple 26㎡／3 張正式床</td><td>住宿客大浴場</td><td>市中心觀光方便，房型規格明確；適合價格比野乃／三井低一截時選</td><td>Booking.com 約 9.2<br/><small>2026/8/13 查核</small></td></tr>
-<tr><td>6</td><td><b>HOTEL AMANEK Kanazawa</b><br/><small>片町夜生活型</small></td><td>Japanese-Western Deluxe Triple 29㎡／1,000mm × 3 張床</td><td>大浴場</td><td>Day 2 香林坊／片町晚餐後最方便；但離金澤站較遠，Day 3 早班建議計程車</td><td>Booking.com 約 8.9<br/><small>2026/8/13 查核</small></td></tr>
-</tbody></table></div>
+<h2>主決選 6 間</h2>
+<p>如果現在就要縮到最實用的範圍，我會保留這 6 間；它們分別代表「最低成本、車站交通、房間平衡、三床＋浴場、頂級溫泉體驗、超值泡湯」。</p>
+<div class="hotel-decision-grid">
+<section class="panel section-card hotel-choice">
+  <div class="hotel-choice-head"><div><div class="tags"><span class="tag food">CP 首選</span><span class="tag flex">近江町</span></div><h3>Hotel Resol Trinity Kanazawa</h3><small>價格低很多時，最值得先查兩間 Triple 是否同時有房。</small></div><span class="hotel-price-snapshot">你提供：639／人</span></div>
+  <p><b>保留理由：</b>官方列有 24㎡ Standard Triple，3 人入住時是雙床房加第 3 床；武藏辻／近江町市場巴士站步行約 1 分鐘，Day 2 市區觀光很順。</p>
+  <p><b>取捨：</b>沒有大浴場；Day 3 仍要搭公車或計程車前往金澤站。若兩間三人房庫存成立，這個價差足以讓它直接進前二。</p>
+  <label class="check-item"><input class="persist-check" data-key="hotel-short-resol" type="checkbox"/><span><b>加入住宿決選</b><small>適合：價格優先，但不想犧牲獨立飯店房間。</small></span></label>
+  <div class="event-actions"><a class="mini-link" href="https://www.resol-hotel.jp/trinity-kanazawa/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Resol+Trinity+Kanazawa" rel="noopener" target="_blank">地圖</a></div>
 </section>
-<div class="grid-2" style="margin-top:14px">
-<section class="panel section-card">
-<div class="tags"><span class="tag onsen">整體首選</span><span class="tag food">3 張正式床</span></div>
-<h2>御宿 野乃金澤</h2>
-<p><b>為什麼排第一：</b>三人房床型最乾淨，天然溫泉完整，位置又能直接吃到 Day 2 的近江町／金澤城／香林坊動線。</p>
-<p><b>房型：</b>Moderate Triple 27.1㎡，3 張 1,000mm 床；Superior Triple 35.3㎡。如果兩間 Superior Triple 價差不大，6 個成人住 2 晚仍會更舒服。</p>
-<p><b>交通：</b>JR 金澤站步行約 16 分鐘；「武藏辻・近江町市場」巴士站步行約 1 分鐘。Day 3 清晨不建議雪地走去車站，直接叫兩台計程車最省事。</p>
-<label class="check-item"><input class="persist-check" data-key="hotel-short-nono" type="checkbox"/><span><b>加入住宿決選</b><small>適合：重視泡湯、三張正式床與市區觀光。</small></span></label>
-<div class="event-actions"><a class="mini-link" href="https://dormy-hotels.com/dormyinn/hotels/nono_kanazawa/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.booking.com/hotel/jp/onyado-nono-kanazawa.html" rel="noopener" target="_blank">評價參考</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Onyado+Nono+Kanazawa" rel="noopener" target="_blank">地圖</a></div>
+<section class="panel section-card hotel-choice">
+  <div class="hotel-choice-head"><div><div class="tags"><span class="tag must">交通首選</span></div><h3>Daiwa Roynet Hotel Kanazawa Eki Nishiguchi</h3><small>Day 3 白川鄉早班的風險最低。</small></div><span class="hotel-price-snapshot">你提供：971／人</span></div>
+  <p><b>保留理由：</b>官方位置是 JR 金澤站西口步行約 4 分鐘；你整理的方案為 27㎡、3 張床，對 6 人分兩房很直接。</p>
+  <p><b>取捨：</b>沒有大浴場，且下單前仍要在最終房型頁確認「3 成人 × 2 房」不是臨時加床或不同房型拼房。</p>
+  <label class="check-item"><input class="persist-check" data-key="hotel-short-daiwa-west" type="checkbox"/><span><b>加入住宿決選</b><small>適合：冬季交通、拖行李與 Day 3 早班優先。</small></span></label>
+  <div class="event-actions"><a class="mini-link" href="https://www.daiwaroynet.jp/kanazawa-ekinishi/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Daiwa+Roynet+Hotel+Kanazawa+Eki+Nishiguchi" rel="noopener" target="_blank">地圖</a></div>
 </section>
-<section class="panel section-card">
-<div class="tags"><span class="tag must">交通首選</span><span class="tag onsen">天然溫泉</span></div>
-<h2>Dormy Inn Kanazawa</h2>
-<p><b>為什麼值得留：</b>JR 金澤站東口步行約 2 分鐘，對 2 月雪天與 Day 3 清晨搭白川鄉方向巴士是最穩的選項。</p>
-<p><b>房型提醒：</b>3 人入住時常見「2 張正式床＋1 張沙發床」或和洋室配置。你們是 6 成人連住 2 晚，價格很漂亮時可用睡眠舒適度交換交通便利。</p>
-<p><b>泡湯：</b>14F 天然溫泉大浴場，另有露天風呂與桑拿。</p>
-<label class="check-item"><input class="persist-check" data-key="hotel-short-dormy" type="checkbox"/><span><b>加入住宿決選</b><small>適合：最在意車站距離與冬季移動風險。</small></span></label>
-<div class="event-actions"><a class="mini-link" href="https://dormy-hotels.com/dormyinn/hotels/kanazawa/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.agoda.com/zh-tw/dormy-inn-kanazawa-natural-hot-spring/hotel/kanazawa-jp.html" rel="noopener" target="_blank">Agoda</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Dormy+Inn+Kanazawa" rel="noopener" target="_blank">地圖</a></div>
+<section class="panel section-card hotel-choice">
+  <div class="hotel-choice-head"><div><div class="tags"><span class="tag food">平衡首選</span><span class="tag flex">近江町 4 分鐘</span></div><h3>Hotel Forza Kanazawa</h3><small>房間、觀光位置、價格三者最均衡。</small></div><span class="hotel-price-snapshot">你提供：1,309／人</span></div>
+  <p><b>保留理由：</b>官方明確表示 Superior Twin 加 extra bed 可住 3 成人；飯店距金澤站約步行 10 分鐘、近江町市場約 4 分鐘。</p>
+  <p><b>取捨：</b>不是大浴場型飯店；若實際房型是加床，睡眠舒適度仍不如三張固定床的三井花園。</p>
+  <label class="check-item"><input class="persist-check" data-key="hotel-short-forza" type="checkbox"/><span><b>加入住宿決選</b><small>適合：不想住太遠，又希望價格與房間品質平衡。</small></span></label>
+  <div class="event-actions"><a class="mini-link" href="https://www.hotelforza.jp/kanazawa/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Forza+Kanazawa" rel="noopener" target="_blank">地圖</a></div>
 </section>
-<section class="panel section-card">
-<div class="tags"><span class="tag food">品質首選</span><span class="tag onsen">大浴場</span></div>
-<h2>金澤 彩之庭飯店</h2>
-<p><b>為什麼進決選：</b>評價非常高，客房平均面積大，適合 6 個成人把住宿本身也當成旅行體驗。</p>
-<p><b>三人入住：</b>有 Triple／多人房；官方說明 3 人以上房型會依房型搭配 Airweave 四季布團等寢具。若你們堅持三人都要正式床，訂房前要再看最終房型說明。</p>
-<p><b>取捨：</b>不是站前型飯店，因此 Day 3 白川鄉早班需要更早出門；適合價格差距可接受、且更重視房間與服務品質的人。</p>
-<label class="check-item"><input class="persist-check" data-key="hotel-short-sainoniwa" type="checkbox"/><span><b>加入住宿決選</b><small>適合：房間舒適度與飯店品質優先。</small></span></label>
-<div class="event-actions"><a class="mini-link" href="https://sainoniwa-hotel.jp/en/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.booking.com/hotel/jp/kanazawa-sainoniwa-hotel.html" rel="noopener" target="_blank">評價參考</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kanazawa+Sainoniwa+Hotel" rel="noopener" target="_blank">地圖</a></div>
+<section class="panel section-card hotel-choice">
+  <div class="hotel-choice-head"><div><div class="tags"><span class="tag food">三床最穩</span><span class="tag onsen">景觀大浴場</span></div><h3>Mitsui Garden Hotel Kanazawa</h3><small>若六個人都要正式床，這間最乾淨。</small></div><span class="hotel-price-snapshot">你提供：1,578／人</span></div>
+  <p><b>保留理由：</b>官方 Superior 3 Beds 是 31.5㎡、1,110mm × 3 張正式床，並有頂樓大浴場；也提供行李寄送服務。</p>
+  <p><b>取捨：</b>官方標示距 JR 金澤站步行約 17 分鐘／計程車約 8 分鐘，Day 3 清晨建議直接搭計程車。</p>
+  <label class="check-item"><input class="persist-check" data-key="hotel-short-mitsui" type="checkbox"/><span><b>加入住宿決選</b><small>適合：床型確定性與泡湯都想保留。</small></span></label>
+  <div class="event-actions"><a class="mini-link" href="https://www.gardenhotels.co.jp/kanazawa/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Mitsui+Garden+Hotel+Kanazawa" rel="noopener" target="_blank">地圖</a></div>
 </section>
-<section class="panel section-card">
-<div class="tags"><span class="tag food">三床穩健</span><span class="tag onsen">景觀大浴場</span></div>
-<h2>三井花園飯店金澤</h2>
-<p><b>最大優勢：</b>Superior 3 Beds 明確是 31.5㎡、三張 1,110mm 正式床。兩間同房型就是 6 個人每人一床，不需要沙發床。</p>
-<p><b>泡湯：</b>13F 房客專用景觀大浴場，可看金澤市區方向。</p>
-<p><b>行程適配：</b>Day 2 市區觀光很好用；Day 3 早班仍建議直接搭計程車去金澤站西口。</p>
-<label class="check-item"><input class="persist-check" data-key="hotel-short-mitsui" type="checkbox"/><span><b>加入住宿決選</b><small>適合：六人每人正式床，不想賭沙發床。</small></span></label>
-<div class="event-actions"><a class="mini-link" href="https://www.gardenhotels.co.jp/kanazawa/tw/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.booking.com/hotel/jp/mitsui-garden-kanazawa-dong-jing.html" rel="noopener" target="_blank">評價參考</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Mitsui+Garden+Hotel+Kanazawa" rel="noopener" target="_blank">地圖</a></div>
+<section class="panel section-card hotel-choice">
+  <div class="hotel-choice-head"><div><div class="tags"><span class="tag onsen">溫泉體驗首選</span><span class="tag food">三人房</span></div><h3>Onyado Nono Kanazawa</h3><small>舒服，但要確認你是否願意為兩晚住宿體驗付明顯溢價。</small></div><span class="hotel-price-snapshot">你提供：2,357／人</span></div>
+  <p><b>保留理由：</b>有三人房與天然溫泉大浴場，位置靠近近江町；如果你們把住宿本身視為行程的一部分，它仍是體驗最完整的選項。</p>
+  <p><b>取捨：</b>你這次提供的價格是主決選中最高；而 Day 3 白川鄉後本來就會住高山溫泉型飯店，所以金澤兩晚未必需要再為溫泉支付最高溢價。</p>
+  <label class="check-item"><input class="persist-check" data-key="hotel-short-nono" type="checkbox"/><span><b>加入住宿決選</b><small>適合：泡湯與住宿體驗優先，價格不是第一考量。</small></span></label>
+  <div class="event-actions"><a class="mini-link" href="https://dormy-hotels.com/dormyinn/hotels/nono_kanazawa/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Onyado+Nono+Kanazawa" rel="noopener" target="_blank">地圖</a></div>
 </section>
-<section class="panel section-card">
-<div class="tags"><span class="tag flex">CP 值候選</span><span class="tag onsen">大浴場</span></div>
-<h2>Hotel Intergate Kanazawa</h2>
-<p><b>最大優勢：</b>Superior Triple 26㎡ 明確配置 3 張正式床，對你們的「2 間 × 3 成人」條件很直接。</p>
-<p><b>定位：</b>如果實際含稅總價比野乃／三井明顯便宜，這間很值得升到前三名；不需要為了品牌名氣多付一大截。</p>
-<p><b>泡湯：</b>住宿客可使用館內大浴場。</p>
-<label class="check-item"><input class="persist-check" data-key="hotel-short-intergate" type="checkbox"/><span><b>加入住宿決選</b><small>適合：價格、三床房與市區位置取得平衡。</small></span></label>
-<div class="event-actions"><a class="mini-link" href="https://www.intergatehotels.jp/kanazawa/en/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.booking.com/hotel/jp/intergate-kanazawa.html" rel="noopener" target="_blank">評價參考</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Intergate+Kanazawa" rel="noopener" target="_blank">地圖</a></div>
-</section>
-<section class="panel section-card">
-<div class="tags"><span class="tag anime">片町動線</span><span class="tag onsen">大浴場</span></div>
-<h2>HOTEL AMANEK Kanazawa</h2>
-<p><b>最大優勢：</b>Japanese-Western Deluxe Triple 29㎡，3 張 1,000mm 床；Day 2 在香林坊、片町吃飯逛街後回飯店最舒服。</p>
-<p><b>取捨：</b>官方標示距金澤站約車程 13 分鐘／步行約 30 分鐘，因此 Day 3 白川鄉早班要預留計程車時間。</p>
-<p><b>泡湯：</b>館內設大浴場。</p>
-<label class="check-item"><input class="persist-check" data-key="hotel-short-amanek" type="checkbox"/><span><b>加入住宿決選</b><small>適合：Day 2 晚餐／夜生活方便度高於車站距離。</small></span></label>
-<div class="event-actions"><a class="mini-link" href="https://en.amanekhotels.jp/kanazawa/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.booking.com/hotel/jp/agora-kanazawa.html" rel="noopener" target="_blank">評價參考</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Amanek+Kanazawa" rel="noopener" target="_blank">地圖</a></div>
+<section class="panel section-card hotel-choice">
+  <div class="hotel-choice-head"><div><div class="tags"><span class="tag flex">超值備案</span><span class="tag onsen">大浴場</span></div><h3>the square hotel KANAZAWA</h3><small>價格很漂亮，但睡法不是六個人都「一人一張標準床」。</small></div><span class="hotel-price-snapshot">你提供：744／人</span></div>
+  <p><b>保留理由：</b>官方 20㎡ Moderate Twin 可住 3 人，配置 1 張 1,400mm 床＋1 張 1,000mm loft bed，且館內有大浴場；位置在武藏辻／近江町一帶。</p>
+  <p><b>取捨：</b>三人房的床型比較像家庭／朋友共享，對 6 位成人與冬季大件行李不如 Resol、Forza、三井乾淨。</p>
+  <label class="check-item"><input class="persist-check" data-key="hotel-short-square" type="checkbox"/><span><b>加入住宿決選</b><small>適合：價格非常重要、可接受特殊床型。</small></span></label>
+  <div class="event-actions"><a class="mini-link" href="https://www.the-squarehotel.com/skz/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=the+square+hotel+KANAZAWA" rel="noopener" target="_blank">地圖</a></div>
 </section>
 </div>
-<section class="panel section-card" style="margin-top:14px">
-<h2>我的決選策略</h2>
-<p><b>先比較 3 間：</b>御宿 野乃金澤、Dormy Inn 金澤、三井花園飯店金澤。這三間分別代表「整體體驗」、「車站交通」、「三張正式床」。如果 Intergate 含稅總價明顯低於前三間，再把它拉進最後決選。</p>
-<div class="note">簡單例子：Dormy Inn 比野乃便宜每房每晚 ¥5,000，兩間房住 2 晚就是差 ¥20,000，這時交通型選擇很有吸引力；如果只差 ¥1,000～¥2,000／房晚，我會選野乃換更舒服的三床與住宿體驗。</div>
-<div class="note warn">目前沒有把「2027/2/9–2/11 真的還有兩間 Triple」寫成已確認事實。房量與價格是動態資訊，最後仍要在 Agoda／官方訂房頁以 6 成人、2 房重新查。</div>
 </section>
-<section class="panel stay-card"><div class="stay-head"><div><span class="stay-rank">高山 1 晚</span><h3>高山住宿條件｜2/11 入住、2/12 退房</h3><p>V6 只住一晚，建議比「豪華程度」更重視 <b>濃飛巴士中心／JR 高山站距離＋大浴場／溫泉＋可協助行李寄送</b>。</p></div></div><div class="stay-facts"><span>6 成人／2 間房</span><span>有泡湯設施優先</span><span>Day 4 早上可處理行李</span></div><div class="note">選房時先確認三人房是真三床、沙發床或和洋式；Day 4 要去飛驒古川後再移動名古屋，飯店能否宅配大件行李會直接影響當日舒適度。</div></section></section>
+
+<section class="panel section-card" style="margin-top:14px">
+<h2>次選與觀望</h2>
+<div class="hotel-secondary-grid">
+<label class="check-item"><input class="persist-check" data-key="hotel-short-dormy" type="checkbox"/><span><b>Dormy Inn Kanazawa</b><small>車站＋天然溫泉很強；這次沒有同口徑價格，等拿到 3 成人房價再與 Daiwa／三井比較。</small></span></label>
+<label class="check-item"><input class="persist-check" data-key="hotel-short-intergate" type="checkbox"/><span><b>Hotel Intergate Kanazawa</b><small>三人房＋大浴場的結構仍好；若最終含稅價接近 Forza，可重新升主決選。</small></span></label>
+<label class="check-item"><input class="persist-check" data-key="hotel-short-amanek" type="checkbox"/><span><b>HOTEL AMANEK Kanazawa</b><small>你提供 1,333／人；官方有大浴場，但距金澤站較遠，適合把片町夜生活放在 Day 2 優先的人。</small></span></label>
+<label class="check-item"><input class="persist-check" data-key="hotel-short-sainoniwa" type="checkbox"/><span><b>金澤 彩之庭飯店</b><small>住宿品質很高，但不屬站前型，且這次沒有同口徑價格；除非房價很有吸引力，否則先降為品質型備選。</small></span></label>
+</div>
+<details class="hotel-longlist"><summary>其他 9 間為什麼先不進主決選</summary><div class="hotel-longlist-body"><ul>
+<li><b>Torifito Hotel &amp; Pod Kanazawa（630）／Ryokan Yamamuro（1,566）：</b>沒有獨立衛浴，6 成人冬季行程的便利性折損太大，只在極端省預算或想住日式旅館時考慮。</li>
+<li><b>LINNAS Kanazawa（710）：</b>15㎡＋上下舖型配置，對 3 成人與冬季行李太擠。</li>
+<li><b>Tokyu Stay Kanazawa（827）／Holiday Inn ANA Kanazawa Sky（950）／Daiwa Roynet KANAZAWA-MIYABI（1,000）／Minn Kanazawa（1,087）：</b>你提供的資料裡第 3 位成人床型仍不夠明確；先不要為了低價冒「到現場才發現不是三成人方案」的風險。</li>
+<li><b>HOTEL TORIFITO KANAZAWA（1,100）／SOKI KANAZAWA（1,560）：</b>可住 3 人但涉及沙發床；若價差不大，優先選 Resol／Forza／三井。</li>
+<li><b>金澤白鳥路山樂（1,546）／MYSTAYS 金澤城堡（1,808）／THE HOTEL SANRAKU KANAZAWA（1,811）：</b>不是不好，而是在你這次價格表裡，價位已接近三井／高階區間；除非房間風格或位置是團員特別想要，否則主決選的差異化不夠。</li>
+</ul></div></details>
+</section>
+
+<section class="panel section-card" style="margin-top:14px">
+<h2>實際下單順序</h2>
+<p><b>第一輪：</b>先查 Resol Trinity、Daiwa Roynet 金澤站西口、Hotel Forza 三間「2 房 × 3 成人」的最終含稅可取消價格。</p>
+<p><b>第二輪：</b>拿三井花園做「三張正式床＋大浴場」基準，再看它比第一輪多多少。</p>
+<p><b>第三輪：</b>只有在全團真的願意為天然溫泉與早餐／住宿體驗加價時，再讓野乃與三井競爭。</p>
+<div class="note">以你這次的價格差來看，我不會再把野乃固定放第一。若 Resol 的 639 與野乃 2,357 真的是同口徑、同取消條件，野乃要靠「大家都非常重視溫泉住宿體驗」才有理由反超。</div>
+</section>
+
+<section class="panel stay-card"><div class="stay-head"><div><span class="stay-rank">高山 1 晚</span><h3>高山住宿條件｜2/11 入住、2/12 退房</h3><p>V6 只住一晚，建議比「豪華程度」更重視 <b>濃飛巴士中心／JR 高山站距離＋大浴場／溫泉＋可協助行李寄送</b>。</p></div></div><div class="stay-facts"><span>6 成人／2 間房</span><span>有泡湯設施優先</span><span>Day 4 早上可處理行李</span></div><div class="note">選房時先確認三人房是真三床、沙發床或和洋式；Day 4 要去飛驒古川後再移動名古屋，飯店能否宅配大件行李會直接影響當日舒適度。</div></section>
+</section>
 <section class="tab-panel" id="onsen"><div class="grid-2"><section class="panel section-card"><span class="section-kicker">ONSEN PLAN</span><h2>V6 泡湯配置</h2><p><b>Day 3 高山：</b>住宿優先選有大浴場／天然溫泉，白川鄉雪地日回飯店後直接泡湯。</p><p><b>Day 7 名古屋：</b>晚間安排 Urban Quar 作彈性收尾；目前官方仍提供天然溫泉、大浴場與桑拿等設施。</p><div class="note">泡湯不是每天硬塞。Day 4 最累，抵達名古屋後直接休息；Day 7 若大須走太久，Urban Quar 也可以取消。</div></section><section class="panel section-card"><h2>天然溫泉 Urban Quar</h2><p>放在最後完整觀光日，目的不是新增景點，而是讓大須採買後有一段坐著／泡湯恢復的時間。</p><p><b>2027 注意：</b>營業時間、最後受付與臨時休館尚未能提前確認，出發前再查官方公告。</p><div class="event-actions"><a class="mini-link" href="https://p-castle.co.jp/urban_quar/" rel="noopener" target="_blank">官方網站</a><a class="mini-link" href="https://www.google.com/maps/search/?api=1&amp;query=Urban+Quar+Nagoya" rel="noopener" target="_blank">Google Maps</a></div></section></div></section><section class="tab-panel" id="tools">
 <div class="grid-2">
 <section class="panel section-card">
@@ -1749,7 +1815,7 @@
 <button data-bottom-action="itinerary" type="button"><span>≡</span><small>行程</small></button>
 <button data-bottom-action="map" type="button"><span>⌖</span><small>地圖</small></button>
 <button data-bottom-action="booking" type="button"><span>✓</span><small>準備</small></button>
-<button data-bottom-action="info" type="button"><span>i</span><small>更多</small></button>
+<button aria-label="開啟更多資訊" data-bottom-action="info" type="button"><span>i</span><small>資訊</small></button>
 </nav>
 <div aria-live="polite" class="toast" id="toast" role="status"></div>
 <footer>Responsive Web Design＋PWA 離線快取＋Supabase 多人同步。V6 使用核心／彈性／可刪三級標記；2027 班次尚未公布者以「待確認」呈現。</footer>
@@ -1986,8 +2052,12 @@
     updateBottomNav(id);
     updateDesktopTabNav(id);
     if (scroll) {
-      const anchor = window.matchMedia('(min-width: 1100px)').matches ? $('.workspace-main') : $('.tabs');
-      if (anchor) window.scrollTo({top: anchor.offsetTop - 72, behavior:'smooth'});
+      const isDesktop = window.matchMedia('(min-width: 1100px)').matches;
+      const isMobile = window.matchMedia('(max-width: 760px)').matches;
+      const activePanel = $(`#${CSS.escape(id)}`);
+      const anchor = isDesktop ? $('.workspace-main') : (isMobile ? activePanel : $('.tabs'));
+      const offset = isMobile ? 104 : 72;
+      if (anchor) window.scrollTo({top: Math.max(0, anchor.offsetTop - offset), behavior:'smooth'});
     }
   }
   tabs.forEach(btn => btn.addEventListener('click', () => activateTab(btn.dataset.tab)));
@@ -2047,6 +2117,7 @@
       showToast('目前日期不在旅程期間，維持全旅程顯示');
       $('#dayModeStatus').textContent = '目前不在 2027/02/09–02/16；可手動選 D1–D8';
     }
+    updateBottomNav('itinerary', 'today');
   }
   $('#todayMode').addEventListener('click', activateTodayMode);
   $('#autoTodayBtn').addEventListener('click', activateTodayMode);
@@ -2173,27 +2244,68 @@
   if ($('#installAppInside')) $('#installAppInside').addEventListener('click', handleInstallClick);
 
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js?v=14', { updateViaCache: 'none' }).then(registration => registration.update()).catch(() => {}));
+    window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js?v=15', { updateViaCache: 'none' }).then(registration => registration.update()).catch(() => {}));
   }
 
-  function jumpToCurrentMap() {
-    activateTab('itinerary', false);
-    let dayNum = currentDayMode !== 'all' ? currentDayMode : (localStorage.getItem(storagePrefix + 'last-single-day') || '1');
-    const day = $(`#day-${dayNum}`) || $('#day-1');
-    if (day) {
-      day.open = true;
-      const map = $('.daily-google-maps', day);
-      if (map) {
-        const tools = map.closest('.day-tools-disclosure');
-        if (tools) tools.open = true;
-        map.scrollIntoView({behavior:'smooth', block:'start'});
-      }
-    }
+  function mobileTargetDayNumber() {
+    return currentDayMode !== 'all' ? currentDayMode : (localStorage.getItem(storagePrefix + 'last-single-day') || '1');
   }
-  function updateBottomNav(tabId = 'itinerary') {
+  function clearMobileItineraryNarrowing() {
+    let changed = false;
+    if (activeFilter !== 'all') {
+      activeFilter = 'all';
+      filterButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.filter === 'all'));
+      if ($('#activeFilterLabel')) $('#activeFilterLabel').textContent = '全部';
+      changed = true;
+    }
+    const search = $('#searchInput');
+    if (search && search.value) { search.value = ''; changed = true; }
+    if (changed) applyFilters();
+    return changed;
+  }
+  function showMobileItinerary({map = false} = {}) {
+    activateTab('itinerary', false);
+    const dayNum = mobileTargetDayNumber();
+    const day = $(`#day-${dayNum}`) || $('#day-1');
+    if (!day) return;
+
+    if (day.classList.contains('hidden')) clearMobileItineraryNarrowing();
+    day.open = true;
+
+    if (map) {
+      const mapBlock = $('.daily-google-maps', day);
+      if (mapBlock) {
+        const tools = mapBlock.closest('.day-tools-disclosure');
+        if (tools) tools.open = true;
+        mapBlock.scrollIntoView({behavior:'smooth', block:'start'});
+        updateBottomNav('itinerary', 'map');
+      } else {
+        day.scrollIntoView({behavior:'smooth', block:'start'});
+        showToast('這一天沒有可用的地圖區塊');
+        updateBottomNav('itinerary');
+      }
+      return;
+    }
+
+    day.scrollIntoView({behavior:'smooth', block:'start'});
+    updateBottomNav('itinerary', 'itinerary');
+  }
+  function jumpToCurrentMap() {
+    showMobileItinerary({map:true});
+  }
+  function openMobileInfoMenu() {
+    const menu = $('.tab-more');
+    if (!menu) return;
+    menu.open = true;
+    updateBottomNav('', 'info');
+    const summary = $('summary', menu);
+    if (summary) summary.focus({preventScroll:true});
+  }
+  function updateBottomNav(tabId = 'itinerary', forcedAction = '') {
     $$('.bottom-nav button').forEach(btn => {
       const action = btn.dataset.bottomAction;
-      const active = (action === 'itinerary' && tabId === 'itinerary') ||
+      const active = forcedAction ? action === forcedAction :
+        (action === 'itinerary' && tabId === 'itinerary') ||
         (action === 'booking' && ['booking','stay','budget','packing'].includes(tabId)) ||
         (action === 'info' && ['onsen','tools','corrections','sources'].includes(tabId));
       btn.classList.toggle('active', active);
@@ -2215,10 +2327,10 @@
   $$('.bottom-nav button').forEach(btn => btn.addEventListener('click', () => {
     const action = btn.dataset.bottomAction;
     if (action === 'today') activateTodayMode();
-    if (action === 'itinerary') { activateTab('itinerary'); }
+    if (action === 'itinerary') showMobileItinerary();
     if (action === 'map') jumpToCurrentMap();
     if (action === 'booking') activateTab('booking');
-    if (action === 'info') activateTab('tools');
+    if (action === 'info') openMobileInfoMenu();
   }));
 
   initDesktopGuidance();
@@ -2228,7 +2340,7 @@
   loadBudgets();
 })();
 </script>
-<script src="./cloud-config.js?v=14"></script>
-<script src="./cloud-sync.js?v=14"></script>
+<script src="./cloud-config.js?v=15"></script>
+<script src="./cloud-sync.js?v=15"></script>
 </body>
 </html>

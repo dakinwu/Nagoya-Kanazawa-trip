@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nagoya-hokuriku-trip-v14-2027-v6-layout-completion';
+const CACHE_NAME = 'nagoya-hokuriku-trip-v15-2027-v6-mobile-nav-lodging';
 const CORE = ['./','./index.html','./manifest.webmanifest','./social-preview.png','./icons/icon-192.png','./icons/icon-512.png','./cloud-sync.js'];
 
 self.addEventListener('install', event => {

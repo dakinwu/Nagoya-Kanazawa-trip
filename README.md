@@ -109,3 +109,13 @@ functionUrl: 'https://YOUR_PROJECT_REF.supabase.co/functions/v1/trip-state'
 - Verified the accommodation tab DOM structure: the Takayama card remains inside `#stay`, and the following Onsen tab is not nested incorrectly.
 - Corrected one stale Kanazawa lodging warning from `2027/2/9–2/12` to the current two-night stay `2027/2/9–2/11`.
 - PWA cache bumped to `nagoya-hokuriku-trip-v14-2027-v6-layout-completion`.
+## V15 Mobile Navigation + Lodging Decision
+
+- Mobile bottom navigation now jumps **directly to the current Day card** instead of only returning to the tab bar.
+- Mobile map action opens the current Day, expands `當日工具`, and scrolls to that Day's Google Maps block; a hidden Day caused by search/filter is restored automatically.
+- Mobile `資訊` opens the secondary-tab menu instead of forcing the App/offline page.
+- On mobile, normal tab changes scroll to the activated panel so `住宿` / `預算` / secondary tabs visibly change content.
+- Kanazawa lodging was re-ranked using the user-provided 19-property price snapshot plus route fit: 6 main finalists, 4 secondary options, and explicit reasons for deprioritizing the rest.
+- Lodging shortlist checkboxes remain **recommendation-only**; they do not automatically rewrite itinerary events or Google Maps.
+- PWA cache: `nagoya-hokuriku-trip-v15-2027-v6-mobile-nav-lodging`.
+
