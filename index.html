@@ -1647,7 +1647,7 @@
   <div class="desktop-context-code" id="desktopContextCode">ALL</div>
   <div class="desktop-context-copy"><b id="desktopContextTitle">全旅程總覽</b><small id="desktopContextMeta">2027/02/09–02/16・8 天 7 夜</small></div>
   <div class="desktop-context-badges" id="desktopContextBadges"></div>
-</div><div class="toolbar-main"><input class="search" id="searchInput" placeholder="搜尋景點、餐廳、動漫店或提醒…" type="search"/><button class="btn" id="todayMode" type="button">今日模式</button><button class="btn" id="weatherModeToggle" type="button">雨雪備案</button><details class="tool-menu"><summary>更多工具</summary><div class="tool-menu-items"><button class="btn primary" id="expandAll">展開全部</button><button class="btn" id="collapseAll">摺疊全部</button><button class="btn" id="copyPlan">複製純文字</button><button class="btn" id="printPlan">列印</button><button aria-label="切換深色模式" class="btn" id="themeToggle">深色</button><button class="btn" id="resetChecks">重設勾選</button><button class="btn" id="sharePlan" type="button">分享</button><button class="btn hidden" id="installApp" type="button">安裝 App</button></div></details></div></section>
+</div><div class="toolbar-main"><input class="search" id="searchInput" placeholder="搜尋景點、餐廳、動漫店或提醒…" type="search"/><button class="btn" id="todayMode" type="button">今日模式</button><button class="btn" id="weatherModeToggle" type="button">雨雪備案</button><details class="tool-menu"><summary>更多工具</summary><div class="tool-menu-items"><button class="btn primary" id="expandAll">展開全部</button><button class="btn" id="collapseAll">摺疊全部</button><button class="btn" id="copyPlan">複製純文字</button><button aria-label="切換深色模式" class="btn" id="themeToggle">深色</button><button class="btn" id="resetChecks">重設勾選</button><button class="btn" id="sharePlan" type="button">分享</button><button class="btn hidden" id="installApp" type="button">安裝 App</button></div></details></div></section>
 
 <nav aria-label="內容分頁" class="tabs">
 
@@ -2377,7 +2377,6 @@
 
   $('#expandAll').addEventListener('click', () => $$('.day-card').forEach(d => d.open = true));
   $('#collapseAll').addEventListener('click', () => $$('.day-card').forEach(d => d.open = false));
-  $('#printPlan').addEventListener('click', () => window.print());
   $('#resetChecks').addEventListener('click', () => {
     if (!confirm('確定要清除所有行程、訂位與行李勾選嗎？預算不會被重設。')) return;
     const keys = [...new Set(allChecks().map(cb => cb.dataset.key).filter(Boolean))];
@@ -2590,7 +2589,7 @@
   if ($('#installAppInside')) $('#installAppInside').addEventListener('click', handleInstallClick);
 
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js?v=16', { updateViaCache: 'none' }).then(registration => registration.update()).catch(() => {}));
+    window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js?v=17', { updateViaCache: 'none' }).then(registration => registration.update()).catch(() => {}));
   }
 
   function mobileTargetDayNumber() {
