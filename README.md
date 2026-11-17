@@ -1,3 +1,53 @@
+# 中部・北陸 2027｜旅行地圖（GitHub Pages）
+
+以原旅遊網站 2026-11-17 的最新程式版本為基礎，移植為可直接部署在 GitHub Pages 的地圖行程工具。日期為 2027/2/9–2/16。
+
+- 桌機雙欄地圖、手機底部行程面板、D1–D8 日期切換、拖曳排序與停留時間編輯。
+- 保留最新住宿與行程修正：D1/D2 Hotel Torifito Kanazawa、FORUS 5F、D2 鼓門、飯店 Google Maps 地點資訊連結、刪除備援方案。
+- 美食時段篩選、私人商店地圖選點、待買清單、行前準備、預算及官方現地影像入口。
+- OpenStreetMap 底圖；兩點交通由按鈕開啟 Google Maps，不使用 Google Maps Platform。
+
+## 儲存與同步
+
+行程、準備與預算先保存在本機；頂部顯示「已存本機」。點頂部儲存狀態，在「Supabase 旅行共享碼」輸入舊版使用的共享碼，即可連接既有後端。**旅程代碼不是共享碼**，不會把公開的 `HOKURIKU-2027` 當成驗證密碼。
+
+保留原 `cloud-config.js` 及後端，不需修改資料表或重新部署 Supabase。新地圖行程寫入原 namespace 下的 `map-planner:<旅程代碼>` 欄位，保留舊版勾選與預算欄位；舊版完整頁面仍可從儲存設定開啟 `legacy.html`。
+
+既有後端沒有原子版本比對，因此前端會在寫入前讀取並比較版本；偵測到差異時停止自動覆蓋，讓使用者選擇本機或雲端。此機制無法保證兩人同一瞬間寫入時完全沒有競爭，建議避免同時修改同一旅程。
+
+商店、個人待買清單及自行新增的美食只保存在目前瀏覽器，不會傳到共用 Supabase。此版本沒有 ChatGPT 帳號登入，也不會同步原 ChatGPT 網站的 D1 資料庫。共用同一瀏覽器設定檔的人可以讀到同一份本機清單；清除網站資料會移除本機資料。儲存設定內可匯出包含行程與私人清單的 JSON 備份。
+
+Google Maps 含精確座標的長連結可定位；分享短網址在純靜態網站無法可靠展開，會提示改用地圖選點。含店名的地點網址仍會自動帶入店名。
+
+## 開發與更新
+
+需要 Node.js 22.13 以上。
+
+```bash
+npm ci
+npm test
+npm run build
+npm run publish:files
+```
+
+`src/` 保存完整 React/TypeScript 原始碼。`npm run build` 產生 `dist/`；`npm run publish:files` 把建置結果複製到儲存庫根目錄。將根目錄輸出與原始碼一起提交到 `main`，即可沿用 Pages 的 `main / (root)` 設定。正式 `cloud-config.js` 與 `cloud-sync.js` 不會被此步驟覆蓋。
+
+```bash
+npm run dev
+```
+
+開發伺服器使用同一套響應式介面。PWA（可加入手機主畫面的網站）使用相對路徑，支援 `/Nagoya-Kanazawa-trip/` 專案子目錄；離線快取介面與程式，不快取私人雲端請求或外部地圖圖磚。
+
+## 程式來源
+
+原站：https://nagoya-hokuriku-2027.pacston-3158.chatgpt.site/
+
+參照原站程式提交：`54d1891b4d36dd1e650a3ee8bdd47c8175a68370`。本版未改動原站部署。
+
+---
+
+<details><summary>舊版更新紀錄</summary>
+
 # 2027 名古屋・金澤・白川鄉・高山・飛驒古川 8天7夜 V6
 
 GitHub Pages 靜態互動行程網站。行程日期：2027/2/9–2/16。
@@ -129,3 +179,6 @@ functionUrl: 'https://YOUR_PROJECT_REF.supabase.co/functions/v1/trip-state'
 - 「已完成預訂」沿用 `book-hotel-k`，與「最終住宿」分開，避免把「決定」誤當成「已下訂」。
 - 清除最終住宿只會移除單一最終選擇，不會刪除 shortlist 或已預訂勾選。
 - `cloud-sync.js` 新增字串型 shared state 支援；`cloud-config.js` 不需修改。
+
+
+</details>

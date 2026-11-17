@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.sites-runtime/
+.openai/
+*.tsbuildinfo
+public/cloud-config.js
+public/cloud-sync.js
+public/qa-mobile.html
