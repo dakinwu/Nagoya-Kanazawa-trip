@@ -38,12 +38,6 @@ npm run dev
 
 開發伺服器使用同一套響應式介面。PWA（可加入手機主畫面的網站）使用相對路徑，支援 `/Nagoya-Kanazawa-trip/` 專案子目錄；離線快取介面與程式，不快取私人雲端請求或外部地圖圖磚。
 
-## 程式來源
-
-原站：https://nagoya-hokuriku-2027.pacston-3158.chatgpt.site/
-
-參照原站程式提交：`54d1891b4d36dd1e650a3ee8bdd47c8175a68370`。本版未改動原站部署。
-
 ---
 
 <details><summary>舊版更新紀錄</summary>
